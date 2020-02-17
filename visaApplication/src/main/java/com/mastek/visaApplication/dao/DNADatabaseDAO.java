@@ -1,17 +1,10 @@
 package com.mastek.visaApplication.dao;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.mastek.visaApplication.entities.DNADatabase;
 
-public interface DNADatabaseDAO {
+public interface DNADatabaseDAO extends MongoRepository<DNADatabase, Integer>{
 
 	
-BufferedReader=File DNA = new File(null);
 }
