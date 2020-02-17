@@ -1,6 +1,7 @@
 package com.mastek.visaApplication.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +9,14 @@ import javax.persistence.Table;
 public class PersonalDetails {
 
 	long passportNo;
+	
+	@Id
+	public long getPassportNo() {
+		return passportNo;
+	}
+	public void setPassportNo(long passportNo) {
+		this.passportNo = passportNo;
+	}
 	String contactLanguage;
 	Salutation applicantSalutation;
 	String firstName;

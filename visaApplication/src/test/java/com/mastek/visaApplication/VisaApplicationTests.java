@@ -50,7 +50,7 @@ class VisaApplicationTests {
 	@Test
 	void testAddDNA() {
 		DNADatabase dna = new DNADatabase();
-		dna.setFirstName("Joe");
+		dna.setFirstName("Mike");
 		dna.setLastName("Bramhall");
 		dna.setPassportNumber(111111);
 		dna.setCrimeDescription("Stealing");
