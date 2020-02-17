@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class VisaApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void testAddApplicant() {
 	}
 
 }
