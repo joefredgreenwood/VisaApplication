@@ -48,6 +48,31 @@ public class DNADatabase {
 	public void setCrimeDate(String crimeDate) {
 		this.crimeDate = crimeDate;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (passportNumber ^ (passportNumber >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DNADatabase other = (DNADatabase) obj;
+		if (passportNumber != other.passportNumber)
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "DNADatabase [passportNumber=" + passportNumber + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", crimeDescription=" + crimeDescription + ", crimeDate=" + crimeDate + "]";
+	}
 	
 	
 	
