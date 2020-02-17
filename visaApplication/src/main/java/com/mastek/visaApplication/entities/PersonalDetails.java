@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Personal_Details")
+@Table(name="JPA_PERSONAL_DETAILS")
 public class PersonalDetails {
 
 	long passportNo;
