@@ -1,5 +1,10 @@
 package com.mastek.visaApplication.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="JPA_PERSONAL_DETAILS")
 public class PersonalDetails {
 
 	long passportNo;
