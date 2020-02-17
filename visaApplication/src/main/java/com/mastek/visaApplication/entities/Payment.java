@@ -1,6 +1,7 @@
 package com.mastek.visaApplication.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -10,6 +11,8 @@ public class Payment {
 	int paymentId;
 	long paymentRef;
 	double totalFee;
+	
+	@Id
 	public int getPaymentId() {
 		return paymentId;
 	}
