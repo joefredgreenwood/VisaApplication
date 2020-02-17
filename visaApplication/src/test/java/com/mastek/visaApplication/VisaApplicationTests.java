@@ -46,26 +46,25 @@ class VisaApplicationTests {
 	@Test
 	void testAddPayment() {
 		Payment pay = new Payment();
-		pay.setPaymentRef(12345);
-		pay.setTotalFee(12.50);
+		pay.setTotalFee(14.50);
 
 		pay = payDAO.save(pay);
 		System.out.println(pay);
 		assertNotNull(pay, "Payment not Added");
 	}
 
-	@Test
-	void testAddDNA() {
-		DNADatabase dna = new DNADatabase();
-		dna.setFirstName("Joe");
-		dna.setLastName("Bramhall");
-		dna.setPassportNumber(111111);
-		dna.setCrimeDescription("Stealing");
-		dna.setCrimeDate("20/01/1997");
-
-		dna=dnadao.save(dna);
-		System.out.println(dna);
-	}
+//	@Test
+//	void testAddDNA() {
+//		DNADatabase dna = new DNADatabase();
+//		dna.setFirstName("Joe");
+//		dna.setLastName("Bramhall");
+//		dna.setPassportNumber(111111);
+//		dna.setCrimeDescription("Stealing");
+//		dna.setCrimeDate("20/01/1997");
+//
+//		dna=dnadao.save(dna);
+//		System.out.println(dna);
+//	}
 
 }
 
