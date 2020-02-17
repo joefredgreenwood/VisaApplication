@@ -29,8 +29,15 @@ class VisaApplicationTests {
 
 	@Autowired
 	PaymentDAO payDAO;
-
-
+//
+//
+//	@Test // test add applicant details 
+//	void testAddApplicant() {
+//	PersonalDetails appd = new PersonalDetails();
+//	appd.setPassportNo(1111111111);
+//	appd.setContactLanguage("English");
+//
+//	}
 
 	//@Test
 	void testAddApplicant() {
@@ -59,5 +66,6 @@ class VisaApplicationTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	}
+
 }
 
