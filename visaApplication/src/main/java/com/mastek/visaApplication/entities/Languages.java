@@ -7,37 +7,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COUNTRIES")
-public class Countries {
+@Table(name="LANGUAGES")
+public class Languages {
 	
-	int countryId;
-	String countryName;
-	
-	
+	int languageId;
+	String languageName;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getCountryId() {
-		return countryId;
+	public int getLanguageId() {
+		return languageId;
 	}
-	public void setCountryId(int countryId) {
-		this.countryId = countryId;
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
 	}
-	public String getCountryName() {
-		return countryName;
+	public String getLanguageName() {
+		return languageName;
 	}
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
 	}
 	@Override
 	public String toString() {
-		return "Countries [countryId=" + countryId + ", countryName=" + countryName + "]";
+		return "Languages [languageId=" + languageId + ", languageName=" + languageName + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + countryId;
+		result = prime * result + languageId;
 		return result;
 	}
 	@Override
@@ -48,11 +46,12 @@ public class Countries {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Countries other = (Countries) obj;
-		if (countryId != other.countryId)
+		Languages other = (Languages) obj;
+		if (languageId != other.languageId)
 			return false;
 		return true;
 	}
+	
 	
 	
 

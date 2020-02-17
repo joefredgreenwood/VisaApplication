@@ -9,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
+import com.mastek.visaApplication.dao.CountriesDAO;
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
+import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
+import com.mastek.visaApplication.dao.LanguagesDAO;
+import com.mastek.visaApplication.entities.Countries;
 import com.mastek.visaApplication.entities.DNADatabase;
-
-
+import com.mastek.visaApplication.entities.IssueingAuthority;
+import com.mastek.visaApplication.entities.Languages;
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.entities.Payment;
 import com.mastek.visaApplication.services.VisaApplicationServices;
@@ -29,6 +32,15 @@ class VisaApplicationTests {
 
 	@Autowired
 	PaymentDAO payDAO;
+	
+	@Autowired
+	CountriesDAO couDAO;
+	
+	@Autowired
+	LanguagesDAO lanDAO;
+	
+	@Autowired
+	IssueingAuthorityDAO issAuthDAO;
 //
 //
 //	@Test // test add applicant details 
@@ -65,6 +77,36 @@ class VisaApplicationTests {
 //		dna=dnadao.save(dna);
 //		System.out.println(dna);
 //	}
+	
+	@Test
+	void testAddCountry() {
+		Countries cou = new Countries();
+		cou.setCountryName("Algeria");
+		
+		cou = couDAO.save(cou);
+		System.out.println(cou);
+		
+	}
+	
+	@Test
+	void testAddLanguages() {
+		Languages lan = new Languages();
+		lan.setLanguageName("Algerian");
+		
+		lan = lanDAO.save(lan);
+		System.out.println(lan);
+		
+	}
+	
+	@Test
+	void testAddIssueingAuthority() {
+		IssueingAuthority issAuth = new IssueingAuthority();
+		issAuth.setIssueingAuthorityName("Algerian Government");
+		
+		issAuth = issAuthDAO.save(issAuth);
+		System.out.println(issAuth);
+		
+	}
 
 }
 
