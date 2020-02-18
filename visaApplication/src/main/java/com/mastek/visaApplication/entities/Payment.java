@@ -10,22 +10,17 @@ import javax.persistence.Table;
 @Table(name="PAYMENT_INFO")
 public class Payment {
 	
-	int paymentId;
-	long paymentRef;
+	int paymentRef;
 	double totalFee;
 	
+	
+	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getPaymentId() {
-		return paymentId;
-	}
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
-	public long getPaymentRef() {
+	@GeneratedValue(strategy=GenerationType.AUTO)	
+	public int getPaymentRef() {
 		return paymentRef;
 	}
-	public void setPaymentRef(long paymentRef) {
+	public void setPaymentRef(int paymentRef) {
 		this.paymentRef = paymentRef;
 	}
 	public double getTotalFee() {
@@ -35,14 +30,10 @@ public class Payment {
 		this.totalFee = totalFee;
 	}
 	@Override
-	public String toString() {
-		return "Payment [paymentId=" + paymentId + ", paymentRef=" + paymentRef + ", totalFee=" + totalFee + "]";
-	}
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + paymentId;
+		result = prime * result + (int) (paymentRef ^ (paymentRef >>> 32));
 		return result;
 	}
 	@Override
@@ -54,10 +45,15 @@ public class Payment {
 		if (getClass() != obj.getClass())
 			return false;
 		Payment other = (Payment) obj;
-		if (paymentId != other.paymentId)
+		if (paymentRef != other.paymentRef)
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Payment [paymentRef=" + paymentRef + ", totalFee=" + totalFee + "]";
+	}
+	
 	
 	
 	
