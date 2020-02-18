@@ -65,7 +65,7 @@ class VisaApplicationTests {
 		assertNotNull(pay, "Payment not Added");
 	}
 	
-	@Test
+	//@Test
 		void testDeletePaymentById() {
 		payDAO.deleteById(31);
 	}
@@ -92,6 +92,11 @@ class VisaApplicationTests {
 		System.out.println(cou);
 		
 	}
+	
+	@Test
+	void testDeleteCountryById() {
+	couDAO.deleteById(8);
+}
 	
 	//@Test
 	void testAddLanguages() {
