@@ -41,45 +41,48 @@ class VisaApplicationTests {
 	void testAddApplicant() {
 	PersonalDetails appd = new PersonalDetails();
 	
-	appd.setPassportNo(1111111111);
+	appd.setPassportNo(333333);
 	appd.setContactLanguage("English");
 	appd.setApplicantSalutation(Salutation.Mr);
-	appd.setFirstName("Shujahat");
-	appd.setMiddleName("ali");
-	appd.setFamilyName("bhatti");
-	appd.setOtherNames("saj");
+	appd.setFirstName("Luke");
+	appd.setMiddleName("N/A");
+	appd.setFamilyName("Mellor");
+	appd.setOtherNames("N/A");
 	appd.setApplicantGender(Gender.Male);
-	appd.setDateOfBirth("05/02/1996");
-	appd.setCountryOfBirth("United Kingdom");
-	appd.setPlaceOfBirth("Birmingham");
-	appd.setNationality("British");
+	appd.setDateOfBirth("03/07/1995");
+	appd.setCountryOfBirth("Italy");
+	appd.setPlaceOfBirth("Rome");
+	appd.setNationality("Italian");
 	appd.setDoYouHaveAnyOtherNationality(false);
-	appd.setApplicantRelationship(Relationship.Married);
+	appd.setApplicantRelationship(Relationship.Single);
 	appd.setOwnershipStatusOfHome("Renting");
-	appd.setAddress("123 Coventry Road, Birmingham,CV10 9AQ");
-	appd.setHowLongHaveYouLivedAtThisAddress("5 Years");
+	appd.setAddress("Via delle Fornaci, 11, 00100 Roma RM, Italy");
+	appd.setHowLongHaveYouLivedAtThisAddress("7 Years");
 	appd.setIsThisYourCorrespondenceAddress(true);
-	appd.setTelephoneNumber(0123324123);
+	appd.setTelephoneNumber(0323324123);
+	appd.setCanBeContactedByTelephone(true);
 	appd.setWhereDoYouUseThisNumber("Personal");
-	appd.setContactEmail("saj@outlook.com");
+	appd.setContactEmail("LukeM@outlook.com");
 	appd.setWhoDoesThisEmailBelongTo("myself");
 	appd.setSecondaryEmail("N/A");
 	appd.setDrivingLicense(true);
 	appd.setDoYouHaveAValidNationalIdentityCard(true);
-	appd.setPassportIssueDate("01/01/2013");
-	appd.setPassportExpiryDate("01/01/2023");
-	appd.setCountryOfNationality("United Kingdom");
-	appd.setIssuingAuthority("HM Government");
-	appd.setDoYouHaveAUkDriversLicense(true);
-	appd.setDoYouHaveAUkNationalInsuranceNumber(true);
-	appd.setNationalInsuranceNumber("SA156 7666 PA");
-	appd.setDependantFamilyName("bhatti");
-	appd.setDependantSalutation(Salutation.Dr);
-	appd.setDependantGivenName("Mo");
+	appd.setPassportIssueDate("01/03/2015");
+	appd.setPassportExpiryDate("01/03/2025");
+	appd.setCountryOfNationality("Italy");
+	appd.setIssuingAuthority("Italian Govt");
+	appd.setDoYouHaveAUkDriversLicense(false);
+	appd.setDoYouHaveAUkNationalInsuranceNumber(false);
+	appd.setNationalInsuranceNumber("N/A");
+	appd.setDependantPassportNo(2221113);
+	appd.setDependantFamilyName("Mellor");
+	appd.setDependantSalutation(Salutation.Mr);
+	appd.setDependantGender(Gender.Male);
+	appd.setDependantGivenName("George");
 	appd.setDependantRelationshipToYou("Father");
-	appd.setDependantNationalitySameAsApplicant("British");
-	appd.setDependantCountryOfNationality("United Kingdom");
-	appd.setDependantDateOfBirth("03/11/1971");
+	appd.setDependantNationalitySameAsApplicant("Italian");
+	appd.setDependantCountryOfNationality("Italy");
+	appd.setDependantDateOfBirth("02/06/1975");
 	
 	appd = perddao.save(appd);
 	System.out.println(appd);
@@ -89,15 +92,15 @@ class VisaApplicationTests {
 
 	
 
-	@Test
-	void testAddPayment() {
-		Payment pay = new Payment();
-		pay.setTotalFee(14.50);
-
-		pay = payDAO.save(pay);
-		System.out.println(pay);
-		assertNotNull(pay, "Payment not Added");
-	}
+//	@Test
+//	void testAddPayment() {
+//		Payment pay = new Payment();
+//		pay.setTotalFee(14.50);
+//
+//		pay = payDAO.save(pay);
+//		System.out.println(pay);
+//		assertNotNull(pay, "Payment not Added");
+//	}
 
 //	@Test
 //	void testAddDNA() {
