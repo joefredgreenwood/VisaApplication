@@ -10,17 +10,17 @@ import javax.persistence.Table;
 @Table(name="PAYMENT_INFO")
 public class Payment {
 	
-	long paymentRef;
+	int paymentRef;
 	double totalFee;
 	
 	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long getPaymentRef() {
+	public int getPaymentRef() {
 		return paymentRef;
 	}
-	public void setPaymentRef(long paymentRef) {
+	public void setPaymentRef(int paymentRef) {
 		this.paymentRef = paymentRef;
 	}
 	public double getTotalFee() {

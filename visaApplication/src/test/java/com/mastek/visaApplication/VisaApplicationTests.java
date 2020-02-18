@@ -58,11 +58,16 @@ class VisaApplicationTests {
 	@Test
 	void testAddPayment() {
 		Payment pay = new Payment();
-		pay.setTotalFee(14.50);
+		pay.setTotalFee(16.50);
 
 		pay = payDAO.save(pay);
 		System.out.println(pay);
 		assertNotNull(pay, "Payment not Added");
+	}
+	
+	@Test
+		void testDeletePaymentById() {
+		payDAO.deleteById(31);
 	}
 
 //	@Test
@@ -78,30 +83,30 @@ class VisaApplicationTests {
 //		System.out.println(dna);
 //	}
 	
-	@Test
+	//@Test
 	void testAddCountry() {
 		Countries cou = new Countries();
-		cou.setCountryName("Algeria");
+		cou.setCountryName("Brazil");
 		
 		cou = couDAO.save(cou);
 		System.out.println(cou);
 		
 	}
 	
-	@Test
+	//@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
-		lan.setLanguageName("Algerian");
+		lan.setLanguageName("Brazilian");
 		
 		lan = lanDAO.save(lan);
 		System.out.println(lan);
 		
 	}
 	
-	@Test
+	//@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
-		issAuth.setIssueingAuthorityName("Algerian Government");
+		issAuth.setIssueingAuthorityName("Brazilian Government");
 		
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
