@@ -1,5 +1,5 @@
 package com.mastek.visaApplication.entities;
 
-public enum Gender {Male,Female,Other
+public enum Gender {MALE,FEMALE,OTHER
 
 }

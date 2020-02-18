@@ -1,5 +1,5 @@
 package com.mastek.visaApplication.entities;
 
-public enum Salutation {Mr,Mrs,Miss,Ms,Master,Dr,
+public enum Salutation {MR,MRS,MISS,MS,MASTER,DR,
 
 }

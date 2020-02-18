@@ -8,4 +8,5 @@ import com.mastek.visaApplication.entities.ApplicationForm;
 @Repository
 public interface ApplicationFormDAO extends CrudRepository<ApplicationForm, Integer>{
 
+
 }
