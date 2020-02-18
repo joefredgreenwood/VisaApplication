@@ -335,7 +335,7 @@ class VisaApplicationTests {
 		
 	}
 	
-	@Test
+	//@Test
 	void testDeleteLanguageById() {
 	lanDAO.deleteById(20);
 	}
