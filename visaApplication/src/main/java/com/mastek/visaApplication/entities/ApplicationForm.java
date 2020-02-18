@@ -2,6 +2,8 @@ package com.mastek.visaApplication.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +15,7 @@ public class ApplicationForm {
 	private int applicationID;
 	//VISA DETAILS// 
 	private String applicationDate; 
-	private int durationOfVisa; 
+	private int durationOfVisa; //months
 	private SubmissionType SubmissionType; //enum
 	private String plannedArriveUK;
 	private String plannedDepartUK; 
@@ -101,6 +103,7 @@ public class ApplicationForm {
 	private String haveYouExpressedAnyExtremistViewsReason; 
 	private String haveYouSupportedExtreamistOrgisisationReason;
 	
+	//CONSTRUCTOR//
 	public ApplicationForm() {
 		
 	}
@@ -133,6 +136,7 @@ public class ApplicationForm {
 		this.durationOfVisa = durationOfVisa;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public SubmissionType getSubmissionType() {
 		return SubmissionType;
 	}
@@ -357,6 +361,7 @@ public class ApplicationForm {
 		this.startedWorkingForEmployer = startedWorkingForEmployer;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public EmploymentStatus getEmploymentStatus() {
 		return EmploymentStatus;
 	}
@@ -709,6 +714,91 @@ public class ApplicationForm {
 	public void setHaveYouSupportedExtreamistOrgisisationReason(String haveYouSupportedExtreamistOrgisisationReason) {
 		this.haveYouSupportedExtreamistOrgisisationReason = haveYouSupportedExtreamistOrgisisationReason;
 	}
+
+	//TO STRING// 
+	@Override
+	public String toString() {
+		return "ApplicationForm [applicationID=" + applicationID + ", applicationDate=" + applicationDate
+				+ ", durationOfVisa=" + durationOfVisa + ", SubmissionType=" + SubmissionType + ", plannedArriveUK="
+				+ plannedArriveUK + ", plannedDepartUK=" + plannedDepartUK + ", visaContactNumberUK="
+				+ visaContactNumberUK + ", visaContactNumberOutsideUK=" + visaContactNumberOutsideUK
+				+ ", detailsOfVisit=" + detailsOfVisit + ", whatYouPaidFor=" + whatYouPaidFor + ", payAmount="
+				+ payAmount + ", whoWillBePayingYou=" + whoWillBePayingYou + ", anyoneRelyOnYouFinancially="
+				+ anyoneRelyOnYouFinancially + ", receivedAnyUKPublicFunds=" + receivedAnyUKPublicFunds
+				+ ", whereDoYouPlanToStay=" + whereDoYouPlanToStay + ", addressOfWhereYouAreStaying="
+				+ addressOfWhereYouAreStaying + ", doYouHaveFamilyInUK=" + doYouHaveFamilyInUK
+				+ ", whyAreTheyHelpingPay=" + whyAreTheyHelpingPay + ", howMuchFamilyPaying=" + howMuchFamilyPaying
+				+ ", willAnyoneBePayingTowardsVisit=" + willAnyoneBePayingTowardsVisit
+				+ ", whoWillBePayingTowardsVisit=" + whoWillBePayingTowardsVisit + ", monthlySpend=" + monthlySpend
+				+ ", plannedUKSpending=" + plannedUKSpending + ", otherIncomeOrSavings=" + otherIncomeOrSavings
+				+ ", discribeYourJob=" + discribeYourJob + ", salaryAfterTax=" + salaryAfterTax + ", jobTitle="
+				+ jobTitle + ", employersName=" + employersName + ", employersAddress=" + employersAddress
+				+ ", employersPhoneNumber=" + employersPhoneNumber + ", startedWorkingForEmployer="
+				+ startedWorkingForEmployer + ", EmploymentStatus=" + EmploymentStatus + ", hadMedicalTreatmentInUK="
+				+ hadMedicalTreatmentInUK + ", haveYouEnteredUKIllegally=" + haveYouEnteredUKIllegally
+				+ ", haveYouStayedBeyondYourVisa=" + haveYouStayedBeyondYourVisa + ", haveYouBreachedVisaConditions="
+				+ haveYouBreachedVisaConditions + ", haveYouReceivedPublicFundsWithoutPermission="
+				+ haveYouReceivedPublicFundsWithoutPermission + ", haveYouGivenFalseInfoOnVisa="
+				+ haveYouGivenFalseInfoOnVisa + ", haveYouBeenToUKInLast10Years=" + haveYouBeenToUKInLast10Years
+				+ ", numberOfTimesTravelled=" + numberOfTimesTravelled + ", refusedVisa=" + refusedVisa
+				+ ", refusedEntryAtBorder=" + refusedEntryAtBorder + ", refusedPermissionToStay="
+				+ refusedPermissionToStay + ", refusedAsylum=" + refusedAsylum + ", deportedFromCountry="
+				+ deportedFromCountry + ", removedFromCountry=" + removedFromCountry + ", requiredToLeaveCountry="
+				+ requiredToLeaveCountry + ", excludedOrBannedFromEntry=" + excludedOrBannedFromEntry
+				+ ", refusedVisaReason=" + refusedVisaReason + ", refusedEntryAtBorderReason="
+				+ refusedEntryAtBorderReason + ", refusedPermissionToStayReason=" + refusedPermissionToStayReason
+				+ ", refusedAsylumReason=" + refusedAsylumReason + ", deportedFromCountryReason="
+				+ deportedFromCountryReason + ", removedFromCountryReason=" + removedFromCountryReason
+				+ ", requiredToLeaveCountryReason=" + requiredToLeaveCountryReason
+				+ ", excludedOrBannedFromEntryReason=" + excludedOrBannedFromEntryReason
+				+ ", confirmReadInfoOnTerrorism=" + confirmReadInfoOnTerrorism
+				+ ", haveYouJustifiedOrEncouragedTerrorism=" + haveYouJustifiedOrEncouragedTerrorism
+				+ ", haveYouBeenAMemberOfTerroristOrginisation=" + haveYouBeenAMemberOfTerroristOrginisation
+				+ ", haveYouSupportedTerrorism=" + haveYouSupportedTerrorism
+				+ ", haveYouBeenSuspectedOrInvolvedInWarCrimes=" + haveYouBeenSuspectedOrInvolvedInWarCrimes
+				+ ", anyOtherInfoAboutCharacter=" + anyOtherInfoAboutCharacter
+				+ ", anyOtherActivitiesShowNotGoodPerson=" + anyOtherActivitiesShowNotGoodPerson
+				+ ", workedForOrginisationDangerousToUKOrAllies=" + workedForOrginisationDangerousToUKOrAllies
+				+ ", haveYouExpressedAnyExtremistViews=" + haveYouExpressedAnyExtremistViews
+				+ ", haveYouSupportedExtreamistOrgisisation=" + haveYouSupportedExtreamistOrgisisation
+				+ ", haveYouJustifiedOrEncouragedTerrorismReason=" + haveYouJustifiedOrEncouragedTerrorismReason
+				+ ", haveYouBeenAMemberOfTerroristOrginisationReason=" + haveYouBeenAMemberOfTerroristOrginisationReason
+				+ ", haveYouSupportedTerrorismReason=" + haveYouSupportedTerrorismReason
+				+ ", haveYouBeenSuspectedOrInvolvedInWarCrimesReason=" + haveYouBeenSuspectedOrInvolvedInWarCrimesReason
+				+ ", anyOtherInfoAboutCharacterReason=" + anyOtherInfoAboutCharacterReason
+				+ ", anyOtherActivitiesShowNotGoodPersonReason=" + anyOtherActivitiesShowNotGoodPersonReason
+				+ ", workedForOrginisationDangerousToUKOrAlliesReason="
+				+ workedForOrginisationDangerousToUKOrAlliesReason + ", haveYouExpressedAnyExtremistViewsReason="
+				+ haveYouExpressedAnyExtremistViewsReason + ", haveYouSupportedExtreamistOrgisisationReason="
+				+ haveYouSupportedExtreamistOrgisisationReason + "]";
+	}
+
+	//HASHCODE AND EQUALS
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + applicationID;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ApplicationForm other = (ApplicationForm) obj;
+		if (applicationID != other.applicationID)
+			return false;
+		return true;
+	}
+	
+	
+	
+	
 	
 	
 }

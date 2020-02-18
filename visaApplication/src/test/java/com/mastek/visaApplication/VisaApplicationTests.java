@@ -1,15 +1,16 @@
 package com.mastek.visaApplication;
 
-
-import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+import com.mastek.visaApplication.dao.ApplicationFormDAO;
+
 import com.mastek.visaApplication.dao.CountriesDAO;
+
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
 
 import com.mastek.visaApplication.entities.ApplicationForm;
@@ -19,10 +20,15 @@ import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
 
 import com.mastek.visaApplication.entities.DNADatabase;
+
+import com.mastek.visaApplication.entities.EmploymentStatus;
+
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
+
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.entities.Payment;
+import com.mastek.visaApplication.entities.SubmissionType;
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
 
@@ -37,6 +43,9 @@ class VisaApplicationTests {
 
 	
 	@Autowired
+	ApplicationFormDAO appFormDAO;
+
+	@Autowired
 	CountriesDAO couDAO;
 	
 	@Autowired
@@ -44,6 +53,7 @@ class VisaApplicationTests {
 	
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
+
 //
 //
 
@@ -55,20 +65,13 @@ class VisaApplicationTests {
 //
 //	}
 
-//	//@Test
-//	void testAddApplicant() {
-//	}
-//
-//	@Test
-//	void testAddPayment() {
-//		Payment pay = new Payment();
-//		pay.setPaymentRef(12346);
-//		pay.setTotalFee(13.50);
-//
-//		pay = payDAO.save(pay);
-//		System.out.println(pay);
-//		assertNotNull(pay, "Payment not Added");
-//	}
+
+	//@Test
+	void testAddApplicant() {
+	}
+
+
+
 //
 //	@Test
 //	void testAddDNA() {
@@ -83,14 +86,7 @@ class VisaApplicationTests {
 //		System.out.println(dna);
 //	}
 	
-//	@Test
-//	void testTerrorism() {
-//		VisaApplicationServices visaServices= new VisaApplicationServices();
-//		ApplicationForm app = new ApplicationForm();
-//		app.setHaveYouBeenAMemberOfTerroristOrginisation(true);
-//		visaServices.terrorTest(app);
-//				
-//	}
+
 	
 	@Test
 	void testTerrorism() {
@@ -106,6 +102,7 @@ class VisaApplicationTests {
 		System.out.println(visaServices.getDecision());
 }				
 
+	//@Test
 	void testAddPayment() {
 		Payment pay = new Payment();
 		pay.setTotalFee(16.50);
@@ -114,11 +111,191 @@ class VisaApplicationTests {
 		System.out.println(pay);
 		assertNotNull(pay, "Payment not Added");
 	}
+
 	
+
 	//@Test
-		void testDeletePaymentById() {
-		payDAO.deleteById(31);
+	void testDeletePaymentById() {
+	payDAO.deleteById(31);
 	}
+
+	//@Test
+	void testAddApplicationForm() {
+		ApplicationForm appForm = new ApplicationForm(); 
+		
+		appForm.setApplicationDate("17/02/2020");
+		appForm.setDurationOfVisa(4);
+		appForm.setSubmissionType(SubmissionType.ONLINE);
+		appForm.setPlannedArriveUK("20/05/2020");
+		appForm.setPlannedDepartUK("20/09/2020");
+		appForm.setVisaContactNumberUK(0244123453);
+		appForm.setVisaContactNumberOutsideUK(0744123453);
+		//add contact language
+		appForm.setDetailsOfVisit("Example Details of Visit");
+		appForm.setWhatYouPaidFor("Accomodation and Flights");
+		appForm.setPayAmount(1000.00);
+		appForm.setWhoWillBePayingYou("Family member");
+		appForm.setAnyoneRelyOnYouFinancially(false);
+		appForm.setReceivedAnyUKPublicFunds(false);
+		appForm.setWhereDoYouPlanToStay("With Friends");
+		appForm.setAddressOfWhereYouAreStaying("Example Address");
+		appForm.setDoYouHaveFamilyInUK(true);
+		appForm.setWhyAreTheyHelpingPay("They want to see me");
+		appForm.setHowMuchFamilyPaying(3000.00);
+		appForm.setWillAnyoneBePayingTowardsVisit(true);
+		appForm.setWhoWillBePayingTowardsVisit("Family and Partner");
+		appForm.setMonthlySpend(700.00);
+		appForm.setPlannedUKSpending(2000.00);
+		appForm.setOtherIncomeOrSavings(true);
+		appForm.setDiscribeYourJob("Job Description");
+		appForm.setSalaryAfterTax(20000.00);
+		appForm.setJobTitle("Builder");
+		appForm.setEmployersName("Example Company");
+		appForm.setEmployersAddress("Employers Address");
+		appForm.setEmployersPhoneNumber(0276453213);
+		appForm.setStartedWorkingForEmployer("01/01/2004");
+		appForm.setEmploymentStatus(EmploymentStatus.FULLTIME);
+		appForm.setHadMedicalTreatmentInUK(false);
+		appForm.setHaveYouEnteredUKIllegally(false);
+		appForm.setHaveYouStayedBeyondYourVisa(false);
+		appForm.setHaveYouBreachedVisaConditions(false);
+		appForm.setHaveYouReceivedPublicFundsWithoutPermission(false);
+		appForm.setHaveYouGivenFalseInfoOnVisa(false);
+		appForm.setHaveYouBeenToUKInLast10Years(true);
+		//countries question 
+		appForm.setRefusedVisa(true);
+		if (appForm.getRefusedVisa()) {
+			appForm.setRefusedVisaReason("Add Reason");
+		}
+		else {
+				appForm.setRefusedVisaReason(null);
+			}
+		appForm.setRefusedEntryAtBorder(false);
+		if (appForm.getRefusedEntryAtBorder()) {
+			appForm.setRefusedEntryAtBorderReason("Add Reason");
+		}
+		else {
+				appForm.setRefusedEntryAtBorderReason(null);
+			}
+		appForm.setRefusedPermissionToStay(true);
+		if (appForm.getRefusedPermissionToStay()) {
+			appForm.setRefusedPermissionToStayReason("Add Reason");	
+		}
+		else {
+			appForm.setRefusedPermissionToStayReason(null);
+		}
+		appForm.setRefusedAsylum(false);
+		if (appForm.getRefusedAsylum()) {
+			appForm.setRefusedAsylumReason("Add Reason");	
+		}
+		else {
+			appForm.setRefusedAsylumReason(null);
+		}
+		appForm.setDeportedFromCountry(true);
+		if(appForm.getDeportedFromCountry()) {
+			appForm.setDeportedFromCountryReason("Add Reason");
+		}
+		else {
+			appForm.setDeportedFromCountryReason(null);
+		}
+		appForm.setRemovedFromCountry(false);
+		if (appForm.getRemovedFromCountry()) {
+			appForm.setRemovedFromCountryReason("Add Reason");
+		} 
+		else {
+			appForm.setRemovedFromCountryReason(null);
+		}
+		appForm.setRequiredToLeaveCountry(true);
+		if (appForm.getRequiredToLeaveCountry()) {
+			appForm.setRequiredToLeaveCountryReason("Add Reason");
+		}
+		else {
+			appForm.setRequiredToLeaveCountryReason(null);
+		}
+		appForm.setExcludedOrBannedFromEntry(false);
+		if (appForm.getExcludedOrBannedFromEntry()) {
+			appForm.setExcludedOrBannedFromEntryReason("Add Reason");
+		}
+		else {
+			appForm.setExcludedOrBannedFromEntryReason(null);
+		}
+		appForm.setConfirmReadInfoOnTerrorism(true);
+		appForm.setHaveYouJustifiedOrEncouragedTerrorism(false);
+		if (appForm.getHaveYouJustifiedOrEncouragedTerrorism()) {
+			appForm.setHaveYouJustifiedOrEncouragedTerrorismReason("Add Reason");
+		}
+		else { 
+			appForm.setHaveYouJustifiedOrEncouragedTerrorismReason(null);
+		}
+		appForm.setHaveYouBeenAMemberOfTerroristOrginisation(false);
+		if (appForm.getHaveYouBeenAMemberOfTerroristOrginisation()) {
+			appForm.setHaveYouBeenAMemberOfTerroristOrginisationReason("Add Reason");
+		}
+		else {
+			appForm.setHaveYouBeenAMemberOfTerroristOrginisationReason(null);	
+		}
+		appForm.setHaveYouSupportedTerrorism(false); 
+		if (appForm.getHaveYouSupportedTerrorism()) {
+			appForm.setHaveYouSupportedTerrorismReason("Add Reason");
+		}
+		else {
+			appForm.setHaveYouSupportedTerrorismReason(null);
+		}
+		appForm.setHaveYouBeenSuspectedOrInvolvedInWarCrimes(true);
+		if (appForm.getHaveYouBeenSuspectedOrInvolvedInWarCrimes()) {
+			appForm.setHaveYouBeenSuspectedOrInvolvedInWarCrimesReason("Add Reason");
+		}
+		else {
+			appForm.setHaveYouBeenSuspectedOrInvolvedInWarCrimesReason(null);
+		}
+		appForm.setAnyOtherInfoAboutCharacter(false);
+		if (appForm.getAnyOtherInfoAboutCharacter()) {
+			appForm.setAnyOtherInfoAboutCharacterReason("Add Reason");
+		}
+		else {
+			appForm.setAnyOtherInfoAboutCharacterReason(null);
+		}
+		appForm.setAnyOtherActivitiesShowNotGoodPerson(false);
+		if (appForm.getAnyOtherActivitiesShowNotGoodPerson()) {
+			appForm.setAnyOtherActivitiesShowNotGoodPersonReason("Add Reason");
+		}
+		else {
+			appForm.setAnyOtherActivitiesShowNotGoodPersonReason(null);
+		}
+		appForm.setWorkedForOrginisationDangerousToUKOrAllies(false);
+		if (appForm.getWorkedForOrginisationDangerousToUKOrAllies()) {
+			appForm.setWorkedForOrginisationDangerousToUKOrAlliesReason("Add Reason");
+		}
+		else {
+			appForm.setWorkedForOrginisationDangerousToUKOrAlliesReason(null);
+		}
+		appForm.setHaveYouExpressedAnyExtremistViews(false);
+		if (appForm.getHaveYouExpressedAnyExtremistViews()) {
+			appForm.setHaveYouExpressedAnyExtremistViewsReason("Add Reason");
+		}
+		else {
+			appForm.setHaveYouExpressedAnyExtremistViewsReason(null);
+		}
+		appForm.setHaveYouSupportedExtreamistOrgisisation(false);
+		if (appForm.getHaveYouSupportedExtreamistOrgisisation()) {
+			appForm.setHaveYouSupportedExtreamistOrgisisationReason("Add Reason");
+		}
+		else {
+			appForm.setHaveYouSupportedExtreamistOrgisisationReason(null);
+		}
+		
+		appForm = appFormDAO.save(appForm);
+		System.out.println(appForm);
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+	
 
 //	@Test
 //	void testAddDNA() {
@@ -143,7 +320,7 @@ class VisaApplicationTests {
 		
 	}
 	
-	@Test
+	//@Test
 	void testDeleteCountryById() {
 	couDAO.deleteById(19);
 }
@@ -158,6 +335,11 @@ class VisaApplicationTests {
 		
 	}
 	
+	@Test
+	void testDeleteLanguageById() {
+	lanDAO.deleteById(20);
+	}
+	
 	//@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
@@ -168,6 +350,7 @@ class VisaApplicationTests {
 		
 
 	}
+
 
 }
 
