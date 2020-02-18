@@ -307,12 +307,6 @@ class VisaApplicationTests {
 		
 		}
 		
-		
-		
-		
-		
-		
-		
 	
 
 //	@Test
