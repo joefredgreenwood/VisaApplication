@@ -9,10 +9,18 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
+import com.mastek.visaApplication.dao.CountriesDAO;
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
+import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
+import com.mastek.visaApplication.dao.LanguagesDAO;
+import com.mastek.visaApplication.entities.Countries;
 import com.mastek.visaApplication.entities.DNADatabase;
+
 import com.mastek.visaApplication.entities.Gender;
+
+import com.mastek.visaApplication.entities.IssueingAuthority;
+import com.mastek.visaApplication.entities.Languages;
+
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.Payment;
@@ -35,6 +43,15 @@ class VisaApplicationTests {
 	
 	@Autowired
 	PersonalDetailsDAO perddao;
+
+	CountriesDAO couDAO;
+	
+	@Autowired
+	LanguagesDAO lanDAO;
+	
+	@Autowired
+	IssueingAuthorityDAO issAuthDAO;
+
 
 
 	@Test // test add applicant details 
@@ -90,30 +107,70 @@ class VisaApplicationTests {
 
 	}
 
+
+		@Test
+	void testAddPayment() {
+	Payment pay = new Payment();
+	pay.setTotalFee(14.50);
+
+		pay = payDAO.save(pay);
+	System.out.println(pay);
+	assertNotNull(pay, "Payment not Added");
+
+
+		pay = payDAO.save(pay);
+		System.out.println(pay);
+		assertNotNull(pay, "Payment not Added");
+	}
 	
+	@Test
+	void testDeletePaymentById() {
+	payDAO.deleteById(31);
+	}
 
-//	@Test
-//	void testAddPayment() {
-//		Payment pay = new Payment();
-//		pay.setTotalFee(14.50);
-//
-//		pay = payDAO.save(pay);
-//		System.out.println(pay);
-//		assertNotNull(pay, "Payment not Added");
-//	}
 
-//	@Test
-//	void testAddDNA() {
-//		DNADatabase dna = new DNADatabase();
-//		dna.setFirstName("Joe");
-//		dna.setLastName("Bramhall");
-//		dna.setPassportNumber(111111);
-//		dna.setCrimeDescription("Stealing");
-//		dna.setCrimeDate("20/01/1997");
-//
-//		dna=dnadao.save(dna);
-//		System.out.println(dna);
-//	}
+	@Test
+	void testAddDNA() {
+		DNADatabase dna = new DNADatabase();
+		dna.setFirstName("Joe");
+		dna.setLastName("Bramhall");
+		dna.setPassportNumber(111111);
+		dna.setCrimeDescription("Stealing");
+		dna.setCrimeDate("20/01/1997");
+
+		dna=dnadao.save(dna);
+		System.out.println(dna);
+	}
+	
+	//@Test
+	void testAddCountry() {
+		Countries cou = new Countries();
+		cou.setCountryName("Brazil");
+		
+		cou = couDAO.save(cou);
+		System.out.println(cou);
+		
+	}
+	
+	//@Test
+	void testAddLanguages() {
+		Languages lan = new Languages();
+		lan.setLanguageName("Brazilian");
+		
+		lan = lanDAO.save(lan);
+		System.out.println(lan);
+		
+	}
+	
+	//@Test
+	void testAddIssueingAuthority() {
+		IssueingAuthority issAuth = new IssueingAuthority();
+		issAuth.setIssueingAuthorityName("Brazilian Government");
+		
+		issAuth = issAuthDAO.save(issAuth);
+		System.out.println(issAuth);
+		
+	}
 
 }
 
