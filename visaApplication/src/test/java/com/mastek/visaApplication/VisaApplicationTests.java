@@ -1,5 +1,6 @@
 package com.mastek.visaApplication;
 
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -21,19 +22,34 @@ import com.mastek.visaApplication.entities.Countries;
 
 import com.mastek.visaApplication.entities.DNADatabase;
 
+
+import com.mastek.visaApplication.entities.Gender;
+
 import com.mastek.visaApplication.entities.EmploymentStatus;
+
 
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
 
 import com.mastek.visaApplication.dao.PaymentDAO;
+import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.Payment;
+
+import com.mastek.visaApplication.entities.PersonalDetails;
+import com.mastek.visaApplication.entities.Relationship;
+import com.mastek.visaApplication.entities.Salutation;
+
 import com.mastek.visaApplication.entities.SubmissionType;
+
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
 
 @SpringBootTest
 class VisaApplicationTests {
+	
+	@Autowired
+	VisaApplicationServices visaServices;
+	
 	@Autowired
 	DNADatabaseDAO dnadao;
 
@@ -42,6 +58,10 @@ class VisaApplicationTests {
 	PaymentDAO payDAO;
 
 	
+	@Autowired
+	PersonalDetailsDAO perddao;
+
+
 	@Autowired
 	ApplicationFormDAO appFormDAO;
 
@@ -54,41 +74,65 @@ class VisaApplicationTests {
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
 
-//
-//
-
-//	@Test // test add applicant details 
-//	void testAddApplicant() {
-//	PersonalDetails appd = new PersonalDetails();
-//	appd.setPassportNo(1111111111);
-//	appd.setContactLanguage("English");
-//
-//	}
 
 
-	//@Test
+
+
+	@Test
 	void testAddApplicant() {
+	PersonalDetails appd = new PersonalDetails();
+	
+	appd.setPassportNo(333333);
+	appd.setContactLanguage("English");
+	appd.setApplicantSalutation(Salutation.MR);
+	appd.setFirstName("Luke");
+	appd.setMiddleName("N/A");
+	appd.setFamilyName("Mellor");
+	appd.setOtherNames("N/A");
+	appd.setApplicantGender(Gender.MALE);
+	appd.setDateOfBirth("03/07/1995");
+	appd.setCountryOfBirth("Italy");
+	appd.setPlaceOfBirth("Rome");
+	appd.setNationality("Italian");
+	appd.setDoYouHaveAnyOtherNationality(false);
+	appd.setApplicantRelationship(Relationship.SINGLE);
+	appd.setOwnershipStatusOfHome("Renting");
+	appd.setAddress("Via delle Fornaci, 11, 00100 Roma RM, Italy");
+	appd.setHowLongHaveYouLivedAtThisAddress("7 Years");
+	appd.setIsThisYourCorrespondenceAddress(true);
+	appd.setTelephoneNumber(0323324123);
+	appd.setCanBeContactedByTelephone(true);
+	appd.setWhereDoYouUseThisNumber("Personal");
+	appd.setContactEmail("LukeM@outlook.com");
+	appd.setWhoDoesThisEmailBelongTo("myself");
+	appd.setSecondaryEmail("N/A");
+	appd.setDrivingLicense(true);
+	appd.setDoYouHaveAValidNationalIdentityCard(true);
+	appd.setPassportIssueDate("01/03/2015");
+	appd.setPassportExpiryDate("01/03/2025");
+	appd.setCountryOfNationality("Italy");
+	appd.setIssuingAuthority("Italian Govt");
+	appd.setDoYouHaveAUkDriversLicense(false);
+	appd.setDoYouHaveAUkNationalInsuranceNumber(false);
+	appd.setNationalInsuranceNumber("N/A");
+	appd.setDependantPassportNo(2221113);
+	appd.setDependantFamilyName("Mellor");
+	appd.setDependantSalutation(Salutation.MR);
+	appd.setDependantGender(Gender.MALE);
+	appd.setDependantGivenName("George");
+	appd.setDependantRelationshipToYou("Father");
+	appd.setDependantNationalitySameAsApplicant("Italian");
+	appd.setDependantCountryOfNationality("Italy");
+	appd.setDependantDateOfBirth("02/06/1975");
+	
+	appd = perddao.save(appd);
+	System.out.println(appd);
+	assertNotNull(appd, "applicant not added");
+
 	}
 
 
-
-//
-//	@Test
-//	void testAddDNA() {
-//		DNADatabase dna = new DNADatabase();
-//		dna.setFirstName("Mike");
-//		dna.setLastName("Bramhall");
-//		dna.setPassportNumber(111116);
-//		dna.setCrimeDescription("Staling");
-//		dna.setCrimeDate("20/01/1897");
-//
-//		dna=dnadao.save(dna);
-//		System.out.println(dna);
-//	}
-	
-
-	
-	@Test
+	//@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
@@ -102,22 +146,7 @@ class VisaApplicationTests {
 		System.out.println(visaServices.getDecision());
 }				
 
-	//@Test
-	void testAddPayment() {
-		Payment pay = new Payment();
-		pay.setTotalFee(16.50);
 
-		pay = payDAO.save(pay);
-		System.out.println(pay);
-		assertNotNull(pay, "Payment not Added");
-	}
-
-	
-
-	//@Test
-	void testDeletePaymentById() {
-	payDAO.deleteById(31);
-	}
 
 	//@Test
 	void testAddApplicationForm() {
@@ -288,32 +317,28 @@ class VisaApplicationTests {
 		System.out.println(appForm);
 		
 		}
-		
-		
-		
-		
-		
-		
-		
 	
+	
+	//@Test
+		void testAddPayment() {
+		Payment pay = new Payment();
+		pay.setTotalFee(21.50);
 
-//	@Test
-//	void testAddDNA() {
-//		DNADatabase dna = new DNADatabase();
-//		dna.setFirstName("Joe");
-//		dna.setLastName("Bramhall");
-//		dna.setPassportNumber(111111);
-//		dna.setCrimeDescription("Stealing");
-//		dna.setCrimeDate("20/01/1997");
-//
-//		dna=dnadao.save(dna);
-//		System.out.println(dna);
-//	}
+		pay = payDAO.save(pay);
+		System.out.println(pay);
+		assertNotNull(pay, "Payment not Added");
+		}
+
+		//@Test
+		void testDeletePaymentById() {
+		payDAO.deleteById(31);
+		}
+
 	
 	//@Test
 	void testAddCountry() {
 		Countries cou = new Countries();
-		cou.setCountryName("Brazil");
+		cou.setCountryName("Jamaica");
 		
 		cou = couDAO.save(cou);
 		System.out.println(cou);
@@ -328,7 +353,7 @@ class VisaApplicationTests {
 	//@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
-		lan.setLanguageName("Brazilian");
+		lan.setLanguageName("Jamaican");
 		
 		lan = lanDAO.save(lan);
 		System.out.println(lan);
@@ -343,13 +368,21 @@ class VisaApplicationTests {
 	//@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
-		issAuth.setIssueingAuthorityName("Brazilian Government");
+		issAuth.setIssueingAuthorityName("Jamaican Government");
 		
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
-		
-
+		}
+	
+	//@Test
+		void testDeleteIssueingAuthorityById() {
+		issAuthDAO.deleteById(21);
 	}
+		
+//	@Test
+//	void assignPaymentToPersonalDetails() {
+//		Payment pay = visaServices.assignPaymentToPersonalDetails()
+//	}
 
 
 }

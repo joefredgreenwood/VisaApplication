@@ -1,53 +1,67 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="JPA_PERSONAL_DETAILS")
 public class PersonalDetails {
 
-	long passportNo;
-	String contactLanguage;
+	int passportNo;
+	String contactLanguage;			// change this when Greg has done enum
 	Salutation applicantSalutation;
 	String firstName;
 	String middleName;
+	//
 	String familyName;
 	String otherNames;
 	Gender applicantGender;
 	String dateOfBirth; 		// try this with the date
 	String countryOfBirth;		// try this with the date
+	//
 	String placeOfBirth;		// try this with the date 
 	String nationality; //Change this once greg has done the enum
 	Boolean doYouHaveAnyOtherNationality;
 	Relationship applicantRelationship;
 	String ownershipStatusOfHome;
+	//
 	String address;
 	String howLongHaveYouLivedAtThisAddress;
 	Boolean isThisYourCorrespondenceAddress;
 	long telephoneNumber;
 	Boolean canBeContactedByTelephone;
+	//
 	String whereDoYouUseThisNumber; //possible enum (home/work)
 	String contactEmail;
 	String whoDoesThisEmailBelongTo;
 	String secondaryEmail;
 	Boolean drivingLicense;
+	//
 	Boolean doYouHaveAValidNationalIdentityCard;
-	//long passportNo;
 	String passportIssueDate;
 	String passportExpiryDate;
 	String countryOfNationality;
 	String issuingAuthority;
+	//
 	Boolean	doYouHaveAUkDriversLicense;
 	Boolean doYouHaveAUkNationalInsuranceNumber;
 	String NationalInsuranceNumber;
 	
-	//Dependents//
-
+	//Dependants//
+//CREATE DEPENDANTS PASSPORT NUMBER AND PASSPORT DETAILS//
+	long dependantPassportNo;
 	String dependantFamilyName;
 	Salutation dependantSalutation;
+	Gender dependantGender;
 	String dependantGivenName;
 	String dependantRelationshipToYou;
 	String dependantNationalitySameAsApplicant;
@@ -59,11 +73,11 @@ public class PersonalDetails {
 	}
 
 	@Id
-	public long getPassportNo() {
+	public int getPassportNo() {
 		return passportNo;
 	}
 
-	public void setPassportNo(long passportNo) {
+	public void setPassportNo(int passportNo) {
 		this.passportNo = passportNo;
 	}
 
@@ -74,7 +88,7 @@ public class PersonalDetails {
 	public void setContactLanguage(String contactLanguage) {
 		this.contactLanguage = contactLanguage;
 	}
-
+   @Enumerated(EnumType.STRING)
 	public Salutation getApplicantSalutation() {
 		return applicantSalutation;
 	}
@@ -114,7 +128,7 @@ public class PersonalDetails {
 	public void setOtherNames(String otherNames) {
 		this.otherNames = otherNames;
 	}
-
+	@Enumerated(EnumType.STRING)
 	public Gender getApplicantGender() {
 		return applicantGender;
 	}
@@ -162,7 +176,7 @@ public class PersonalDetails {
 	public void setDoYouHaveAnyOtherNationality(Boolean doYouHaveAnyOtherNationality) {
 		this.doYouHaveAnyOtherNationality = doYouHaveAnyOtherNationality;
 	}
-
+	@Enumerated(EnumType.STRING)
 	public Relationship getApplicantRelationship() {
 		return applicantRelationship;
 	}
@@ -218,7 +232,7 @@ public class PersonalDetails {
 	public void setCanBeContactedByTelephone(Boolean canBeContactedByTelephone) {
 		this.canBeContactedByTelephone = canBeContactedByTelephone;
 	}
-	@Column(name="")
+	
 	public String getWhereDoYouUseThisNumber() {
 		return whereDoYouUseThisNumber;
 	}
@@ -322,7 +336,15 @@ public class PersonalDetails {
 	public void setNationalInsuranceNumber(String nationalInsuranceNumber) {
 		NationalInsuranceNumber = nationalInsuranceNumber;
 	}
+	
+	public long getDependantPassportNo() {
+		return dependantPassportNo;
+	}
 
+	public void setDependantPassportNo(long dependantPassportNo) {
+		this.dependantPassportNo = dependantPassportNo;
+	}
+	
 	public String getDependantFamilyName() {
 		return dependantFamilyName;
 	}
@@ -330,13 +352,22 @@ public class PersonalDetails {
 	public void setDependantFamilyName(String dependantFamilyName) {
 		this.dependantFamilyName = dependantFamilyName;
 	}
-
+	@Enumerated(EnumType.STRING)
 	public Salutation getDependantSalutation() {
 		return dependantSalutation;
 	}
 
 	public void setDependantSalutation(Salutation dependantSalutation) {
 		this.dependantSalutation = dependantSalutation;
+	}
+
+	@Enumerated(EnumType.STRING)
+	public Gender getDependantGender() {
+		return dependantGender;
+	}
+
+	public void setDependantGender(Gender dependantGender) {
+		this.dependantGender = dependantGender;
 	}
 
 	public String getDependantGivenName() {
@@ -346,7 +377,7 @@ public class PersonalDetails {
 	public void setDependantGivenName(String dependantGivenName) {
 		this.dependantGivenName = dependantGivenName;
 	}
-
+	
 	public String getDependantRelationshipToYou() {
 		return dependantRelationshipToYou;
 	}
@@ -421,17 +452,27 @@ public class PersonalDetails {
 				+ ", issuingAuthority=" + issuingAuthority + ", doYouHaveAUkDriversLicense="
 				+ doYouHaveAUkDriversLicense + ", doYouHaveAUkNationalInsuranceNumber="
 				+ doYouHaveAUkNationalInsuranceNumber + ", NationalInsuranceNumber=" + NationalInsuranceNumber
-				+ ", dependantFamilyName=" + dependantFamilyName + ", dependantSalutation=" + dependantSalutation
+				+ ", dependantPassportNo=" + dependantPassportNo + ", dependantFamilyName=" + dependantFamilyName
+				+ ", dependantSalutation=" + dependantSalutation + ", dependantGender=" + dependantGender
 				+ ", dependantGivenName=" + dependantGivenName + ", dependantRelationshipToYou="
 				+ dependantRelationshipToYou + ", dependantNationalitySameAsApplicant="
 				+ dependantNationalitySameAsApplicant + ", dependantCountryOfNationality="
 				+ dependantCountryOfNationality + ", dependantDateOfBirth=" + dependantDateOfBirth + "]";
 	}
 	
+	Set<Payment> PaymentHistory = new HashSet<>();
+	@OneToMany(mappedBy= "paymentLink", cascade= CascadeType.ALL)
+	public Set<Payment> getPaymentHistory() {
+		return PaymentHistory;
+	}
+
+	public void setPaymentHistory(Set<Payment> paymentHistory) {
+		PaymentHistory = paymentHistory;
+	}
 	
 	
-	
-	
+
+
 
 	
 }
