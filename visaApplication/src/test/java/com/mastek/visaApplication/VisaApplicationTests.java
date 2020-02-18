@@ -145,7 +145,7 @@ class VisaApplicationTests {
 	
 	@Test
 	void testDeleteCountryById() {
-	couDAO.deleteById(8);
+	couDAO.deleteById(19);
 }
 	
 	//@Test
