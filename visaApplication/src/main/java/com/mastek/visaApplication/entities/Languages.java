@@ -7,33 +7,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PAYMENT_INFO")
-public class Payment {
+@Table(name="LANGUAGES")
+public class Languages {
 	
-	int paymentRef;
-	double totalFee;
-	
-	
+	int languageId;
+	String languageName;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public int getPaymentRef() {
-		return paymentRef;
+	public int getLanguageId() {
+		return languageId;
 	}
-	public void setPaymentRef(int paymentRef) {
-		this.paymentRef = paymentRef;
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
 	}
-	public double getTotalFee() {
-		return totalFee;
+	public String getLanguageName() {
+		return languageName;
 	}
-	public void setTotalFee(double totalFee) {
-		this.totalFee = totalFee;
+	public void setLanguageName(String languageName) {
+		this.languageName = languageName;
+	}
+	@Override
+	public String toString() {
+		return "Languages [languageId=" + languageId + ", languageName=" + languageName + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (paymentRef ^ (paymentRef >>> 32));
+		result = prime * result + languageId;
 		return result;
 	}
 	@Override
@@ -44,21 +46,11 @@ public class Payment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Payment other = (Payment) obj;
-		if (paymentRef != other.paymentRef)
+		Languages other = (Languages) obj;
+		if (languageId != other.languageId)
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Payment [paymentRef=" + paymentRef + ", totalFee=" + totalFee + "]";
-	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
