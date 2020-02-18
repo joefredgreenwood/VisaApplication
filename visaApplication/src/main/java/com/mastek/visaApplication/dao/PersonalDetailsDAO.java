@@ -7,6 +7,6 @@ import com.mastek.visaApplication.entities.PersonalDetails;
 
 @Repository
 public interface PersonalDetailsDAO extends
-										CrudRepository<PersonalDetails, Long>{
+										CrudRepository<PersonalDetails, Integer>{
 
 }

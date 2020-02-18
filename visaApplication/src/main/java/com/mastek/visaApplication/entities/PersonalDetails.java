@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="JPA_PERSONAL_DETAILS")
 public class PersonalDetails {
 
-	long passportNo;
+	int passportNo;
 	String contactLanguage;			// change this when Greg has done enum
 	Salutation applicantSalutation;
 	String firstName;
@@ -68,11 +68,11 @@ public class PersonalDetails {
 	}
 
 	@Id
-	public long getPassportNo() {
+	public int getPassportNo() {
 		return passportNo;
 	}
 
-	public void setPassportNo(long passportNo) {
+	public void setPassportNo(int passportNo) {
 		this.passportNo = passportNo;
 	}
 
