@@ -11,9 +11,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mastek.visaApplication.dao.CountriesDAO;
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
+
+import com.mastek.visaApplication.entities.ApplicationForm;
+
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
+
 import com.mastek.visaApplication.entities.DNADatabase;
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
@@ -27,11 +31,10 @@ class VisaApplicationTests {
 	@Autowired
 	DNADatabaseDAO dnadao;
 
-	@Autowired
-	VisaApplicationServices visappDAO;
 
 	@Autowired
 	PaymentDAO payDAO;
+
 	
 	@Autowired
 	CountriesDAO couDAO;
@@ -43,6 +46,7 @@ class VisaApplicationTests {
 	IssueingAuthorityDAO issAuthDAO;
 //
 //
+
 //	@Test // test add applicant details 
 //	void testAddApplicant() {
 //	PersonalDetails appd = new PersonalDetails();
@@ -51,11 +55,57 @@ class VisaApplicationTests {
 //
 //	}
 
-	//@Test
-	void testAddApplicant() {
-	}
-
+//	//@Test
+//	void testAddApplicant() {
+//	}
+//
+//	@Test
+//	void testAddPayment() {
+//		Payment pay = new Payment();
+//		pay.setPaymentRef(12346);
+//		pay.setTotalFee(13.50);
+//
+//		pay = payDAO.save(pay);
+//		System.out.println(pay);
+//		assertNotNull(pay, "Payment not Added");
+//	}
+//
+//	@Test
+//	void testAddDNA() {
+//		DNADatabase dna = new DNADatabase();
+//		dna.setFirstName("Mike");
+//		dna.setLastName("Bramhall");
+//		dna.setPassportNumber(111116);
+//		dna.setCrimeDescription("Staling");
+//		dna.setCrimeDate("20/01/1897");
+//
+//		dna=dnadao.save(dna);
+//		System.out.println(dna);
+//	}
+	
+//	@Test
+//	void testTerrorism() {
+//		VisaApplicationServices visaServices= new VisaApplicationServices();
+//		ApplicationForm app = new ApplicationForm();
+//		app.setHaveYouBeenAMemberOfTerroristOrginisation(true);
+//		visaServices.terrorTest(app);
+//				
+//	}
+	
 	@Test
+	void testTerrorism() {
+		VisaApplicationServices visaServices= new VisaApplicationServices();
+		ApplicationForm app = new ApplicationForm();
+		
+		app.setHaveYouEnteredUKIllegally(true);
+		app.setHaveYouStayedBeyondYourVisa(true);
+		visaServices.terrorTest(app);
+		visaServices.testTravelHistory(app);
+		visaServices.immgrationTest(app);
+		visaServices.overallDecision(app);
+		System.out.println(visaServices.getDecision());
+}				
+
 	void testAddPayment() {
 		Payment pay = new Payment();
 		pay.setTotalFee(16.50);
@@ -116,7 +166,9 @@ class VisaApplicationTests {
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
 		
+
 	}
 
 }
+
 
