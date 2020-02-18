@@ -26,18 +26,18 @@ public class ApplicationForm {
 	private String whatYouPaidFor; 
 	private double payAmount; 
 	private String whoWillBePayingYou; 
-	private Boolean anyoneRelyOnYouFinancially; 
-	private Boolean receivedAnyUKPublicFunds; 
+	private boolean anyoneRelyOnYouFinancially; 
+	private boolean receivedAnyUKPublicFunds; 
 	private String whereDoYouPlanToStay; 
 	private String addressOfWhereYouAreStaying; 
-	private Boolean doYouHaveFamilyInUK; 
+	private boolean doYouHaveFamilyInUK; 
 	private String whyAreTheyHelpingPay; 
 	private double howMuchFamilyPaying; 
-	private Boolean willAnyoneBePayingTowardsVisit; 
+	private boolean willAnyoneBePayingTowardsVisit; 
 	private String whoWillBePayingTowardsVisit;
 	private double monthlySpend; 
 	private double plannedUKSpending;
-	private Boolean otherIncomeOrSavings; 
+	private boolean otherIncomeOrSavings; 
 	private String discribeYourJob;
 	private Double salaryAfterTax;
 	private String jobTitle; 
@@ -46,27 +46,27 @@ public class ApplicationForm {
 	private long employersPhoneNumber;
 	private String startedWorkingForEmployer;
 	private EmploymentStatus EmploymentStatus; //enum
-	private Boolean hadMedicalTreatmentInUK; 
+	private boolean hadMedicalTreatmentInUK; 
 
 	//IMMERGRATION QUESTIONS//
-	private Boolean haveYouEnteredUKIllegally;
-	private Boolean haveYouStayedBeyondYourVisa; 
-	private Boolean haveYouBreachedVisaConditions; 
-	private Boolean haveYouReceivedPublicFundsWithoutPermission;
-	private Boolean haveYouGivenFalseInfoOnVisa; 
-	private Boolean haveYouBeenToUKInLast10Years;
+	private boolean haveYouEnteredUKIllegally;
+	private boolean haveYouStayedBeyondYourVisa; 
+	private boolean haveYouBreachedVisaConditions; 
+	private boolean haveYouReceivedPublicFundsWithoutPermission;
+	private boolean haveYouGivenFalseInfoOnVisa; 
+	private boolean haveYouBeenToUKInLast10Years;
 
 	//TRAVEL HISTORY//
 	//Countries countriesTraveled; <make a collection>
 	private int numberOfTimesTravelled; 
-	private Boolean refusedVisa;
-	private Boolean refusedEntryAtBorder;
-	private Boolean refusedPermissionToStay;
-	private Boolean refusedAsylum; 
-	private Boolean deportedFromCountry; 
-	private Boolean removedFromCountry;
-	private Boolean requiredToLeaveCountry;
-	private Boolean excludedOrBannedFromEntry; 
+	private boolean refusedVisa;
+	private boolean refusedEntryAtBorder;
+	private boolean refusedPermissionToStay;
+	private boolean refusedAsylum; 
+	private boolean deportedFromCountry; 
+	private boolean removedFromCountry;
+	private boolean requiredToLeaveCountry;
+	private boolean excludedOrBannedFromEntry; 
 	
 	//TRAVEL HISTORY REASONS// 
 	private String refusedVisaReason;
@@ -79,16 +79,16 @@ public class ApplicationForm {
 	private String excludedOrBannedFromEntryReason; 
 
 	//TERRORIST THREAT EVALUATION// 	
-	private Boolean confirmReadInfoOnTerrorism; 
-	private Boolean haveYouJustifiedOrEncouragedTerrorism; 
-	private Boolean haveYouBeenAMemberOfTerroristOrginisation;
-	private Boolean haveYouSupportedTerrorism; 
-	private Boolean haveYouBeenSuspectedOrInvolvedInWarCrimes; 
-	private Boolean anyOtherInfoAboutCharacter; 
-	private Boolean anyOtherActivitiesShowNotGoodPerson; 
-	private Boolean workedForOrginisationDangerousToUKOrAllies; 
-	private Boolean haveYouExpressedAnyExtremistViews; 
-	private Boolean haveYouSupportedExtreamistOrgisisation;
+	private boolean confirmReadInfoOnTerrorism; 
+	private boolean haveYouJustifiedOrEncouragedTerrorism; 
+	private boolean haveYouBeenAMemberOfTerroristOrginisation;
+	private boolean haveYouSupportedTerrorism; 
+	private boolean haveYouBeenSuspectedOrInvolvedInWarCrimes; 
+	private boolean anyOtherInfoAboutCharacter; 
+	private boolean anyOtherActivitiesShowNotGoodPerson; 
+	private boolean workedForOrginisationDangerousToUKOrAllies; 
+	private boolean haveYouExpressedAnyExtremistViews; 
+	private boolean haveYouSupportedExtreamistOrgisisation;
 	
 	//TERRORIST THREAT EVALUATION REASONS// 
 	private String haveYouJustifiedOrEncouragedTerrorismReason; 
@@ -205,19 +205,19 @@ public class ApplicationForm {
 		this.whoWillBePayingYou = whoWillBePayingYou;
 	}
 
-	public Boolean getAnyoneRelyOnYouFinancially() {
+	public boolean getAnyoneRelyOnYouFinancially() {
 		return anyoneRelyOnYouFinancially;
 	}
 
-	public void setAnyoneRelyOnYouFinancially(Boolean anyoneRelyOnYouFinancially) {
+	public void setAnyoneRelyOnYouFinancially(boolean anyoneRelyOnYouFinancially) {
 		this.anyoneRelyOnYouFinancially = anyoneRelyOnYouFinancially;
 	}
 
-	public Boolean getReceivedAnyUKPublicFunds() {
+	public boolean getReceivedAnyUKPublicFunds() {
 		return receivedAnyUKPublicFunds;
 	}
 
-	public void setReceivedAnyUKPublicFunds(Boolean receivedAnyUKPublicFunds) {
+	public void setReceivedAnyUKPublicFunds(boolean receivedAnyUKPublicFunds) {
 		this.receivedAnyUKPublicFunds = receivedAnyUKPublicFunds;
 	}
 
@@ -237,11 +237,11 @@ public class ApplicationForm {
 		this.addressOfWhereYouAreStaying = addressOfWhereYouAreStaying;
 	}
 
-	public Boolean getDoYouHaveFamilyInUK() {
+	public boolean getDoYouHaveFamilyInUK() {
 		return doYouHaveFamilyInUK;
 	}
 
-	public void setDoYouHaveFamilyInUK(Boolean doYouHaveFamilyInUK) {
+	public void setDoYouHaveFamilyInUK(boolean doYouHaveFamilyInUK) {
 		this.doYouHaveFamilyInUK = doYouHaveFamilyInUK;
 	}
 
@@ -261,11 +261,11 @@ public class ApplicationForm {
 		this.howMuchFamilyPaying = howMuchFamilyPaying;
 	}
 
-	public Boolean getWillAnyoneBePayingTowardsVisit() {
+	public boolean getWillAnyoneBePayingTowardsVisit() {
 		return willAnyoneBePayingTowardsVisit;
 	}
 
-	public void setWillAnyoneBePayingTowardsVisit(Boolean willAnyoneBePayingTowardsVisit) {
+	public void setWillAnyoneBePayingTowardsVisit(boolean willAnyoneBePayingTowardsVisit) {
 		this.willAnyoneBePayingTowardsVisit = willAnyoneBePayingTowardsVisit;
 	}
 
@@ -293,11 +293,11 @@ public class ApplicationForm {
 		this.plannedUKSpending = plannedUKSpending;
 	}
 
-	public Boolean getOtherIncomeOrSavings() {
+	public boolean getOtherIncomeOrSavings() {
 		return otherIncomeOrSavings;
 	}
 
-	public void setOtherIncomeOrSavings(Boolean otherIncomeOrSavings) {
+	public void setOtherIncomeOrSavings(boolean otherIncomeOrSavings) {
 		this.otherIncomeOrSavings = otherIncomeOrSavings;
 	}
 
@@ -365,59 +365,59 @@ public class ApplicationForm {
 		EmploymentStatus = employmentStatus;
 	}
 
-	public Boolean getHadMedicalTreatmentInUK() {
+	public boolean getHadMedicalTreatmentInUK() {
 		return hadMedicalTreatmentInUK;
 	}
 
-	public void setHadMedicalTreatmentInUK(Boolean hadMedicalTreatmentInUK) {
+	public void setHadMedicalTreatmentInUK(boolean hadMedicalTreatmentInUK) {
 		this.hadMedicalTreatmentInUK = hadMedicalTreatmentInUK;
 	}
 
-	public Boolean getHaveYouEnteredUKIllegally() {
+	public boolean getHaveYouEnteredUKIllegally() {
 		return haveYouEnteredUKIllegally;
 	}
 
-	public void setHaveYouEnteredUKIllegally(Boolean haveYouEnteredUKIllegally) {
+	public void setHaveYouEnteredUKIllegally(boolean haveYouEnteredUKIllegally) {
 		this.haveYouEnteredUKIllegally = haveYouEnteredUKIllegally;
 	}
 
-	public Boolean getHaveYouStayedBeyondYourVisa() {
+	public boolean getHaveYouStayedBeyondYourVisa() {
 		return haveYouStayedBeyondYourVisa;
 	}
 
-	public void setHaveYouStayedBeyondYourVisa(Boolean haveYouStayedBeyondYourVisa) {
+	public void setHaveYouStayedBeyondYourVisa(boolean haveYouStayedBeyondYourVisa) {
 		this.haveYouStayedBeyondYourVisa = haveYouStayedBeyondYourVisa;
 	}
 
-	public Boolean getHaveYouBreachedVisaConditions() {
+	public boolean getHaveYouBreachedVisaConditions() {
 		return haveYouBreachedVisaConditions;
 	}
 
-	public void setHaveYouBreachedVisaConditions(Boolean haveYouBreachedVisaConditions) {
+	public void setHaveYouBreachedVisaConditions(boolean haveYouBreachedVisaConditions) {
 		this.haveYouBreachedVisaConditions = haveYouBreachedVisaConditions;
 	}
 
-	public Boolean getHaveYouReceivedPublicFundsWithoutPermission() {
+	public boolean getHaveYouReceivedPublicFundsWithoutPermission() {
 		return haveYouReceivedPublicFundsWithoutPermission;
 	}
 
-	public void setHaveYouReceivedPublicFundsWithoutPermission(Boolean haveYouReceivedPublicFundsWithoutPermission) {
+	public void setHaveYouReceivedPublicFundsWithoutPermission(boolean haveYouReceivedPublicFundsWithoutPermission) {
 		this.haveYouReceivedPublicFundsWithoutPermission = haveYouReceivedPublicFundsWithoutPermission;
 	}
 
-	public Boolean getHaveYouGivenFalseInfoOnVisa() {
+	public boolean getHaveYouGivenFalseInfoOnVisa() {
 		return haveYouGivenFalseInfoOnVisa;
 	}
 
-	public void setHaveYouGivenFalseInfoOnVisa(Boolean haveYouGivenFalseInfoOnVisa) {
+	public void setHaveYouGivenFalseInfoOnVisa(boolean haveYouGivenFalseInfoOnVisa) {
 		this.haveYouGivenFalseInfoOnVisa = haveYouGivenFalseInfoOnVisa;
 	}
 
-	public Boolean getHaveYouBeenToUKInLast10Years() {
+	public boolean getHaveYouBeenToUKInLast10Years() {
 		return haveYouBeenToUKInLast10Years;
 	}
 
-	public void setHaveYouBeenToUKInLast10Years(Boolean haveYouBeenToUKInLast10Years) {
+	public void setHaveYouBeenToUKInLast10Years(boolean haveYouBeenToUKInLast10Years) {
 		this.haveYouBeenToUKInLast10Years = haveYouBeenToUKInLast10Years;
 	}
 
@@ -429,67 +429,67 @@ public class ApplicationForm {
 		this.numberOfTimesTravelled = numberOfTimesTravelled;
 	}
 
-	public Boolean getRefusedVisa() {
+	public boolean getRefusedVisa() {
 		return refusedVisa;
 	}
 
-	public void setRefusedVisa(Boolean refusedVisa) {
+	public void setRefusedVisa(boolean refusedVisa) {
 		this.refusedVisa = refusedVisa;
 	}
 
-	public Boolean getRefusedEntryAtBorder() {
+	public boolean getRefusedEntryAtBorder() {
 		return refusedEntryAtBorder;
 	}
 
-	public void setRefusedEntryAtBorder(Boolean refusedEntryAtBorder) {
+	public void setRefusedEntryAtBorder(boolean refusedEntryAtBorder) {
 		this.refusedEntryAtBorder = refusedEntryAtBorder;
 	}
 
-	public Boolean getRefusedPermissionToStay() {
+	public boolean getRefusedPermissionToStay() {
 		return refusedPermissionToStay;
 	}
 
-	public void setRefusedPermissionToStay(Boolean refusedPermissionToStay) {
+	public void setRefusedPermissionToStay(boolean refusedPermissionToStay) {
 		this.refusedPermissionToStay = refusedPermissionToStay;
 	}
 
-	public Boolean getRefusedAsylum() {
+	public boolean getRefusedAsylum() {
 		return refusedAsylum;
 	}
 
-	public void setRefusedAsylum(Boolean refusedAsylum) {
+	public void setRefusedAsylum(boolean refusedAsylum) {
 		this.refusedAsylum = refusedAsylum;
 	}
 
-	public Boolean getDeportedFromCountry() {
+	public boolean getDeportedFromCountry() {
 		return deportedFromCountry;
 	}
 
-	public void setDeportedFromCountry(Boolean deportedFromCountry) {
+	public void setDeportedFromCountry(boolean deportedFromCountry) {
 		this.deportedFromCountry = deportedFromCountry;
 	}
 
-	public Boolean getRemovedFromCountry() {
+	public boolean getRemovedFromCountry() {
 		return removedFromCountry;
 	}
 
-	public void setRemovedFromCountry(Boolean removedFromCountry) {
+	public void setRemovedFromCountry(boolean removedFromCountry) {
 		this.removedFromCountry = removedFromCountry;
 	}
 
-	public Boolean getRequiredToLeaveCountry() {
+	public boolean getRequiredToLeaveCountry() {
 		return requiredToLeaveCountry;
 	}
 
-	public void setRequiredToLeaveCountry(Boolean requiredToLeaveCountry) {
+	public void setRequiredToLeaveCountry(boolean requiredToLeaveCountry) {
 		this.requiredToLeaveCountry = requiredToLeaveCountry;
 	}
 
-	public Boolean getExcludedOrBannedFromEntry() {
+	public boolean getExcludedOrBannedFromEntry() {
 		return excludedOrBannedFromEntry;
 	}
 
-	public void setExcludedOrBannedFromEntry(Boolean excludedOrBannedFromEntry) {
+	public void setExcludedOrBannedFromEntry(boolean excludedOrBannedFromEntry) {
 		this.excludedOrBannedFromEntry = excludedOrBannedFromEntry;
 	}
 
@@ -557,83 +557,83 @@ public class ApplicationForm {
 		this.excludedOrBannedFromEntryReason = excludedOrBannedFromEntryReason;
 	}
 
-	public Boolean getConfirmReadInfoOnTerrorism() {
+	public boolean getConfirmReadInfoOnTerrorism() {
 		return confirmReadInfoOnTerrorism;
 	}
 
-	public void setConfirmReadInfoOnTerrorism(Boolean confirmReadInfoOnTerrorism) {
+	public void setConfirmReadInfoOnTerrorism(boolean confirmReadInfoOnTerrorism) {
 		this.confirmReadInfoOnTerrorism = confirmReadInfoOnTerrorism;
 	}
 
-	public Boolean getHaveYouJustifiedOrEncouragedTerrorism() {
+	public boolean getHaveYouJustifiedOrEncouragedTerrorism() {
 		return haveYouJustifiedOrEncouragedTerrorism;
 	}
 
-	public void setHaveYouJustifiedOrEncouragedTerrorism(Boolean haveYouJustifiedOrEncouragedTerrorism) {
+	public void setHaveYouJustifiedOrEncouragedTerrorism(boolean haveYouJustifiedOrEncouragedTerrorism) {
 		this.haveYouJustifiedOrEncouragedTerrorism = haveYouJustifiedOrEncouragedTerrorism;
 	}
 
-	public Boolean getHaveYouBeenAMemberOfTerroristOrginisation() {
+	public boolean getHaveYouBeenAMemberOfTerroristOrginisation() {
 		return haveYouBeenAMemberOfTerroristOrginisation;
 	}
 
-	public void setHaveYouBeenAMemberOfTerroristOrginisation(Boolean haveYouBeenAMemberOfTerroristOrginisation) {
+	public void setHaveYouBeenAMemberOfTerroristOrginisation(boolean haveYouBeenAMemberOfTerroristOrginisation) {
 		this.haveYouBeenAMemberOfTerroristOrginisation = haveYouBeenAMemberOfTerroristOrginisation;
 	}
 
-	public Boolean getHaveYouSupportedTerrorism() {
+	public boolean getHaveYouSupportedTerrorism() {
 		return haveYouSupportedTerrorism;
 	}
 
-	public void setHaveYouSupportedTerrorism(Boolean haveYouSupportedTerrorism) {
+	public void setHaveYouSupportedTerrorism(boolean haveYouSupportedTerrorism) {
 		this.haveYouSupportedTerrorism = haveYouSupportedTerrorism;
 	}
 
-	public Boolean getHaveYouBeenSuspectedOrInvolvedInWarCrimes() {
+	public boolean getHaveYouBeenSuspectedOrInvolvedInWarCrimes() {
 		return haveYouBeenSuspectedOrInvolvedInWarCrimes;
 	}
 
-	public void setHaveYouBeenSuspectedOrInvolvedInWarCrimes(Boolean haveYouBeenSuspectedOrInvolvedInWarCrimes) {
+	public void setHaveYouBeenSuspectedOrInvolvedInWarCrimes(boolean haveYouBeenSuspectedOrInvolvedInWarCrimes) {
 		this.haveYouBeenSuspectedOrInvolvedInWarCrimes = haveYouBeenSuspectedOrInvolvedInWarCrimes;
 	}
 
-	public Boolean getAnyOtherInfoAboutCharacter() {
+	public boolean getAnyOtherInfoAboutCharacter() {
 		return anyOtherInfoAboutCharacter;
 	}
 
-	public void setAnyOtherInfoAboutCharacter(Boolean anyOtherInfoAboutCharacter) {
+	public void setAnyOtherInfoAboutCharacter(boolean anyOtherInfoAboutCharacter) {
 		this.anyOtherInfoAboutCharacter = anyOtherInfoAboutCharacter;
 	}
 
-	public Boolean getAnyOtherActivitiesShowNotGoodPerson() {
+	public boolean getAnyOtherActivitiesShowNotGoodPerson() {
 		return anyOtherActivitiesShowNotGoodPerson;
 	}
 
-	public void setAnyOtherActivitiesShowNotGoodPerson(Boolean anyOtherActivitiesShowNotGoodPerson) {
+	public void setAnyOtherActivitiesShowNotGoodPerson(boolean anyOtherActivitiesShowNotGoodPerson) {
 		this.anyOtherActivitiesShowNotGoodPerson = anyOtherActivitiesShowNotGoodPerson;
 	}
 
-	public Boolean getWorkedForOrginisationDangerousToUKOrAllies() {
+	public boolean getWorkedForOrginisationDangerousToUKOrAllies() {
 		return workedForOrginisationDangerousToUKOrAllies;
 	}
 
-	public void setWorkedForOrginisationDangerousToUKOrAllies(Boolean workedForOrginisationDangerousToUKOrAllies) {
+	public void setWorkedForOrginisationDangerousToUKOrAllies(boolean workedForOrginisationDangerousToUKOrAllies) {
 		this.workedForOrginisationDangerousToUKOrAllies = workedForOrginisationDangerousToUKOrAllies;
 	}
 
-	public Boolean getHaveYouExpressedAnyExtremistViews() {
+	public boolean getHaveYouExpressedAnyExtremistViews() {
 		return haveYouExpressedAnyExtremistViews;
 	}
 
-	public void setHaveYouExpressedAnyExtremistViews(Boolean haveYouExpressedAnyExtremistViews) {
+	public void setHaveYouExpressedAnyExtremistViews(boolean haveYouExpressedAnyExtremistViews) {
 		this.haveYouExpressedAnyExtremistViews = haveYouExpressedAnyExtremistViews;
 	}
 
-	public Boolean getHaveYouSupportedExtreamistOrgisisation() {
+	public boolean getHaveYouSupportedExtreamistOrgisisation() {
 		return haveYouSupportedExtreamistOrgisisation;
 	}
 
-	public void setHaveYouSupportedExtreamistOrgisisation(Boolean haveYouSupportedExtreamistOrgisisation) {
+	public void setHaveYouSupportedExtreamistOrgisisation(boolean haveYouSupportedExtreamistOrgisisation) {
 		this.haveYouSupportedExtreamistOrgisisation = haveYouSupportedExtreamistOrgisisation;
 	}
 

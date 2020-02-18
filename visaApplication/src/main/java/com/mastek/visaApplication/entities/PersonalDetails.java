@@ -154,7 +154,7 @@ public class PersonalDetails {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
-	@Column(name="do_you_have_another_nationality?")
+	@Column(name="do_you_have_another_nationality")
 	public Boolean getDoYouHaveAnyOtherNationality() {
 		return doYouHaveAnyOtherNationality;
 	}
@@ -170,7 +170,7 @@ public class PersonalDetails {
 	public void setApplicantRelationship(Relationship applicantRelationship) {
 		this.applicantRelationship = applicantRelationship;
 	}
-	@Column(name="what_is_your_ownership_status?")
+	@Column(name="what_is_your_ownership_status")
 	public String getOwnershipStatusOfHome() {
 		return ownershipStatusOfHome;
 	}
@@ -186,7 +186,7 @@ public class PersonalDetails {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Column(name="how_long_have_you_lived_at_the_current_address?")
+	@Column(name="how_long_have_you_lived_at_the_current_address")
 	public String getHowLongHaveYouLivedAtThisAddress() {
 		return howLongHaveYouLivedAtThisAddress;
 	}
@@ -194,7 +194,7 @@ public class PersonalDetails {
 	public void setHowLongHaveYouLivedAtThisAddress(String howLongHaveYouLivedAtThisAddress) {
 		this.howLongHaveYouLivedAtThisAddress = howLongHaveYouLivedAtThisAddress;
 	}
-	@Column(name="is_this_your_correspondence_address?")
+	@Column(name="is_this_your_correspondence_address")
 	public Boolean getIsThisYourCorrespondenceAddress() {
 		return isThisYourCorrespondenceAddress;
 	}
@@ -210,7 +210,7 @@ public class PersonalDetails {
 	public void setTelephoneNumber(long telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
-	@Column(name="can_you_be_contacted_by_telehphone?")
+	@Column(name="can_you_be_contacted_by_telehphone")
 	public Boolean getCanBeContactedByTelephone() {
 		return canBeContactedByTelephone;
 	}
