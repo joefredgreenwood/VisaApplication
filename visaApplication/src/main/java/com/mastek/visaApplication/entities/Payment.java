@@ -16,7 +16,7 @@ public class Payment {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)	
 	public int getPaymentRef() {
 		return paymentRef;
 	}

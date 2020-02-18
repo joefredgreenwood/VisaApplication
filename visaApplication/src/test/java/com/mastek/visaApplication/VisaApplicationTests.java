@@ -1,8 +1,6 @@
 package com.mastek.visaApplication;
 
 
-import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
@@ -11,9 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mastek.visaApplication.dao.CountriesDAO;
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
+
+import com.mastek.visaApplication.entities.ApplicationForm;
+
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
+
 import com.mastek.visaApplication.entities.DNADatabase;
 
 import com.mastek.visaApplication.entities.Gender;
@@ -35,11 +37,10 @@ class VisaApplicationTests {
 	@Autowired
 	DNADatabaseDAO dnadao;
 
-	@Autowired
-	VisaApplicationServices visappDAO;
 
 	@Autowired
 	PaymentDAO payDAO;
+
 	
 	@Autowired
 	PersonalDetailsDAO perddao;
@@ -106,9 +107,23 @@ class VisaApplicationTests {
 	assertNotNull(appd, "applicant not added");
 
 	}
+	
+			
+	@Test
+	void testTerrorism() {
+		VisaApplicationServices visaServices= new VisaApplicationServices();
+		ApplicationForm app = new ApplicationForm();
+		
+		app.setHaveYouEnteredUKIllegally(true);
+		app.setHaveYouStayedBeyondYourVisa(true);
+		visaServices.terrorTest(app);
+		visaServices.testTravelHistory(app);
+		visaServices.immgrationTest(app);
+		visaServices.overallDecision(app);
+		System.out.println(visaServices.getDecision());
+}				
 
 
-		@Test
 	void testAddPayment() {
 	Payment pay = new Payment();
 	pay.setTotalFee(14.50);
@@ -170,7 +185,9 @@ class VisaApplicationTests {
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
 		
+
 	}
 
 }
+
 
