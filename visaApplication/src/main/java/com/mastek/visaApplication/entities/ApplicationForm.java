@@ -1,5 +1,9 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +11,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -795,6 +803,35 @@ public class ApplicationForm {
 			return false;
 		return true;
 	}
+	
+	PersonalDetails applicationLink;
+
+	
+	
+	@ManyToOne
+	@JoinColumn(name="fk_passportNo")
+	@org.springframework.data.annotation.Transient
+	public PersonalDetails getApplicationLink() {
+		return applicationLink;
+	}
+
+	public void setApplicationLink(PersonalDetails applicationLink) {
+		this.applicationLink = applicationLink;
+	}
+	
+	Set<Countries> countryVisitedAssigned = new HashSet<>();
+@ManyToMany(cascade= CascadeType.ALL)
+@JoinTable(name="Countries_Visited", joinColumns= {@JoinColumn(name="fk_Application_Form_ID")}, 
+inverseJoinColumns= {@JoinColumn(name="fk_Country_ID")})
+	public Set<Countries> getCountryVisitedAssigned() {
+		return countryVisitedAssigned;
+	}
+
+	public void setCountryVisitedAssigned(Set<Countries> countryVisitedAssigned) {
+		this.countryVisitedAssigned = countryVisitedAssigned;
+	}
+	
+	
 	
 	
 	

@@ -79,57 +79,56 @@ class VisaApplicationTests {
 
 
 	@Test
-	void testAddApplicant() {
-	PersonalDetails appd = new PersonalDetails();
+	void testAddPersonalDetails() {
+	PersonalDetails perd = new PersonalDetails();
 	
-	appd.setPassportNo(333333);
-	appd.setContactLanguage("English");
-	appd.setApplicantSalutation(Salutation.MR);
-	appd.setFirstName("Luke");
-	appd.setMiddleName("N/A");
-	appd.setFamilyName("Mellor");
-	appd.setOtherNames("N/A");
-	appd.setApplicantGender(Gender.MALE);
-	appd.setDateOfBirth("03/07/1995");
-	appd.setCountryOfBirth("Italy");
-	appd.setPlaceOfBirth("Rome");
-	appd.setNationality("Italian");
-	appd.setDoYouHaveAnyOtherNationality(false);
-	appd.setApplicantRelationship(Relationship.SINGLE);
-	appd.setOwnershipStatusOfHome("Renting");
-	appd.setAddress("Via delle Fornaci, 11, 00100 Roma RM, Italy");
-	appd.setHowLongHaveYouLivedAtThisAddress("7 Years");
-	appd.setIsThisYourCorrespondenceAddress(true);
-	appd.setTelephoneNumber(0323324123);
-	appd.setCanBeContactedByTelephone(true);
-	appd.setWhereDoYouUseThisNumber("Personal");
-	appd.setContactEmail("LukeM@outlook.com");
-	appd.setWhoDoesThisEmailBelongTo("myself");
-	appd.setSecondaryEmail("N/A");
-	appd.setDrivingLicense(true);
-	appd.setDoYouHaveAValidNationalIdentityCard(true);
-	appd.setPassportIssueDate("01/03/2015");
-	appd.setPassportExpiryDate("01/03/2025");
-	appd.setCountryOfNationality("Italy");
-	appd.setIssuingAuthority("Italian Govt");
-	appd.setDoYouHaveAUkDriversLicense(false);
-	appd.setDoYouHaveAUkNationalInsuranceNumber(false);
-	appd.setNationalInsuranceNumber("N/A");
-	appd.setDependantPassportNo(2221113);
-	appd.setDependantFamilyName("Mellor");
-	appd.setDependantSalutation(Salutation.MR);
-	appd.setDependantGender(Gender.MALE);
-	appd.setDependantGivenName("George");
-	appd.setDependantRelationshipToYou("Father");
-	appd.setDependantNationalitySameAsApplicant("Italian");
-	appd.setDependantCountryOfNationality("Italy");
-	appd.setDependantDateOfBirth("02/06/1975");
+	perd.setPassportNo(333333);
+	perd.setApplicantSalutation(Salutation.MR);
+	perd.setFirstName("Luke");
+	perd.setMiddleName("N/A");
+	perd.setFamilyName("Mellor");
+	perd.setOtherNames("N/A");
+	perd.setApplicantGender(Gender.MALE);
+	perd.setDateOfBirth("03/07/1995");
+	perd.setPlaceOfBirth("Rome");
+	perd.setDoYouHaveAnyOtherNationality(false);
+	perd.setApplicantRelationship(Relationship.SINGLE);
+	perd.setOwnershipStatusOfHome("Renting");
+	perd.setAddress("Via delle Fornaci, 11, 00100 Roma RM, Italy");
+	perd.setHowLongHaveYouLivedAtThisAddress("7 Years");
+	perd.setIsThisYourCorrespondenceAddress(true);
+	perd.setTelephoneNumber(0323324123);
+	perd.setCanBeContactedByTelephone(true);
+	perd.setWhereDoYouUseThisNumber("Personal");
+	perd.setContactEmail("LukeM@outlook.com");
+	perd.setWhoDoesThisEmailBelongTo("myself");
+	perd.setSecondaryEmail("N/A");
+	perd.setDrivingLicense(true);
+	perd.setDoYouHaveAValidNationalIdentityCard(true);
+	perd.setPassportIssueDate("01/03/2015");
+	perd.setPassportExpiryDate("01/03/2025");
+	perd.setCountryOfNationality("Italy");
+	perd.setIssuingAuthority("Italian Govt");
+	perd.setDoYouHaveAUkDriversLicense(false);
+	perd.setDoYouHaveAUkNationalInsuranceNumber(false);
+	perd.setNationalInsuranceNumber("N/A");
+	perd.setDependantPassportNo(2221113);
+	perd.setDependantFamilyName("Mellor");
+	perd.setDependantSalutation(Salutation.MR);
+	perd.setDependantGender(Gender.MALE);
+	perd.setDependantGivenName("George");
+	perd.setDependantRelationshipToYou("Father");
+	perd.setDependantNationalitySameAsApplicant("Italian");
+	perd.setDependantCountryOfNationality("Italy");
+	perd.setDependantDateOfBirth("02/06/1975");
 	
-	appd = perddao.save(appd);
-	System.out.println(appd);
-	assertNotNull(appd, "applicant not added");
+	perd = perddao.save(perd);
+	System.out.println(perd);
+	assertNotNull(perd, "applicant not added");
 
 	}
+	
+	
 
 
 	//@Test
@@ -379,10 +378,38 @@ class VisaApplicationTests {
 		issAuthDAO.deleteById(21);
 	}
 		
-//	@Test
-//	void assignPaymentToPersonalDetails() {
-//		Payment pay = visaServices.assignPaymentToPersonalDetails()
-//	}
+	//@Test
+	void assignPaymentToPersonalDetails() {
+		Payment pay = visaServices.assignPaymentToPersonalDetails(333333, 33);
+	}
+	
+	//@Test
+	void assignApplicationFormToPersonalDetails() {
+		ApplicationForm app = visaServices.assignApplicationToPersonalDetails(333333, 67);
+	}
+	
+	//@Test
+	void assignPersonalDetailsToNationality() {
+		PersonalDetails perd = visaServices.assignNationalityToPersonalDetails(333333, 55);
+	}
+	
+	//@Test
+	void assignPersonalDetailsToBirthPlace() {
+		PersonalDetails perd = visaServices.assignBirthPlaceToPersonalDetails(333333, 59);
+	}
+	
+	//@Test
+	void assignPersonalDetailsToLanguages() {
+		PersonalDetails perd = visaServices.assignLanguageToPersonalDetails(333333, 40);
+	}
+	
+	//@Test
+	void assignCountryVisitedToApplicationForm() {
+		ApplicationForm appfor = visaServices.assignApplicationFormToCountry(67, 59);
+		
+	}
+	
+	
 
 
 }
