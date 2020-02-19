@@ -1,46 +1,28 @@
 package com.mastek.visaApplication;
 
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
 import com.mastek.visaApplication.dao.ApplicationFormDAO;
-
 import com.mastek.visaApplication.dao.CountriesDAO;
-
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
-
 import com.mastek.visaApplication.entities.ApplicationForm;
-
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
-
 import com.mastek.visaApplication.entities.DNADatabase;
-
-
 import com.mastek.visaApplication.entities.Gender;
-
 import com.mastek.visaApplication.entities.EmploymentStatus;
-
-
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
-
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.Payment;
-
 import com.mastek.visaApplication.entities.PersonalDetails;
 import com.mastek.visaApplication.entities.Relationship;
 import com.mastek.visaApplication.entities.Salutation;
-
 import com.mastek.visaApplication.entities.SubmissionType;
-
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
 
@@ -50,12 +32,13 @@ class VisaApplicationTests {
 	@Autowired
 	VisaApplicationServices visaServices;
 	
+
 	@Autowired
 	DNADatabaseDAO dnadao;
-
-
+	
 	@Autowired
 	PaymentDAO payDAO;
+
 
 	
 	@Autowired
@@ -64,7 +47,7 @@ class VisaApplicationTests {
 
 	@Autowired
 	ApplicationFormDAO appFormDAO;
-
+	
 	@Autowired
 	CountriesDAO couDAO;
 	
@@ -78,10 +61,10 @@ class VisaApplicationTests {
 
 
 
+
 	@Test
 	void testAddPersonalDetails() {
 	PersonalDetails perd = new PersonalDetails();
-	
 	perd.setPassportNo(333333);
 	perd.setApplicantSalutation(Salutation.MR);
 	perd.setFirstName("Luke");
@@ -121,22 +104,20 @@ class VisaApplicationTests {
 	perd.setDependantNationalitySameAsApplicant("Italian");
 	perd.setDependantCountryOfNationality("Italy");
 	perd.setDependantDateOfBirth("02/06/1975");
-	
-	perd = perddao.save(perd);
-	System.out.println(perd);
-	assertNotNull(perd, "applicant not added");
 
 	}
 	
-	//@Test
-			void testDeletePersonalDetailsById() {
-			perddao.deleteById(31);
-			}
+	@Test
+	void testDeletePersonalDetailsById() {
+	perddao.deleteById(31);
+		}
+	
+	
+	
 	
 	
 
-
-	//@Test
+	@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
@@ -152,7 +133,20 @@ class VisaApplicationTests {
 
 
 
-	//@Test
+	@Test
+	void testAddDNA() {
+		DNADatabase dna = new DNADatabase();
+		dna.setFirstName("Joe");
+		dna.setLastName("Bramhall");
+		dna.setPassportNumber(111111);
+		dna.setCrimeDescription("Stealing");
+		dna.setCrimeDate("20/01/1997");
+
+		dna=dnadao.save(dna);
+		System.out.println(dna);
+	}
+
+	@Test
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
 		
@@ -321,14 +315,15 @@ class VisaApplicationTests {
 		System.out.println(appForm);
 		
 		}
+
 	
-	//@Test
-			void testApplicationById() {
-			appFormDAO.deleteById(31);
-			}
+		@Test
+		void testDeleteApplicationById() {
+		appFormDAO.deleteById(31);
+		}
 	
 	
-	//@Test
+		@Test
 		void testAddPayment() {
 		Payment pay = new Payment();
 		pay.setTotalFee(21.50);
@@ -338,13 +333,14 @@ class VisaApplicationTests {
 		assertNotNull(pay, "Payment not Added");
 		}
 
-		//@Test
+		@Test
 		void testDeletePaymentById() {
 		payDAO.deleteById(31);
 		}
 
+
 	
-	//@Test
+	@Test
 	void testAddCountry() {
 		Countries cou = new Countries();
 		cou.setCountryName("Jamaica");
@@ -354,12 +350,14 @@ class VisaApplicationTests {
 		
 	}
 	
-	//@Test
+	
+	@Test
 	void testDeleteCountryById() {
 	couDAO.deleteById(19);
-}
+	}
 	
-	//@Test
+
+	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
 		lan.setLanguageName("Jamaican");
@@ -369,59 +367,60 @@ class VisaApplicationTests {
 		
 	}
 	
-	//@Test
+
+	@Test
 	void testDeleteLanguageById() {
 	lanDAO.deleteById(20);
 	}
 	
-	//@Test
+
+	@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
 		issAuth.setIssueingAuthorityName("Jamaican Government");
 		
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
+
 		}
 	
-	//@Test
+	@Test
 		void testDeleteIssueingAuthorityById() {
 		issAuthDAO.deleteById(21);
 	}
 		
-	//@Test
+	@Test
 	void assignPaymentToPersonalDetails() {
 		Payment pay = visaServices.assignPaymentToPersonalDetails(333333, 33);
 	}
 	
-	//@Test
+	@Test
 	void assignApplicationFormToPersonalDetails() {
 		ApplicationForm app = visaServices.assignApplicationToPersonalDetails(333333, 67);
 	}
 	
-	//@Test
+	@Test
 	void assignPersonalDetailsToNationality() {
 		PersonalDetails perd = visaServices.assignNationalityToPersonalDetails(333333, 55);
 	}
 	
-	//@Test
+	@Test
 	void assignPersonalDetailsToBirthPlace() {
 		PersonalDetails perd = visaServices.assignBirthPlaceToPersonalDetails(333333, 59);
 	}
 	
-	//@Test
+	@Test
 	void assignPersonalDetailsToLanguages() {
 		PersonalDetails perd = visaServices.assignLanguageToPersonalDetails(333333, 40);
 	}
 	
-	//@Test
+	@Test
 	void assignCountryVisitedToApplicationForm() {
 		ApplicationForm appfor = visaServices.assignApplicationFormToCountry(67, 59);
 		
 	}
 	
 	
-
-
 }
 
 
