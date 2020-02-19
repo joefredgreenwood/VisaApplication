@@ -114,9 +114,13 @@ public class PersonalDetails {
 	String NationalInsuranceNumber;
 	
 	//Dependants//
+
 	@FormParam("dependantPassportNo")
-	long dependantPassportNo;
+	int dependantPassportNo;
 	
+	
+
+//CREATE DEPENDANTS PASSPORT NUMBER AND PASSPORT DETAILS//
 	@FormParam("dependantFamilyName")
 	String dependantFamilyName;
 	
@@ -410,11 +414,11 @@ public class PersonalDetails {
 		NationalInsuranceNumber = nationalInsuranceNumber;
 	}
 	
-	public long getDependantPassportNo() {
+	public int getDependantPassportNo() {
 		return dependantPassportNo;
 	}
 
-	public void setDependantPassportNo(long dependantPassportNo) {
+	public void setDependantPassportNo(int dependantPassportNo) {
 		this.dependantPassportNo = dependantPassportNo;
 	}
 	
