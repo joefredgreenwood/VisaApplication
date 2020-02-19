@@ -128,6 +128,11 @@ class VisaApplicationTests {
 
 	}
 	
+	//@Test
+			void testDeletePersonalDetailsById() {
+			perddao.deleteById(31);
+			}
+	
 	
 
 
@@ -316,6 +321,11 @@ class VisaApplicationTests {
 		System.out.println(appForm);
 		
 		}
+	
+	//@Test
+			void testApplicationById() {
+			appFormDAO.deleteById(31);
+			}
 	
 	
 	//@Test
