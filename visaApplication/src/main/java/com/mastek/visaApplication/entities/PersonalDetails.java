@@ -6,61 +6,143 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table(name="JPA_PERSONAL_DETAILS")
 public class PersonalDetails {
 
+	@FormParam("passportNo")
 	int passportNo;
+	
+	@FormParam("contactLanguage")
 	String contactLanguage;			// change this when Greg has done enum
+	
+	@FormParam("applicantSalutation")
 	Salutation applicantSalutation;
+	
+	@FormParam("firstName")
 	String firstName;
+	
+	@FormParam("middleName")
 	String middleName;
 	//
+	@FormParam("familyName")
 	String familyName;
+	
+	@FormParam("otherNames")
 	String otherNames;
+	
+	@FormParam("applicantGender")
 	Gender applicantGender;
-	String dateOfBirth; 		// try this with the date
+	
+	@FormParam("dateOfBirth")
+	String dateOfBirth;			// try this with the date
+	
+	@FormParam("countryOfBirth")
 	String countryOfBirth;		// try this with the date
 	//
-	String placeOfBirth;		// try this with the date 
+	@FormParam("placeOfBirth")
+	String placeOfBirth;	// try this with the date 
+	
+	@FormParam("nationality")
 	String nationality; //Change this once greg has done the enum
+	
+	@FormParam("doYouHaveAnyOtherNationality")
 	Boolean doYouHaveAnyOtherNationality;
+	
+	@FormParam("applicantRelationship")
 	Relationship applicantRelationship;
+	
+	@FormParam("ownershipStatusOfHome")
 	String ownershipStatusOfHome;
 	//
+	@FormParam("address")
 	String address;
+	
+	@FormParam("howLongHaveYouLivedAtThisAddress")
 	String howLongHaveYouLivedAtThisAddress;
+	
+	@FormParam("isThisYourCorrespondenceAddress")
 	Boolean isThisYourCorrespondenceAddress;
+	
+	@FormParam("telephoneNumber")
 	long telephoneNumber;
+	
+	@FormParam("canBeContactedByTelephone")
 	Boolean canBeContactedByTelephone;
 	//
+	@FormParam("whereDoYouUseThisNumber")
 	String whereDoYouUseThisNumber; //possible enum (home/work)
+	
+	@FormParam("contactEmail")
 	String contactEmail;
+	
+	@FormParam("whoDoesThisEmailBelongTo")
 	String whoDoesThisEmailBelongTo;
+	
+	@FormParam("secondaryEmail")
 	String secondaryEmail;
+	
+	@FormParam("drivingLicense")
 	Boolean drivingLicense;
 	//
+	@FormParam ("doYouHaveAValidNationalIdentityCard")
 	Boolean doYouHaveAValidNationalIdentityCard;
+	
+	@FormParam("passportIssueDate")
 	String passportIssueDate;
+	
+	@FormParam("passportExpiryDate")
 	String passportExpiryDate;
+	
+	@FormParam("countryOfNationality")
 	String countryOfNationality;
+	
+	@FormParam("issuingAuthority")
 	String issuingAuthority;
 	//
+	@FormParam("doYouHaveAUkDriversLicense")
 	Boolean	doYouHaveAUkDriversLicense;
+	
+	@FormParam("doYouHaveAUkNationalInsuranceNumber")
 	Boolean doYouHaveAUkNationalInsuranceNumber;
+	
+	@FormParam("NationalInsuranceNumber")
 	String NationalInsuranceNumber;
 	
 	//Dependants//
-//CREATE DEPENDANTS PASSPORT NUMBER AND PASSPORT DETAILS//
+
+	@FormParam("dependantPassportNo")
 	int dependantPassportNo;
+	
+	
+
+//CREATE DEPENDANTS PASSPORT NUMBER AND PASSPORT DETAILS//
+	@FormParam("dependantFamilyName")
 	String dependantFamilyName;
+	
+	@FormParam("dependantSalutation")
 	Salutation dependantSalutation;
+	
+	@FormParam("dependantGender")
 	Gender dependantGender;
+	
+	@FormParam("dependantGivenName")
 	String dependantGivenName;
+	
+	@FormParam("dependantRelationshipToYou")
 	String dependantRelationshipToYou;
+	
+	@FormParam("dependantNationalitySameAsApplicant")
 	String dependantNationalitySameAsApplicant;
+	
+	@FormParam("dependantCountryOfNationality")
 	String dependantCountryOfNationality;
+	
+	@FormParam("dependantDateOfBirth")
 	String dependantDateOfBirth;
 	
 	public PersonalDetails() {

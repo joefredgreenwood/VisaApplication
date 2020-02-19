@@ -1,3 +1,4 @@
+
 package com.mastek.visaApplication;
 
 import org.junit.jupiter.api.Test;
@@ -400,3 +401,4 @@ class MongoTests {
 
 */
 }
+

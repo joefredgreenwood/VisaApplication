@@ -33,7 +33,7 @@ import com.mastek.visaApplication.services.VisaApplicationServices;
 class VisaApplicationTests {
 	//AUTOWIRE DAOS//
 	@Autowired
-	DNADatabaseDAO dnadao;// May need to Change - naming convention not the same as others
+	DNADatabaseDAO dnadao;	// May need to Change - naming convention not the same as others
 	
 	@Autowired
 	PaymentDAO payDAO;
@@ -59,12 +59,11 @@ class VisaApplicationTests {
 	@Autowired
 	VisaApplicationServices visaAppServices;
 
-	
+
 	@Test
 	void testAddApplicant() {
-
 	PersonalDetails appd = new PersonalDetails();
-
+	appd.setPassportNo(55555);
 	appd.setPassportNo(333333);
 	appd.setContactLanguage("English");
 	appd.setApplicantSalutation(Salutation.MR);
@@ -115,29 +114,35 @@ class VisaApplicationTests {
 	}
 
 
-	/*@Test
+	
+	
+	/*		
+	@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
-
+		
 		app.setHaveYouEnteredUKIllegally(true);
 		app.setHaveYouStayedBeyondYourVisa(true);
 		visaServices.terrorTest(app);
 		visaServices.testTravelHistory(app);
 		visaServices.immgrationTest(app);
-		visaServices.overallDecision(app);
+		visaServices.overallDecision(app,);
 		System.out.println(visaServices.getDecision());
+<<<<<<< HEAD
 }				
 */
+
 
 	@Test
 	void testAddPayment() {
 	Payment pay = new Payment();
 	pay.setTotalFee(14.50);
 
-		pay = payDAO.save(pay);
+	pay = payDAO.save(pay);
 	System.out.println(pay);
 	assertNotNull(pay, "Payment not Added");
+
 	}
 
 
@@ -313,15 +318,18 @@ class VisaApplicationTests {
 
 		}
 
+
 	@Test
 	void testMongoCheck() {
 		PersonalDetails per = new PersonalDetails();
 		ApplicationForm app = new ApplicationForm();
 		per.setPassportNo(111140);
 		app.setHaveYouBeenAMemberOfTerroristOrginisation(false);
+		
 		visaAppServices.overallDecision(app, per);
 		System.out.println(visaAppServices.getDecision());
 	}
+
 
 
 
@@ -338,6 +346,7 @@ class VisaApplicationTests {
 	}
 
 
+
 	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
@@ -348,6 +357,9 @@ class VisaApplicationTests {
 
 	}
 
+
+
+
 	@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
@@ -355,8 +367,6 @@ class VisaApplicationTests {
 
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);}
-
-
 
 
 	
@@ -369,23 +379,15 @@ class VisaApplicationTests {
 	
 
 	
-/*	@Test
-	void testTerrorism() {
-		VisaApplicationServices visaServices= new VisaApplicationServices();
-		ApplicationForm app = new ApplicationForm();
-		
-		app.setHaveYouEnteredUKIllegally(true);
-		app.setHaveYouStayedBeyondYourVisa(true);
-		visaServices.terrorTest(app);
-		visaServices.testTravelHistory(app);
-		visaServices.immgrationTest(app);
-		visaServices.overallDecision(app);
-		System.out.println(visaServices.getDecision());
-	}*/				
 
+	
+	
+
+	
 
 
 	 
+
 
 
 
