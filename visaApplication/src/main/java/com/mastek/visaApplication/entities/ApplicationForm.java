@@ -16,108 +16,255 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.data.annotation.Transient;
 
-
-
+@XmlRootElement
 @Entity
 @Table(name="JPA_APPLICATION_FORM")
 @EntityListeners({ApplicationFormListeners.class}) //
 public class ApplicationForm {
+	
 	private int applicationID;
 	//VISA DETAILS// 
+	@FormParam("applicationDate")
 	private String applicationDate; 
+	
+	@FormParam("durationOfVisa")
 	private int durationOfVisa; //months
+	
+	@FormParam("SubmissionType")
 	private SubmissionType SubmissionType; //enum
+	
+	@FormParam("plannedArriveUK")
 	private String plannedArriveUK;
-	private String plannedDepartUK; 
+	
+	@FormParam("plannedDepartUK")
+	private String plannedDepartUK;
+	
+	@FormParam("visaContactNumberUK")
 	private long visaContactNumberUK;
+	
+	@FormParam("visaContactNumberOutsideUK")
 	private long visaContactNumberOutsideUK;
 
 	//UK INFOMATION//
-	private String detailsOfVisit; 
+	@FormParam("detailsOfVisit")
+	private String detailsOfVisit;
+	
+	@FormParam("whatYouPaidFor")
 	private String whatYouPaidFor; 
+	
+	@FormParam("payAmount")
 	private double payAmount; 
+	
+	@FormParam("whoWillBePayingYou")
 	private String whoWillBePayingYou; 
+	
+	@FormParam("anyoneRelyOnYouFinancially")
 	private boolean anyoneRelyOnYouFinancially; 
+	
+	@FormParam("receivedAnyUKPublicFunds")
 	private boolean receivedAnyUKPublicFunds; 
+	
+	@FormParam("whereDoYouPlanToStay")
 	private String whereDoYouPlanToStay; 
+	
+	@FormParam("addressOfWhereYouAreStaying")
 	private String addressOfWhereYouAreStaying; 
-	private boolean doYouHaveFamilyInUK; 
+	
+	@FormParam("doYouHaveFamilyInUK")
+	private boolean doYouHaveFamilyInUK;
+	
+	@FormParam("whyAreTheyHelpingPay")
 	private String whyAreTheyHelpingPay; 
+	
+	@FormParam("howMuchFamilyPaying")
 	private double howMuchFamilyPaying; 
-	private boolean willAnyoneBePayingTowardsVisit; 
+	
+	@FormParam("willAnyoneBePayingTowardsVisit")
+	private boolean willAnyoneBePayingTowardsVisit;
+	
+	@FormParam("whoWillBePayingTowardsVisit")
 	private String whoWillBePayingTowardsVisit;
+	
+	@FormParam("monthlySpend")
 	private double monthlySpend; 
+	
+	@FormParam("plannedUKSpending")
 	private double plannedUKSpending;
+	
+	@FormParam("otherIncomeOrSavings")
 	private boolean otherIncomeOrSavings; 
+	
+	@FormParam("discribeYourJob")
 	private String discribeYourJob;
+	
+	@FormParam("salaryAfterTax")
 	private Double salaryAfterTax;
+	
+	@FormParam("jobTitle")
 	private String jobTitle; 
+	
+	@FormParam("employersName")
 	private String employersName;
+	
+	@FormParam("employersAddress")
 	private String employersAddress;
+	
+	@FormParam("employersPhoneNumber")
 	private long employersPhoneNumber;
+	
+	@FormParam("startedWorkingForEmployer")
 	private String startedWorkingForEmployer;
+	
+	@FormParam("EmploymentStatus")
 	private EmploymentStatus EmploymentStatus; //enum
+	
+	@FormParam("hadMedicalTreatmentInUK")
 	private boolean hadMedicalTreatmentInUK; 
 
 	//IMMERGRATION QUESTIONS//
+	@FormParam("haveYouEnteredUKIllegally")
 	private boolean haveYouEnteredUKIllegally;
+	
+	@FormParam("haveYouStayedBeyondYourVisa")
 	private boolean haveYouStayedBeyondYourVisa; 
+	
+	@FormParam("haveYouBreachedVisaConditions")
 	private boolean haveYouBreachedVisaConditions; 
+	
+	@FormParam("haveYouReceivedPublicFundsWithoutPermission")
 	private boolean haveYouReceivedPublicFundsWithoutPermission;
+	
+	@FormParam("haveYouGivenFalseInfoOnVisa")
 	private boolean haveYouGivenFalseInfoOnVisa; 
+	
+	@FormParam("haveYouBeenToUKInLast10Years")
 	private boolean haveYouBeenToUKInLast10Years;
 
 	//TRAVEL HISTORY//
 	//Countries countriesTraveled; <make a collection>
+	@FormParam("numberOfTimesTravelled")
 	private int numberOfTimesTravelled; 
+	
+	@FormParam("refusedVisa")
 	private boolean refusedVisa;
+	
+	@FormParam("refusedEntryAtBorder")
 	private boolean refusedEntryAtBorder;
+	
+	@FormParam("refusedPermissionToStay")
 	private boolean refusedPermissionToStay;
+	
+	@FormParam("refusedAsylum")
 	private boolean refusedAsylum; 
-	private boolean deportedFromCountry; 
+	
+	@FormParam("deportedFromCountry")
+	private boolean deportedFromCountry;
+	
+	@FormParam("removedFromCountry")
 	private boolean removedFromCountry;
+	
+	@FormParam("requiredToLeaveCountry")
 	private boolean requiredToLeaveCountry;
+	
+	@FormParam("excludedOrBannedFromEntry")
 	private boolean excludedOrBannedFromEntry; 
 	
-	//TRAVEL HISTORY REASONS// 
+	//TRAVEL HISTORY REASONS//
+	@FormParam("refusedVisaReason")
 	private String refusedVisaReason;
+	
+	@FormParam("refusedEntryAtBorderReason")
 	private String refusedEntryAtBorderReason;
+	
+	@FormParam("refusedPermissionToStayReason")
 	private String refusedPermissionToStayReason;
-	private String refusedAsylumReason; 
-	private String deportedFromCountryReason; 
+	
+	@FormParam("refusedAsylumReason")
+	private String refusedAsylumReason;
+	
+	@FormParam("deportedFromCountryReason")
+	private String deportedFromCountryReason;
+	
+	@FormParam("removedFromCountryReason")
 	private String removedFromCountryReason;
+	
+	@FormParam("requiredToLeaveCountryReason")
 	private String requiredToLeaveCountryReason;
+	
+	@FormParam("excludedOrBannedFromEntryReason")
 	private String excludedOrBannedFromEntryReason; 
 
-	//TERRORIST THREAT EVALUATION// 	
+	//TERRORIST THREAT EVALUATION// 
+	@FormParam("confirmReadInfoOnTerrorism")
 	private boolean confirmReadInfoOnTerrorism; 
+	
+	@FormParam("haveYouJustifiedOrEncouragedTerrorism")
 	private boolean haveYouJustifiedOrEncouragedTerrorism; 
+	
+	@FormParam("haveYouBeenAMemberOfTerroristOrginisation")
 	private boolean haveYouBeenAMemberOfTerroristOrginisation;
-	private boolean haveYouSupportedTerrorism; 
-	private boolean haveYouBeenSuspectedOrInvolvedInWarCrimes; 
-	private boolean anyOtherInfoAboutCharacter; 
+	
+	@FormParam("haveYouSupportedTerrorism")
+	private boolean haveYouSupportedTerrorism;
+	
+	@FormParam("haveYouBeenSuspectedOrInvolvedInWarCrimes")
+	private boolean haveYouBeenSuspectedOrInvolvedInWarCrimes;
+	
+	@FormParam("anyOtherInfoAboutCharacter")
+	private boolean anyOtherInfoAboutCharacter;
+	
+	@FormParam("anyOtherActivitiesShowNotGoodPerson")
 	private boolean anyOtherActivitiesShowNotGoodPerson; 
-	private boolean workedForOrginisationDangerousToUKOrAllies; 
-	private boolean haveYouExpressedAnyExtremistViews; 
+	
+	@FormParam("workedForOrginisationDangerousToUKOrAllies")
+	private boolean workedForOrginisationDangerousToUKOrAllies;
+	
+	@FormParam("haveYouExpressedAnyExtremistViews")
+	private boolean haveYouExpressedAnyExtremistViews;
+	
+	@FormParam("haveYouSupportedExtreamistOrgisisation")
 	private boolean haveYouSupportedExtreamistOrgisisation;
 	
 	//TERRORIST THREAT EVALUATION REASONS// 
+	@FormParam("haveYouJustifiedOrEncouragedTerrorismReason")
 	private String haveYouJustifiedOrEncouragedTerrorismReason; 
+	
+	@FormParam("haveYouBeenAMemberOfTerroristOrginisationReason")
 	private String haveYouBeenAMemberOfTerroristOrginisationReason;
-	private String haveYouSupportedTerrorismReason; 
-	private String haveYouBeenSuspectedOrInvolvedInWarCrimesReason; 
-	private String anyOtherInfoAboutCharacterReason; 
-	private String anyOtherActivitiesShowNotGoodPersonReason; 
+	
+	@FormParam("haveYouSupportedTerrorismReason")
+	private String haveYouSupportedTerrorismReason;
+	
+	@FormParam("haveYouBeenSuspectedOrInvolvedInWarCrimesReason")
+	private String haveYouBeenSuspectedOrInvolvedInWarCrimesReason;
+	
+	@FormParam("anyOtherInfoAboutCharacterReason")
+	private String anyOtherInfoAboutCharacterReason;
+	
+	@FormParam("anyOtherActivitiesShowNotGoodPersonReason")
+	private String anyOtherActivitiesShowNotGoodPersonReason;
+	
+	@FormParam("workedForOrginisationDangerousToUKOrAlliesReason")
 	private String workedForOrginisationDangerousToUKOrAlliesReason; 
+	
+	@FormParam("haveYouExpressedAnyExtremistViewsReason")
 	private String haveYouExpressedAnyExtremistViewsReason; 
+	
+	@FormParam("haveYouSupportedExtreamistOrgisisationReason")
 	private String haveYouSupportedExtreamistOrgisisationReason;
 	
 	//CONSTRUCTOR//

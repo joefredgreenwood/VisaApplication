@@ -14,12 +14,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 @Entity
 @Table(name="COUNTRIES")
 public class Countries {
 	
 	int countryId;
+	
+	@FormParam("countryName")
 	String countryName;
 	
 	

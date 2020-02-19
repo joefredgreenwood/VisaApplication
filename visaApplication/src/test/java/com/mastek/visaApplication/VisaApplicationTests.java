@@ -38,7 +38,7 @@ class VisaApplicationTests {
 
 	@Autowired
 	DNADatabaseDAO dnadao;
-	
+
 	@Autowired
 	PaymentDAO payDAO;
 
@@ -65,9 +65,8 @@ class VisaApplicationTests {
 	@Autowired
 	VisaApplicationServices visaAppServices;
 
-
-
-
+	
+	
 	@Test
 	void testAddPersonalDetails() {
 	PersonalDetails perd = new PersonalDetails();
@@ -89,7 +88,6 @@ class VisaApplicationTests {
 	perd.setTelephoneNumber(0323324123);
 	perd.setCanBeContactedByTelephone(true);
 	perd.setWhereDoYouUseThisNumber("Personal");
-	perd.setContactEmail("LukeM@outlook.com");
 	perd.setWhoDoesThisEmailBelongTo("myself");
 	perd.setSecondaryEmail("N/A");
 	perd.setDrivingLicense(true);
@@ -110,9 +108,8 @@ class VisaApplicationTests {
 	perd.setDependantNationalitySameAsApplicant("Italian");
 	perd.setDependantCountryOfNationality("Italy");
 	perd.setDependantDateOfBirth("02/06/1975");
-
+	
 	}
-
 
 	@Test
 	void testDeletePersonalDetailsById() {
@@ -126,6 +123,10 @@ class VisaApplicationTests {
 	
 
 
+
+	
+	
+
 	@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
@@ -136,11 +137,15 @@ class VisaApplicationTests {
 		visaServices.terrorTest(app);
 		visaServices.testTravelHistory(app);
 		visaServices.immgrationTest(app);
+
 		
+
 		System.out.println(visaServices.getDecision());
+
 }				
 
 	
+
 
 	@Test
 	void testAddDNA() {
@@ -159,9 +164,8 @@ class VisaApplicationTests {
 
 
 
+
 	@Test
-
-
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
 
@@ -339,15 +343,18 @@ class VisaApplicationTests {
 	appFormDAO.deleteById(31);
 	}
 
+
 	@Test
 	void testMongoCheck() {
 		PersonalDetails per = new PersonalDetails();
 		ApplicationForm app = new ApplicationForm();
 		per.setPassportNo(111140);
 		app.setHaveYouBeenAMemberOfTerroristOrginisation(false);
+		
 		visaAppServices.overallDecision(app, per);
 		System.out.println(visaAppServices.getDecision());
 	}
+
 
 
 
@@ -398,6 +405,7 @@ class VisaApplicationTests {
 
 
 
+
 	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
@@ -408,6 +416,7 @@ class VisaApplicationTests {
 		System.out.println(lan);
 
 	}
+
 
 	
 
@@ -439,6 +448,16 @@ class VisaApplicationTests {
 	}
 
 
+	
+	
+
+	
+
+
+	
+	
+
+	
 
 
 	 

@@ -10,12 +10,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
 
 @Entity
 @Table(name="LANGUAGES")
 public class Languages {
 	
 	int languageId;
+	@FormParam("languageName")
 	String languageName;
 	
 	@Id

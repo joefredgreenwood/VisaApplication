@@ -7,13 +7,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import javax.persistence.Transient;
+
+import javax.ws.rs.FormParam;
+
 
 @Entity
 @Table(name="PAYMENT_INFO")
 public class Payment {
 	
 	int paymentRef;
+	
+	@FormParam("totalFee")
 	double totalFee;
 	
 	
