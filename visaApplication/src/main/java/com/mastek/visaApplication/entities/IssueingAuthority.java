@@ -5,12 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 @Entity
 @Table(name="ISSUEING_AUTHORITY")
 public class IssueingAuthority {
 	
 	int issueingAuthorityId;
+	
+	@FormParam("issueingAuthorityName")
 	String issueingAuthorityName;
 	
 	

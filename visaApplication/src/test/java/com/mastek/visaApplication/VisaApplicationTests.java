@@ -55,7 +55,6 @@ class VisaApplicationTests {
 
 	
 	@Autowired
-
 	PersonalDetailsDAO perddao;
 
 
@@ -63,7 +62,6 @@ class VisaApplicationTests {
 	ApplicationFormDAO appFormDAO;
 
 	@Autowired
-
 	CountriesDAO couDAO;
 	
 	@Autowired
@@ -76,11 +74,11 @@ class VisaApplicationTests {
 
 
 
-	
+	//@Test
 	void testAddApplicant() {
 	PersonalDetails appd = new PersonalDetails();
 	
-	appd.setPassportNo(333333);
+	appd.setPassportNo(55555);
 	appd.setContactLanguage("English");
 	appd.setApplicantSalutation(Salutation.MR);
 	appd.setFirstName("Luke");
@@ -130,7 +128,7 @@ class VisaApplicationTests {
 	}
 	
 			
-	@Test
+	//@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
@@ -144,7 +142,7 @@ class VisaApplicationTests {
 		System.out.println(visaServices.getDecision());
 }				
 
-
+	@Test
 	void testAddPayment() {
 	Payment pay = new Payment();
 	pay.setTotalFee(14.50);
@@ -153,31 +151,13 @@ class VisaApplicationTests {
 	System.out.println(pay);
 	assertNotNull(pay, "Payment not Added");
 
-
-		pay = payDAO.save(pay);
-		System.out.println(pay);
-		assertNotNull(pay, "Payment not Added");
 	}
 
-	@Test
+	//@Test
 	void testDeletePaymentById() {
-	payDAO.deleteById(31);
+	payDAO.deleteById(1);
 	}
 
-
-
-	@Test
-	void testAddDNA() {
-		DNADatabase dna = new DNADatabase();
-		dna.setFirstName("Joe");
-		dna.setLastName("Bramhall");
-		dna.setPassportNumber(111111);
-		dna.setCrimeDescription("Stealing");
-		dna.setCrimeDate("20/01/1997");
-
-		dna=dnadao.save(dna);
-		System.out.println(dna);
-	}
 
 	@Test
 	void testAddApplicationForm() {
@@ -350,18 +330,6 @@ class VisaApplicationTests {
 		}
 	
 
-//	@Test
-//	void testAddDNA() {
-//		DNADatabase dna = new DNADatabase();
-//		dna.setFirstName("Joe");
-//		dna.setLastName("Bramhall");
-//		dna.setPassportNumber(111111);
-//		dna.setCrimeDescription("Stealing");
-//		dna.setCrimeDate("20/01/1997");
-//
-//		dna=dnadao.save(dna);
-//		System.out.println(dna);
-//	}
 
 	
 	//@Test
