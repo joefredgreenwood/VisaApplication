@@ -53,7 +53,7 @@ public class PersonalDetails {
 	
 	//Dependants//
 //CREATE DEPENDANTS PASSPORT NUMBER AND PASSPORT DETAILS//
-	long dependantPassportNo;
+	int dependantPassportNo;
 	String dependantFamilyName;
 	Salutation dependantSalutation;
 	Gender dependantGender;
@@ -332,11 +332,11 @@ public class PersonalDetails {
 		NationalInsuranceNumber = nationalInsuranceNumber;
 	}
 	
-	public long getDependantPassportNo() {
+	public int getDependantPassportNo() {
 		return dependantPassportNo;
 	}
 
-	public void setDependantPassportNo(long dependantPassportNo) {
+	public void setDependantPassportNo(int dependantPassportNo) {
 		this.dependantPassportNo = dependantPassportNo;
 	}
 	
