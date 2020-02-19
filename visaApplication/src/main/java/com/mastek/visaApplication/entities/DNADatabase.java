@@ -1,5 +1,9 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.hibernate.annotations.NamedQueries;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -75,7 +79,8 @@ public class DNADatabase {
 	}
 	
 	
+
 	
-	
+		
 
 }

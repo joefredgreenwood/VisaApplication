@@ -15,7 +15,7 @@ import com.mastek.visaApplication.dao.CountriesDAO;
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
 
 import com.mastek.visaApplication.entities.ApplicationForm;
-
+import com.mastek.visaApplication.entities.ApplicationFormListeners;
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
@@ -53,9 +53,8 @@ class VisaApplicationTests {
 	@Autowired
 	PaymentDAO payDAO;
 
-	
-	@Autowired
 
+	@Autowired
 	PersonalDetailsDAO perddao;
 
 
@@ -65,21 +64,26 @@ class VisaApplicationTests {
 	@Autowired
 
 	CountriesDAO couDAO;
-	
+
 	@Autowired
 	LanguagesDAO lanDAO;
-	
+
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
 
+	@Autowired
+	ApplicationFormListeners appL;
+
+	@Autowired
+	VisaApplicationServices visaAppServices;
 
 
 
 
-	
-	void testAddApplicant() {
+
+	/*	void testAddApplicant() {
 	PersonalDetails appd = new PersonalDetails();
-	
+
 	appd.setPassportNo(333333);
 	appd.setContactLanguage("English");
 	appd.setApplicantSalutation(Salutation.MR);
@@ -122,19 +126,19 @@ class VisaApplicationTests {
 	appd.setDependantNationalitySameAsApplicant("Italian");
 	appd.setDependantCountryOfNationality("Italy");
 	appd.setDependantDateOfBirth("02/06/1975");
-	
+
 	appd = perddao.save(appd);
 	System.out.println(appd);
 	assertNotNull(appd, "applicant not added");
 
 	}
-	
-			
+
+
 	@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
-		
+
 		app.setHaveYouEnteredUKIllegally(true);
 		app.setHaveYouStayedBeyondYourVisa(true);
 		visaServices.terrorTest(app);
@@ -178,11 +182,11 @@ class VisaApplicationTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	}
-
-	@Test
+*/
+	/*@Test
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
-		
+
 		appForm.setApplicationDate("17/02/2020");
 		appForm.setDurationOfVisa(4);
 		appForm.setSubmissionType(SubmissionType.ONLINE);
@@ -343,57 +347,74 @@ class VisaApplicationTests {
 		else {
 			appForm.setHaveYouSupportedExtreamistOrgisisationReason(null);
 		}
-		
+
 		appForm = appFormDAO.save(appForm);
 		System.out.println(appForm);
-		
+		//visaAppServices.DecisionMaker(appForm);
+		//System.out.println(visaAppServices.getDecision());
+
+
 		}
-	
+*/
+	@Test
+	void testMongoCheck() {
+		PersonalDetails per = new PersonalDetails();
+		ApplicationForm app = new ApplicationForm();
+		per.setPassportNo(111140);
+		app.setHaveYouBeenAMemberOfTerroristOrginisation(false);
+		visaAppServices.overallDecision(app, per);
+		System.out.println(visaAppServices.getDecision());
+	}
+/*
+	@Test
+	void testAddDNA() {
+		DNADatabase dna = new DNADatabase();
+		dna.setFirstName("Joe");
+		dna.setLastName("Bramhall");
+		dna.setPassportNumber(111111);
+		dna.setCrimeDescription("Stealing");
+		dna.setCrimeDate("20/01/1997");
 
-//	@Test
-//	void testAddDNA() {
-//		DNADatabase dna = new DNADatabase();
-//		dna.setFirstName("Joe");
-//		dna.setLastName("Bramhall");
-//		dna.setPassportNumber(111111);
-//		dna.setCrimeDescription("Stealing");
-//		dna.setCrimeDate("20/01/1997");
-//
-//		dna=dnadao.save(dna);
-//		System.out.println(dna);
-//	}
+		dna=dnadao.save(dna);
+		System.out.println(dna);
+	}
 
-	
-	//@Test
+
+	@Test
 	void testAddCountry() {
 		Countries cou = new Countries();
 		cou.setCountryName("Brazil");
-		
+
 		cou = couDAO.save(cou);
 		System.out.println(cou);
-		
+
 	}
-	
-	//@Test
+
+	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
 		lan.setLanguageName("Brazilian");
-		
+
 		lan = lanDAO.save(lan);
 		System.out.println(lan);
-		
+
 	}
-	
-	//@Test
+
+	@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
 		issAuth.setIssueingAuthorityName("Brazilian Government");
-		
+
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
-		
+
 
 	}
+
+
+	 */
+
+
 
 
 }

@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
 import com.mastek.visaApplication.entities.DNADatabase;
+import com.mastek.visaApplication.services.VisaApplicationServices;
 
 @SpringBootTest
 class MongoTests {
@@ -13,19 +14,24 @@ class MongoTests {
 	@Autowired
 	DNADatabaseDAO dnadao;
 	
-	//Test
-	void Test() {
-		System.out.println("Test");
-	}
+	@Autowired
+	VisaApplicationServices visaAppServices;
 	
-	@Test
+
+	
+	
+	
+	
+
+	
+	/*@Test
 		void test1AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Joe");
 			dna.setLastName("Bramhall");
 			dna.setPassportNumber(111111);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("20/01/1997");
+			dna.setCrimeDate("13-05-2015T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -38,7 +44,7 @@ class MongoTests {
 		dna.setLastName("Lobb");
 		dna.setPassportNumber(111112);
 		dna.setCrimeDescription("Child Sexual Crime");
-		dna.setCrimeDate("25/06/1993");
+		dna.setCrimeDate("23-05-2014T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -50,7 +56,7 @@ class MongoTests {
 		dna.setLastName("Rutter");
 		dna.setPassportNumber(111113);
 		dna.setCrimeDescription("Child Pornography");
-		dna.setCrimeDate("02/10/2003");
+		dna.setCrimeDate("13-04-1998T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -62,7 +68,7 @@ class MongoTests {
 		dna.setLastName("Price");
 		dna.setPassportNumber(111114);
 		dna.setCrimeDescription("Stealing");
-		dna.setCrimeDate("06/05/2018");
+		dna.setCrimeDate("16-05-2005T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -74,7 +80,7 @@ class MongoTests {
 		dna.setLastName("Nblovu");
 		dna.setPassportNumber(111115);
 		dna.setCrimeDescription("Stealing Medication From Care Home");
-		dna.setCrimeDate("19/02/2017");
+		dna.setCrimeDate("19-02-2017T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -86,7 +92,7 @@ class MongoTests {
 		dna.setLastName("Mohammed");
 		dna.setPassportNumber(111116);
 		dna.setCrimeDescription("Murders of Three Generations of a Family");
-		dna.setCrimeDate("07/08/2019");
+		dna.setCrimeDate("07-08-2019T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -98,7 +104,7 @@ class MongoTests {
 		dna.setLastName("Barrass");
 		dna.setPassportNumber(111117);
 		dna.setCrimeDescription("Attempted Murder of Children");
-		dna.setCrimeDate("12/11/2019");
+		dna.setCrimeDate("12-11-2019T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -110,7 +116,7 @@ class MongoTests {
 		dna.setLastName("Jenkinson");
 		dna.setPassportNumber(111118);
 		dna.setCrimeDescription("Killed two sons");
-		dna.setCrimeDate("31/10/2018");
+		dna.setCrimeDate("31-10-2018T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
@@ -122,7 +128,7 @@ class MongoTests {
 			dna.setLastName("Smith");
 			dna.setPassportNumber(111119);
 			dna.setCrimeDescription("Shaing Daughter to Death");
-			dna.setCrimeDate("22/02/2019");
+			dna.setCrimeDate("22-02-2019T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -134,7 +140,7 @@ class MongoTests {
 			dna.setLastName("Hoare");
 			dna.setPassportNumber(111120);
 			dna.setCrimeDescription("Child Rapist");
-			dna.setCrimeDate("18/06/2018");
+			dna.setCrimeDate("18-06-2018T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -146,7 +152,7 @@ class MongoTests {
 			dna.setLastName("Kiss");
 			dna.setPassportNumber(111121);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("20/01/1997");
+			dna.setCrimeDate("20-01-1997T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -158,7 +164,7 @@ class MongoTests {
 			dna.setLastName("Bramhall");
 			dna.setPassportNumber(111122);
 			dna.setCrimeDescription("Sexual Assult");
-			dna.setCrimeDate("18/12/2018");
+			dna.setCrimeDate("18-12-2018T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -170,7 +176,7 @@ class MongoTests {
 			dna.setLastName("Watton");
 			dna.setPassportNumber(111123);
 			dna.setCrimeDescription("Armed Robbery");
-			dna.setCrimeDate("20/05/1990");
+			dna.setCrimeDate("20-05-1990T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -182,7 +188,7 @@ class MongoTests {
 			dna.setLastName("Morin");
 			dna.setPassportNumber(111124);
 			dna.setCrimeDescription("Rapist");
-			dna.setCrimeDate("30/11/1976");
+			dna.setCrimeDate("30-11-1976T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -194,7 +200,7 @@ class MongoTests {
 			dna.setLastName("Bramhall");
 			dna.setPassportNumber(111125);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("20/01/1997");
+			dna.setCrimeDate("20-01-1997T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -206,7 +212,7 @@ class MongoTests {
 			dna.setLastName("Pervez");
 			dna.setPassportNumber(111126);
 			dna.setCrimeDescription("Armed Robbery");
-			dna.setCrimeDate("15/03/2003");
+			dna.setCrimeDate("15-03-2003T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -218,7 +224,7 @@ class MongoTests {
 			dna.setLastName("Lewis");
 			dna.setPassportNumber(111127);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("02/05/2012");
+			dna.setCrimeDate("02-05-2012T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -230,7 +236,7 @@ class MongoTests {
 			dna.setLastName("Pickett");
 			dna.setPassportNumber(111128);
 			dna.setCrimeDescription("Attempted Murder");
-			dna.setCrimeDate("25/03/2012");
+			dna.setCrimeDate("25-03-2012T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -242,7 +248,7 @@ class MongoTests {
 			dna.setLastName("Craig");
 			dna.setPassportNumber(111129);
 			dna.setCrimeDescription("Murder");
-			dna.setCrimeDate("08/09/2010");
+			dna.setCrimeDate("08-09-2010T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -254,7 +260,7 @@ class MongoTests {
 			dna.setLastName("Rooney");
 			dna.setPassportNumber(111130);
 			dna.setCrimeDescription("Murder and Paedophile");
-			dna.setCrimeDate("15/06/2012");
+			dna.setCrimeDate("15-06-2012T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -266,7 +272,7 @@ class MongoTests {
 			dna.setLastName("Bramhall");
 			dna.setPassportNumber(111131);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("20/01/1997");
+			dna.setCrimeDate("20-01-1997T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -278,7 +284,7 @@ class MongoTests {
 			dna.setLastName("Hindley");
 			dna.setPassportNumber(111132);
 			dna.setCrimeDescription("Serial Killer");
-			dna.setCrimeDate("20/07/1965");
+			dna.setCrimeDate("20-07-1965T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -290,7 +296,7 @@ class MongoTests {
 			dna.setLastName("Cronin");
 			dna.setPassportNumber(111133);
 			dna.setCrimeDescription("Sexual Predator");
-			dna.setCrimeDate("19/06/2013");
+			dna.setCrimeDate("19-06-2013T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -302,7 +308,7 @@ class MongoTests {
 			dna.setLastName("Goodwin");
 			dna.setPassportNumber(111134);
 			dna.setCrimeDescription("Armed Robbery");
-			dna.setCrimeDate("10/05/1990");
+			dna.setCrimeDate("10-05-1990T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -314,7 +320,7 @@ class MongoTests {
 			dna.setLastName("Major");
 			dna.setPassportNumber(111135);
 			dna.setCrimeDescription("drug smuggler");
-			dna.setCrimeDate("20/01/1997");
+			dna.setCrimeDate("20-01-1997T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -326,7 +332,7 @@ class MongoTests {
 			dna.setLastName("Laverick");
 			dna.setPassportNumber(111136);
 			dna.setCrimeDescription("Stealing");
-			dna.setCrimeDate("10/07/1987");
+			dna.setCrimeDate("10-07-1987T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -338,7 +344,7 @@ class MongoTests {
 			dna.setLastName("Stuart-Taylor");
 			dna.setPassportNumber(111137);
 			dna.setCrimeDescription("Human Trafficing");
-			dna.setCrimeDate("30/08/1990");
+			dna.setCrimeDate("30-08-1990T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -350,7 +356,7 @@ class MongoTests {
 			dna.setLastName("Avenell");
 			dna.setPassportNumber(111138);
 			dna.setCrimeDescription("Narcotics Dealer");
-			dna.setCrimeDate("18/02/2007");
+			dna.setCrimeDate("18-02-2007T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -362,7 +368,7 @@ class MongoTests {
 			dna.setLastName("Hussain");
 			dna.setPassportNumber(111139);
 			dna.setCrimeDescription("Armed Robery");
-			dna.setCrimeDate("19/04/2003");
+			dna.setCrimeDate("19-04-2003T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -374,7 +380,7 @@ class MongoTests {
 			dna.setLastName("Sharif");
 			dna.setPassportNumber(111140);
 			dna.setCrimeDescription("Sexual Harrassment");
-			dna.setCrimeDate("08/09/2018");
+			dna.setCrimeDate("08-09-2018T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
@@ -386,11 +392,11 @@ class MongoTests {
 			dna.setLastName("White");
 			dna.setPassportNumber(111141);
 			dna.setCrimeDescription("exploitation");
-			dna.setCrimeDate("17/01/1993");
+			dna.setCrimeDate("17-01-1993T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
 
-
+*/
 }
