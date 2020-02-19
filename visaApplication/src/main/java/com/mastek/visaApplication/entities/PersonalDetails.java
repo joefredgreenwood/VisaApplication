@@ -27,7 +27,7 @@ public class PersonalDetails {
 	
 
 	@FormParam("contactLanguage")
-	String contactLanguage;			// change this when Greg has done enum
+	String contactLanguage;			
 	
 	@FormParam("applicantSalutation")
 
@@ -52,16 +52,16 @@ public class PersonalDetails {
 
 	
 	@FormParam("dateOfBirth")
-	String dateOfBirth;			// try this with the date
+	String dateOfBirth;			
 	
 	@FormParam("countryOfBirth")
-	String countryOfBirth;		// try this with the date
+	String countryOfBirth;		
 	//
 	@FormParam("placeOfBirth")
-	String placeOfBirth;	// try this with the date 
+	String placeOfBirth;	 
 	
 	@FormParam("nationality")
-	String nationality; //Change this once greg has done the enum
+	String nationality; 
 	
 	@FormParam("doYouHaveAnyOtherNationality")
 
@@ -72,7 +72,7 @@ public class PersonalDetails {
 	
 	@FormParam("ownershipStatusOfHome")
 	String ownershipStatusOfHome;
-	//
+	
 	@FormParam("address")
 	String address;
 	
@@ -87,12 +87,12 @@ public class PersonalDetails {
 	
 	@FormParam("canBeContactedByTelephone")
 	Boolean canBeContactedByTelephone;
-	//
+	
 
  
 
 	@FormParam("whereDoYouUseThisNumber")
-	String whereDoYouUseThisNumber; //possible enum (home/work)
+	String whereDoYouUseThisNumber; 
 	
 	
 
