@@ -38,14 +38,8 @@ class VisaApplicationTests {
 	@Autowired
 	PaymentDAO payDAO;
 
-
-
 	@Autowired
 	PersonalDetailsDAO perddao;
-
-
-
-	
 
 	@Autowired
 	ApplicationFormDAO appFormDAO;
@@ -59,19 +53,12 @@ class VisaApplicationTests {
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
 
-
 	@Autowired
 	ApplicationFormListeners appL;
 
 	@Autowired
 	VisaApplicationServices visaAppServices;
 
-
-
-
-	
-
-	
 	
 	@Test
 	void testAddApplicant() {
@@ -142,7 +129,6 @@ class VisaApplicationTests {
 		System.out.println(visaServices.getDecision());
 }				
 */
-	
 
 	@Test
 	void testAddPayment() {
@@ -350,7 +336,6 @@ class VisaApplicationTests {
 		System.out.println(cou);
 
 	}
-
 
 
 	@Test
