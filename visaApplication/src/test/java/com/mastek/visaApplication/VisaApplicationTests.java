@@ -107,7 +107,7 @@ class VisaApplicationTests {
 	}
 	
 
-	//@Test
+	@Test
 	void testAddPayment() {
 	Payment pay = new Payment();
 	pay.setTotalFee(14.50);
@@ -117,7 +117,7 @@ class VisaApplicationTests {
 	assertNotNull(pay, "Payment not Added");
 	}
 
-	//@Test
+	@Test
 	void testAddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Joe");
@@ -130,7 +130,7 @@ class VisaApplicationTests {
 		System.out.println(dna);
 	}
 
-	//@Test
+	@Test
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
 		
@@ -336,7 +336,7 @@ class VisaApplicationTests {
 	payDAO.deleteById(31);
 	}
 	
-	//b
+
 	
 	@Test
 	void testTerrorism() {
