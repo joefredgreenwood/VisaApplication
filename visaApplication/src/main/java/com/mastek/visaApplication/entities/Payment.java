@@ -4,8 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import javax.persistence.Transient;
+
 import javax.ws.rs.FormParam;
+
 
 @Entity
 @Table(name="PAYMENT_INFO")
@@ -57,6 +63,21 @@ public class Payment {
 		return "Payment [paymentRef=" + paymentRef + ", totalFee=" + totalFee + "]";
 	}
 	
+	PersonalDetails paymentLink;
+
+
+
+	
+	
+	@ManyToOne
+	@JoinColumn(name="fk_passportNo")
+	@org.springframework.data.annotation.Transient
+	public PersonalDetails getPaymentLink() {
+		return paymentLink;
+	}
+	public void setPaymentLink(PersonalDetails paymentLink) {
+		this.paymentLink = paymentLink;
+	}
 	
 	
 	

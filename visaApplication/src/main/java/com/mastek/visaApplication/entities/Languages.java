@@ -1,9 +1,14 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 
@@ -53,6 +58,19 @@ public class Languages {
 			return false;
 		return true;
 	}
+	
+	Set<PersonalDetails>languageHistory = new HashSet<>();
+	@OneToMany(mappedBy="languageLink", cascade= CascadeType.ALL)
+	public Set<PersonalDetails> getLanguageHistory() {
+		return languageHistory;
+	}
+	public void setLanguageHistory(Set<PersonalDetails> languageHistory) {
+		this.languageHistory = languageHistory;
+	}
+
+
+	
+	
 	
 	
 	

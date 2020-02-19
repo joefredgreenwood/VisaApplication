@@ -1,10 +1,18 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,10 +25,12 @@ public class PersonalDetails {
 	@FormParam("passportNo")
 	int passportNo;
 	
+
 	@FormParam("contactLanguage")
 	String contactLanguage;			// change this when Greg has done enum
 	
 	@FormParam("applicantSalutation")
+
 	Salutation applicantSalutation;
 	
 	@FormParam("firstName")
@@ -37,6 +47,9 @@ public class PersonalDetails {
 	
 	@FormParam("applicantGender")
 	Gender applicantGender;
+
+		
+
 	
 	@FormParam("dateOfBirth")
 	String dateOfBirth;			// try this with the date
@@ -51,6 +64,7 @@ public class PersonalDetails {
 	String nationality; //Change this once greg has done the enum
 	
 	@FormParam("doYouHaveAnyOtherNationality")
+
 	Boolean doYouHaveAnyOtherNationality;
 	
 	@FormParam("applicantRelationship")
@@ -74,11 +88,15 @@ public class PersonalDetails {
 	@FormParam("canBeContactedByTelephone")
 	Boolean canBeContactedByTelephone;
 	//
+
+ 
+
 	@FormParam("whereDoYouUseThisNumber")
 	String whereDoYouUseThisNumber; //possible enum (home/work)
 	
-	@FormParam("contactEmail")
-	String contactEmail;
+	
+
+
 	
 	@FormParam("whoDoesThisEmailBelongTo")
 	String whoDoesThisEmailBelongTo;
@@ -158,13 +176,8 @@ public class PersonalDetails {
 		this.passportNo = passportNo;
 	}
 
-	public String getContactLanguage() {
-		return contactLanguage;
-	}
-
-	public void setContactLanguage(String contactLanguage) {
-		this.contactLanguage = contactLanguage;
-	}
+	
+	
    @Enumerated(EnumType.STRING)
 	public Salutation getApplicantSalutation() {
 		return applicantSalutation;
@@ -222,13 +235,7 @@ public class PersonalDetails {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getCountryOfBirth() {
-		return countryOfBirth;
-	}
-
-	public void setCountryOfBirth(String countryOfBirth) {
-		this.countryOfBirth = countryOfBirth;
-	}
+	
 
 	public String getPlaceOfBirth() {
 		return placeOfBirth;
@@ -238,13 +245,8 @@ public class PersonalDetails {
 		this.placeOfBirth = placeOfBirth;
 	}
 
-	public String getNationality() {
-		return nationality;
-	}
 
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
+	
 	@Column(name="do_you_have_another_nationality")
 	public Boolean getDoYouHaveAnyOtherNationality() {
 		return doYouHaveAnyOtherNationality;
@@ -318,13 +320,7 @@ public class PersonalDetails {
 		this.whereDoYouUseThisNumber = whereDoYouUseThisNumber;
 	}
 
-	public String getContactEmail() {
-		return contactEmail;
-	}
 
-	public void setContactEmail(String contactEmail) {
-		this.contactEmail = contactEmail;
-	}
 
 	public String getWhoDoesThisEmailBelongTo() {
 		return whoDoesThisEmailBelongTo;
@@ -511,17 +507,16 @@ public class PersonalDetails {
 
 	@Override
 	public String toString() {
-		return "PersonalDetails [passportNo=" + passportNo + ", contactLanguage=" + contactLanguage
-				+ ", applicantSalutation=" + applicantSalutation + ", firstName=" + firstName + ", middleName="
+		return "PersonalDetails [passportNo=" + passportNo + ", applicantSalutation=" + applicantSalutation + ", firstName=" + firstName + ", middleName="
 				+ middleName + ", familyName=" + familyName + ", otherNames=" + otherNames + ", applicantGender="
-				+ applicantGender + ", dateOfBirth=" + dateOfBirth + ", countryOfBirth=" + countryOfBirth
-				+ ", placeOfBirth=" + placeOfBirth + ", nationality=" + nationality + ", doYouHaveAnyOtherNationality="
+				+ applicantGender + ", dateOfBirth=" + dateOfBirth  
+				+ ", placeOfBirth=" + placeOfBirth + ", doYouHaveAnyOtherNationality="
 				+ doYouHaveAnyOtherNationality + ", applicantRelationship=" + applicantRelationship
 				+ ", ownershipStatusOfHome=" + ownershipStatusOfHome + ", address=" + address
 				+ ", howLongHaveYouLivedAtThisAddress=" + howLongHaveYouLivedAtThisAddress
 				+ ", isThisYourCorrespondenceAddress=" + isThisYourCorrespondenceAddress + ", telephoneNumber="
 				+ telephoneNumber + ", canBeContactedByTelephone=" + canBeContactedByTelephone
-				+ ", whereDoYouUseThisNumber=" + whereDoYouUseThisNumber + ", contactEmail=" + contactEmail
+				+ ", whereDoYouUseThisNumber=" + whereDoYouUseThisNumber 
 				+ ", whoDoesThisEmailBelongTo=" + whoDoesThisEmailBelongTo + ", secondaryEmail=" + secondaryEmail
 				+ ", drivingLicense=" + drivingLicense + ", doYouHaveAValidNationalIdentityCard="
 				+ doYouHaveAValidNationalIdentityCard + ", passportIssueDate=" + passportIssueDate
@@ -536,6 +531,84 @@ public class PersonalDetails {
 				+ dependantNationalitySameAsApplicant + ", dependantCountryOfNationality="
 				+ dependantCountryOfNationality + ", dependantDateOfBirth=" + dependantDateOfBirth + "]";
 	}
+	
+	Set<Payment> PaymentHistory = new HashSet<>();
+	@OneToMany(mappedBy= "paymentLink", cascade= CascadeType.ALL)
+	public Set<Payment> getPaymentHistory() {
+		return PaymentHistory;
+	}
+
+	public void setPaymentHistory(Set<Payment> paymentHistory) {
+		PaymentHistory = paymentHistory;
+	}
+	
+	Set<ApplicationForm> ApplicationHistory = new HashSet<>();
+	@OneToMany(mappedBy= "applicationLink", cascade= CascadeType.ALL)
+	public Set<ApplicationForm> getApplicationHistory() {
+		return ApplicationHistory;
+	}
+
+	public void setApplicationHistory(Set<ApplicationForm> applicationHistory) {
+		ApplicationHistory = applicationHistory;
+	}
+	
+	
+	Countries nationalityLink;
+	
+	@ManyToOne
+	@JoinColumn(name="fk_Country_of_Nationality")
+	@org.springframework.data.annotation.Transient
+	public Countries getNationalityLink() {
+		return nationalityLink;
+	}
+
+	public void setNationalityLink(Countries nationalityLink) {
+		this.nationalityLink = nationalityLink;
+	}
+	
+
+	
+	
+	Countries birthPlaceLink;
+
+	@ManyToOne
+	@JoinColumn(name="fk_Country_of_Birth")
+	@org.springframework.data.annotation.Transient
+	public Countries getBirthPlaceLink() {
+		return birthPlaceLink;
+	}
+
+	public void setBirthPlaceLink(Countries birthPlaceLink) {
+		this.birthPlaceLink = birthPlaceLink;
+	}
+	
+	Languages languageLink;
+	@ManyToOne
+	@JoinColumn(name="fk_Contact_Language")
+	@org.springframework.data.annotation.Transient
+	public Languages getLanguageLink() {
+		return languageLink;
+	}
+
+	public void setLanguageLink(Languages languageLink) {
+		this.languageLink = languageLink;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 

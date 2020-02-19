@@ -18,27 +18,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
 
+
+
+
 import com.mastek.visaApplication.api.ApplicationFormAPI;
 import com.mastek.visaApplication.api.CountriesAPI;
 import com.mastek.visaApplication.api.IssueingAuthorityAPI;
 import com.mastek.visaApplication.api.LanguagesAPI;
 import com.mastek.visaApplication.api.PaymentAPI;
 import com.mastek.visaApplication.api.PersonalDetailsAPI;
+
 import com.mastek.visaApplication.dao.ApplicationFormDAO;
 
 import com.mastek.visaApplication.dao.CountriesDAO;
+
+import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
+import com.mastek.visaApplication.dao.LanguagesDAO;
+import com.mastek.visaApplication.dao.PaymentDAO;
+import com.mastek.visaApplication.dao.PersonalDetailsDAO;
+
+
+import com.mastek.visaApplication.dao.DNADatabaseDAO;
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
+
 import com.mastek.visaApplication.entities.ApplicationForm;
+
+
+import com.mastek.visaApplication.entities.Countries;
+import com.mastek.visaApplication.entities.Languages;
+import com.mastek.visaApplication.entities.Payment;
+import com.mastek.visaApplication.entities.PersonalDetails;
+
+
 import com.mastek.visaApplication.entities.Countries;
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
 import com.mastek.visaApplication.entities.Payment;
 import com.mastek.visaApplication.entities.PersonalDetails;
+
 import com.mastek.visaApplication.entities.DNADatabase;
 import com.mastek.visaApplication.entities.PersonalDetails;
 import com.mongodb.BasicDBObject;
@@ -52,24 +74,36 @@ import com.mongodb.client.MongoDatabase;
 @Component
 public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationFormAPI, CountriesAPI, IssueingAuthorityAPI, LanguagesAPI, PaymentAPI{
 
+
+	
 	@Autowired
-	ApplicationFormDAO appDAO;
+	DNADatabaseDAO dnadao;
+
+
+	@Autowired
+	PaymentDAO payDAO;
+
 	
 	@Autowired
 	PersonalDetailsDAO perddao;
-	
+
+
+	@Autowired
+	ApplicationFormDAO appFormDAO;
+
 	@Autowired
 	CountriesDAO couDAO;
-	
-	@Autowired
-	IssueingAuthorityDAO issAuthDAO;
 	
 	@Autowired
 	LanguagesDAO lanDAO;
 	
 	@Autowired
-	PaymentDAO payDAO;
+	IssueingAuthorityDAO issAuthDAO;
 
+	
+	@Autowired
+	ApplicationFormDAO appDAO;
+	
 	@Autowired
 	DNADatabaseDAO dnaDAO;
 
@@ -364,8 +398,10 @@ public Iterable<PersonalDetails> listAllPersonalDetails() {
 @Override
 public PersonalDetails findByPassportNo(int passportNo) {
 
+
 	return perddao.findById(passportNo).get();
 }
+
 
 @Override
 public PersonalDetails registerNewPersonalDetails(PersonalDetails newPersonalDetails) {
@@ -467,7 +503,86 @@ public Payment registerNewPayment(Payment newPayment) {
 	newPayment = payDAO.save(newPayment);
 	return newPayment;
 }
+
+
+@Transactional
+public Payment assignPaymentToPersonalDetails(int passportNo, int paymentNo) {
+Payment pay = payDAO.findById(paymentNo).get();
+PersonalDetails perd = perddao.findById(passportNo).get();
+
+pay.setPaymentLink(perd);
+perd.getPaymentHistory().add(pay);
+	perddao.save(perd);
+	payDAO.save(pay);
+	
+	return pay;
 }
+
+@Transactional
+public ApplicationForm assignApplicationToPersonalDetails(int passportNo, int applicationNo) {
+ApplicationForm app = appFormDAO.findById(applicationNo).get();
+PersonalDetails perd = perddao.findById(passportNo).get();
+
+app.setApplicationLink(perd);
+perd.getApplicationHistory().add(app);
+	perddao.save(perd);
+	appFormDAO.save(app);
+	
+	return app;
+}
+
+@Transactional
+public PersonalDetails assignNationalityToPersonalDetails(int passportNo, int countryNo) {
+Countries cou = couDAO.findById(countryNo).get();
+PersonalDetails perd = perddao.findById(passportNo).get();
+
+perd.setNationalityLink(cou);
+cou.getNationalityHistory().add(perd);
+	perddao.save(perd);
+	couDAO.save(cou);
+	
+	return perd;
+}
+
+@Transactional
+public PersonalDetails assignBirthPlaceToPersonalDetails(int passportNo, int countryNo) {
+Countries cou = couDAO.findById(countryNo).get();
+PersonalDetails perd = perddao.findById(passportNo).get();
+
+perd.setBirthPlaceLink(cou);
+cou.getBirthPlaceHistory().add(perd);
+	perddao.save(perd);
+	couDAO.save(cou);
+	
+	return perd;
+}
+
+@Transactional
+public PersonalDetails assignLanguageToPersonalDetails(int passportNo, int languageNo) {
+Languages lan = lanDAO.findById(languageNo).get();
+PersonalDetails perd = perddao.findById(passportNo).get();
+
+perd.setLanguageLink(lan);
+lan.getLanguageHistory().add(perd);
+	perddao.save(perd);
+	lanDAO.save(lan);
+	
+	return perd;
+}
+
+@Transactional
+public ApplicationForm assignApplicationFormToCountry(int applicationNo, int countryNo) {
+Countries cou = couDAO.findById(countryNo).get();
+ApplicationForm appfor = appFormDAO.findById(applicationNo).get();
+
+appfor.getCountryVisitedAssigned().add(cou);
+	appFormDAO.save(appfor);
+	couDAO.save(cou);
+	
+	return appfor;
+}
+}
+
 
 
 

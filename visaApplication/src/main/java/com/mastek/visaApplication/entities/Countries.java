@@ -1,9 +1,18 @@
 package com.mastek.visaApplication.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -59,5 +68,47 @@ public class Countries {
 	}
 	
 	
+	
+	Set<PersonalDetails> nationalityHistory = new HashSet<>();
 
-}
+
+	@OneToMany(mappedBy= "nationalityLink", cascade= CascadeType.ALL)
+	public Set<PersonalDetails> getNationalityHistory() {
+		return nationalityHistory;
+	}
+	public void setNationalityHistory(Set<PersonalDetails> nationalityHistory) {
+		this.nationalityHistory = nationalityHistory;
+	}
+	
+	
+	Set<PersonalDetails>birthPlaceHistory = new HashSet<>();
+
+
+	@OneToMany(mappedBy="birthPlaceLink", cascade= CascadeType.ALL)
+	public Set<PersonalDetails> getBirthPlaceHistory() {
+		return birthPlaceHistory;
+	}
+	public void setBirthPlaceHistory(Set<PersonalDetails> birthPlaceHistory) {
+		this.birthPlaceHistory = birthPlaceHistory;
+	}
+	
+	Set<ApplicationForm> applicationFormAssigned = new HashSet<>();
+
+
+@ManyToMany(mappedBy="countryVisitedAssigned")
+	public Set<ApplicationForm> getApplicationFormAssigned() {
+		return applicationFormAssigned;
+	}
+	public void setApplicationFormAssigned(Set<ApplicationForm> applicationFormAssigned) {
+		this.applicationFormAssigned = applicationFormAssigned;
+	}
+	
+	
+
+	
+	
+
+	}
+	
+
+
