@@ -1,66 +1,46 @@
 package com.mastek.visaApplication;
 
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
 import com.mastek.visaApplication.dao.ApplicationFormDAO;
-
 import com.mastek.visaApplication.dao.CountriesDAO;
-
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
-
 import com.mastek.visaApplication.entities.ApplicationForm;
-
 import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.entities.Countries;
-
 import com.mastek.visaApplication.entities.DNADatabase;
-
-
 import com.mastek.visaApplication.entities.Gender;
-
 import com.mastek.visaApplication.entities.EmploymentStatus;
-
-
 import com.mastek.visaApplication.entities.IssueingAuthority;
 import com.mastek.visaApplication.entities.Languages;
-
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.Payment;
-
 import com.mastek.visaApplication.entities.PersonalDetails;
 import com.mastek.visaApplication.entities.Relationship;
 import com.mastek.visaApplication.entities.Salutation;
-
 import com.mastek.visaApplication.entities.SubmissionType;
-
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
 
 @SpringBootTest
 class VisaApplicationTests {
+	//AUTOWIRE DAOS//
 	@Autowired
-	DNADatabaseDAO dnadao;
-
-
+	DNADatabaseDAO dnadao;	// May need to Change - naming convention not the same as others
+	
 	@Autowired
 	PaymentDAO payDAO;
 
+	@Autowired
+	PersonalDetailsDAO perddao; // May need to Change - naming convention not the same as others
 	
 	@Autowired
-	PersonalDetailsDAO perddao;
-
-
-	@Autowired
 	ApplicationFormDAO appFormDAO;
-
+	
 	@Autowired
 	CountriesDAO couDAO;
 	
@@ -70,11 +50,9 @@ class VisaApplicationTests {
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
 
-
-
-
-
-	//@Test
+	
+	
+	@Test
 	void testAddApplicant() {
 	PersonalDetails appd = new PersonalDetails();
 	
@@ -128,7 +106,7 @@ class VisaApplicationTests {
 	}
 	
 			
-	//@Test
+	@Test
 	void testTerrorism() {
 		VisaApplicationServices visaServices= new VisaApplicationServices();
 		ApplicationForm app = new ApplicationForm();
@@ -142,6 +120,9 @@ class VisaApplicationTests {
 		System.out.println(visaServices.getDecision());
 }				
 
+
+
+
 	@Test
 	void testAddPayment() {
 	Payment pay = new Payment();
@@ -153,13 +134,23 @@ class VisaApplicationTests {
 
 	}
 
-	//@Test
-	void testDeletePaymentById() {
-	payDAO.deleteById(1);
-	}
+	
 
 
 	@Test
+	void testAddDNA() {
+		DNADatabase dna = new DNADatabase();
+		dna.setFirstName("Joe");
+		dna.setLastName("Bramhall");
+		dna.setPassportNumber(111111);
+		dna.setCrimeDescription("Stealing");
+		dna.setCrimeDate("20/01/1997");
+
+		dna=dnadao.save(dna);
+		System.out.println(dna);
+	}
+
+	//@Test
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
 		
@@ -329,10 +320,7 @@ class VisaApplicationTests {
 		
 		}
 	
-
-
-	
-	//@Test
+	@Test
 	void testAddCountry() {
 		Countries cou = new Countries();
 		cou.setCountryName("Brazil");
@@ -342,7 +330,7 @@ class VisaApplicationTests {
 		
 	}
 	
-	//@Test
+	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
 		lan.setLanguageName("Brazilian");
@@ -352,16 +340,25 @@ class VisaApplicationTests {
 		
 	}
 	
-	//@Test
+	@Test
 	void testAddIssueingAuthority() {
 		IssueingAuthority issAuth = new IssueingAuthority();
 		issAuth.setIssueingAuthorityName("Brazilian Government");
 		
 		issAuth = issAuthDAO.save(issAuth);
 		System.out.println(issAuth);
-		
-
 	}
+	
+	// DELETE TESTS//
+	@Test
+	void testDeletePaymentById() {
+	payDAO.deleteById(31);
+	}
+	
+	
+	
+	
+
 
 
 }

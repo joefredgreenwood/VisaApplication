@@ -37,7 +37,6 @@ public class ApplicationForm {
 	
 	@FormParam("visaContactNumberOutsideUK")
 	private long visaContactNumberOutsideUK;
-	//language visaContactLanguage; // links to another table??
 
 	//UK INFOMATION//
 	@FormParam("detailsOfVisit")
