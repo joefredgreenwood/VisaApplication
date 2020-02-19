@@ -21,7 +21,6 @@ public class ApplicationForm {
 	private String plannedDepartUK; 
 	private long visaContactNumberUK;
 	private long visaContactNumberOutsideUK;
-	//language visaContactLanguage; // links to another table??
 
 	//UK INFOMATION//
 	private String detailsOfVisit; 
