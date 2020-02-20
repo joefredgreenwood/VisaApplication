@@ -72,7 +72,7 @@ import com.mongodb.client.MongoDatabase;
 
 
 @Component
-public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationFormAPI, CountriesAPI, IssueingAuthorityAPI, LanguagesAPI, PaymentAPI{
+public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationFormAPI, CountriesAPI, LanguagesAPI, PaymentAPI{
 
 
 	
@@ -83,7 +83,6 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	@Autowired
 	PaymentDAO payDAO;
 
-	
 	@Autowired
 	PersonalDetailsDAO perddao;
 
@@ -448,24 +447,24 @@ public Countries registerNewCountry(Countries newCountry) {
 }
 
 //////////////////////////////////////////////////////////For IssueingAuthorityAPI
-@Override
-public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
-	System.out.println("Listing All Issueing Authorities");
-	return issAuthDAO.findAll();
-}
-
-@Override
-public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
-	
-	return issAuthDAO.findById(issueingAuthorityId).get();
-	
-}
-
-@Override
-public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
-	newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
-	return newIssueingAuthority;
-}
+//@Override
+//public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
+//	System.out.println("Listing All Issueing Authorities");
+//	return issAuthDAO.findAll();
+//}
+//
+//@Override
+//public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
+//	
+//	return issAuthDAO.findById(issueingAuthorityId).get();
+//	
+//}
+//
+//@Override
+//public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
+//	newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
+//	return newIssueingAuthority;
+//}
 //////////////////////////////////////////////////////////////////////LanguagesAPI
 @Override
 public Iterable<Languages> listAllLanguages() {
