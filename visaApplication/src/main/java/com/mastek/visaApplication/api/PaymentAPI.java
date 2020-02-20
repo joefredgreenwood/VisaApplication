@@ -10,11 +10,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.mastek.visaApplication.entities.Payment;
-@Path("/visaapp/")
+@Path("/visaapp/")			// path: is the URl path to access this API
 public interface PaymentAPI {
 	
 				// http://localhost:7777/visaapp/payment/list
-				@GET
+				@GET		// GET is used to retrieve the data
 				@Path("/payment/list")
 				@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 				public Iterable<Payment> listAllPayments();

@@ -1,8 +1,12 @@
 package com.mastek.visaApplication;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 
 import com.mastek.visaApplication.dao.ApplicationFormDAO;
 import com.mastek.visaApplication.dao.CountriesDAO;
@@ -18,11 +22,12 @@ import com.mastek.visaApplication.services.VisaApplicationServices;
 
 
 @SpringBootTest
-public class JoinTests {
-	
+public class FindTests {
+
+
 	@Autowired
 	VisaApplicationServices visaServices;
-	
+
 
 	@Autowired
 	DNADatabaseDAO dnadao;
@@ -37,14 +42,14 @@ public class JoinTests {
 
 	@Autowired
 	ApplicationFormDAO appFormDAO;
-	
+
 	@Autowired
 	CountriesDAO couDAO;
 
 	@Autowired
 	LanguagesDAO lanDAO;
 
-	
+
 
 	@Autowired
 	ApplicationFormListeners appL;
@@ -52,37 +57,37 @@ public class JoinTests {
 	@Autowired
 	VisaApplicationServices visaAppServices;
 
-	
-	
-	
-			//@Test
-			void testAssignPaymentToPersonalDetails() {
-			Payment pay = visaServices.assignPaymentToPersonalDetails(234567, 84);
-			}
-			
-			//@Test
-			void testAssignApplicationToPersonalDetails() {
-			ApplicationForm app = visaServices.assignApplicationToPersonalDetails(123456, 73);
-			}
-			
-			//@Test
-			void testAssignApplicationToCountry() {
-			ApplicationForm app = visaServices.assignApplicationFormToCountry(73, 43);
-			}
-			
-			//@Test
-			void testPersonalDetailsToCountryOfBirth() {
-			PersonalDetails perd = visaServices.assignBirthPlaceToPersonalDetails(123456, 43);
-			}
-			
-			//@Test
-			void testPersonalDetailsToCountryOfNationality() {
-			PersonalDetails perd = visaServices.assignNationalityToPersonalDetails(123456, 43);
-			}
-			
-			//@Test
-			void testPersonalDetailsToLanguage() {
-			PersonalDetails perd = visaServices.assignLanguageToPersonalDetails(123456, 48);
-			}
 
+
+
+	//@Test
+	void testFindPaymentByTotalFee() {
+
+		Payment pay = payDAO.findById(85).get();
+		System.out.println(pay);
+
+
+	}
+	//@Test
+	void findDnaScreeningStatus() {
+		PersonalDetails per = perddao.findById(654321).get();
+		System.out.println(per.getDnaDatabaseScreeningStatus());
+	}
+	
+	//@Test
+	void findAppStatus () {
+		ApplicationForm app = appFormDAO.findById(77).get();
+		System.out.println(app.getAppQuestionsStatus());
+	}
+
+	//@Test
+	void findApplicationDetails () {
+		ApplicationForm app = appFormDAO.findById(99).get();
+		System.out.println(app);
+	}
+	//@Test
+	void findPersonalDetails () {
+		PersonalDetails per = perddao.findById(434).get();
+		System.out.println(per);
+	}
 }
