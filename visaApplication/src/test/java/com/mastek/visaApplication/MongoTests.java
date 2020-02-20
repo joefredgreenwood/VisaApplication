@@ -386,13 +386,14 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
+	
 		@Test
 		void test31AddDNA() {
 			DNADatabase dna = new DNADatabase();
-			dna.setFirstName("Royston");
-			dna.setLastName("White");
-			dna.setPassportNumber(111141);
-			dna.setCrimeDescription("exploitation");
+			dna.setFirstName("Geoff");
+			dna.setLastName("Goldblum");
+			dna.setPassportNumber(111142);
+			dna.setCrimeDescription("Stealing");
 			dna.setCrimeDate("17-01-1993T10:20:00");
 
 			dna=dnadao.save(dna);
