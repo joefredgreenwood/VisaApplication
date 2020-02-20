@@ -65,7 +65,7 @@ public class AddTests {
 	//@Test
 		void testAddPersonalDetails() {
 		PersonalDetails perd = new PersonalDetails();
-		perd.setPassportNo(696969);
+		perd.setPassportNo(101010);
 		perd.setApplicantSalutation(Salutation.MR);
 		perd.setFirstName("Barry");
 		perd.setMiddleName("N/A");
@@ -124,7 +124,7 @@ public class AddTests {
 			ApplicationForm appForm = new ApplicationForm(); 
 
 			appForm.setApplicationDate("17/02/2020");
-			appForm.setDurationOfVisa(4);
+			appForm.setDurationOfVisa(10);
 			appForm.setSubmissionType(SubmissionType.ONLINE);
 			appForm.setPlannedArriveUK("20/05/2020");
 			appForm.setPlannedDepartUK("20/09/2020");
@@ -284,8 +284,12 @@ public class AddTests {
 				appForm.setHaveYouSupportedExtreamistOrgisisationReason(null);
 			}
 
-			appForm = appFormDAO.save(appForm);
-			System.out.println(appForm);
+			 appForm = appFormDAO.save(appForm);
+		        visaAppServices.DecisionMaker(appForm);
+		        System.out.println(visaAppServices.DecisionMaker(appForm));
+		        appForm.setAppQuestionsStatus(visaAppServices.getDecision());
+		        System.out.println(appForm);
+		        appFormDAO.save(appForm);
 			
 
 
@@ -296,7 +300,7 @@ public class AddTests {
 		//@Test
 				void testAddPayment() {
 				Payment pay = new Payment();
-				pay.setTotalFee(33.50);
+				pay.setTotalFee(70.58);
 
 				pay = payDAO.save(pay);
 				System.out.println(pay);

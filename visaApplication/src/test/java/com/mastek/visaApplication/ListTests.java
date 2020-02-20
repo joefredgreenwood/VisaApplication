@@ -61,7 +61,7 @@ public class ListTests {
 	
 	
 	
-	@Test
+	//@Test
 		void testListPersonalDetails() {
 			Iterable<PersonalDetails> pdets = perddao.findAll();
 			assertNotNull(pdets, "Personal Details Not Found");
@@ -72,7 +72,7 @@ public class ListTests {
 	
 	
 	
-	@Test
+	//@Test
 	void testListApplications() {
 		Iterable<ApplicationForm> appforms = appFormDAO.findAll();
 		assertNotNull(appforms, "Applications Not Found");
@@ -82,7 +82,7 @@ public class ListTests {
 		}
 	
 	
-	@Test
+	//@Test
 			void testListPayments() {
 				Iterable<Payment> pays = payDAO.findAll();
 				assertNotNull(pays, "Payment Not Found");
@@ -92,7 +92,7 @@ public class ListTests {
 				}
 	
 	
-	@Test
+	//@Test
 	void testListCountries() {
 		Iterable<Countries> counts = couDAO.findAll();
 		assertNotNull(counts, "Countries Not Found");
@@ -102,7 +102,7 @@ public class ListTests {
 	}
 	
 	
-	@Test
+	//@Test
 	void testListLanguages() {
 		Iterable<Languages> langs = lanDAO.findAll();
 		assertNotNull(langs, "Languages Not Found");

@@ -25,7 +25,7 @@ class MongoTests {
 	
 
 	
-	/*@Test
+	//@Test
 		void test1AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Joe");
@@ -38,7 +38,7 @@ class MongoTests {
 			System.out.println(dna);
 		} 	
 	
-	@Test
+	//@Test
 	void test2AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Terrance");
@@ -50,7 +50,7 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test3AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Jason");
@@ -62,7 +62,7 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test4AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Matthew");
@@ -74,7 +74,7 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test5AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Auginiah");
@@ -86,7 +86,7 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test6AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Shahid");
@@ -98,7 +98,7 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test7AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Sarah");
@@ -110,31 +110,31 @@ class MongoTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	} 	
-	@Test
+	//@Test
 	void test8AddDNA() {
 		DNADatabase dna = new DNADatabase();
 		dna.setFirstName("Darren");
 		dna.setLastName("Jenkinson");
 		dna.setPassportNumber(111118);
-		dna.setCrimeDescription("Killed two sons");
+		dna.setCrimeDescription("Stealing");
 		dna.setCrimeDate("31-10-2018T10:20:00");
 
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	}
-		@Test
+		//@Test
 		void test9AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Neil");
 			dna.setLastName("Smith");
 			dna.setPassportNumber(111119);
-			dna.setCrimeDescription("Shaing Daughter to Death");
+			dna.setCrimeDescription("Murder");
 			dna.setCrimeDate("22-02-2019T10:20:00");
 
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test10AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Thomas");
@@ -146,7 +146,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test11DNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Csaba");
@@ -158,7 +158,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test12AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Joe");
@@ -170,7 +170,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test13AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Peter");
@@ -182,7 +182,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test14AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Christopher");
@@ -194,7 +194,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test15AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Joe");
@@ -206,7 +206,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test16AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Aesan");
@@ -218,7 +218,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test17AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Clive");
@@ -230,7 +230,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test18AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Steven");
@@ -242,7 +242,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test19AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("James");
@@ -254,7 +254,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test20AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Kevin");
@@ -266,7 +266,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test21AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Joe");
@@ -278,7 +278,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test22AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Myra");
@@ -290,7 +290,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test23AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("John");
@@ -302,7 +302,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test24AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Dean");
@@ -314,7 +314,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test25AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("James");
@@ -326,7 +326,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test26AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Michael");
@@ -338,7 +338,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test27AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Austin");
@@ -350,7 +350,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test28AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Matthew");
@@ -362,7 +362,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test29AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Asim");
@@ -374,7 +374,7 @@ class MongoTests {
 			dna=dnadao.save(dna);
 			System.out.println(dna);
 		} 	
-		@Test
+		//@Test
 		void test30AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Omar");
@@ -387,7 +387,7 @@ class MongoTests {
 			System.out.println(dna);
 		} 	
 	
-		@Test
+		//@Test
 		void test31AddDNA() {
 			DNADatabase dna = new DNADatabase();
 			dna.setFirstName("Geoff");
@@ -400,6 +400,6 @@ class MongoTests {
 			System.out.println(dna);
 		} 	
 
-*/
+
 }
 

@@ -240,7 +240,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 				answer = inLast10Years(crimeDate2);
 				if (answer) {
-					crimeReason1 = "Crime "+db1.getCrimeDescription();
+					crimeReason1 = db1.getCrimeDescription();
 
 				}
 				else {crimeReason1 = null;

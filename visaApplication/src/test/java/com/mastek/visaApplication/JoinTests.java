@@ -1,6 +1,8 @@
 package com.mastek.visaApplication;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mastek.visaApplication.dao.ApplicationFormDAO;
 import com.mastek.visaApplication.dao.CountriesDAO;
@@ -14,6 +16,8 @@ import com.mastek.visaApplication.entities.Payment;
 import com.mastek.visaApplication.entities.PersonalDetails;
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
+
+@SpringBootTest
 public class JoinTests {
 	
 	@Autowired
@@ -53,7 +57,7 @@ public class JoinTests {
 	
 			//@Test
 			void testAssignPaymentToPersonalDetails() {
-			Payment pay = visaServices.assignPaymentToPersonalDetails(123456, 75);
+			Payment pay = visaServices.assignPaymentToPersonalDetails(234567, 84);
 			}
 			
 			//@Test
