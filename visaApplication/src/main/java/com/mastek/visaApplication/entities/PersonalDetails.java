@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
@@ -20,7 +21,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @Table(name="JPA_PERSONAL_DETAILS")
+@EntityListeners({PersonalDetailsListener.class})
 public class PersonalDetails {
+	
+	String dnaDatabaseScreeningStatus;
+
+
+	public String getDnaDatabaseScreeningStatus() {
+		return dnaDatabaseScreeningStatus;
+	}
+
+	public void setDnaDatabaseScreeningStatus(String dnaDatabaseScreeningStatus) {
+		this.dnaDatabaseScreeningStatus = dnaDatabaseScreeningStatus;
+	}
 
 	@FormParam("passportNo")
 	int passportNo;

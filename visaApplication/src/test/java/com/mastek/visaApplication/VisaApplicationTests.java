@@ -23,6 +23,7 @@ import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.PersonalDetails;
+import com.mastek.visaApplication.entities.PersonalDetailsListener;
 import com.mastek.visaApplication.entities.Relationship;
 import com.mastek.visaApplication.entities.Salutation;
 import com.mastek.visaApplication.entities.SubmissionType;
@@ -65,12 +66,15 @@ class VisaApplicationTests {
 
 	@Autowired
 	VisaApplicationServices visaAppServices;
+	
+	@Autowired
+	PersonalDetailsListener perL;
 
 
 	@Test
 	void testAddPersonalDetails() {
 	PersonalDetails perd = new PersonalDetails();
-	perd.setPassportNo(333333);
+	perd.setPassportNo(111931);
 	perd.setApplicantSalutation(Salutation.MR);
 	perd.setFirstName("Luke");
 	perd.setMiddleName("N/A");
@@ -99,7 +103,7 @@ class VisaApplicationTests {
 	perd.setDoYouHaveAUkDriversLicense(false);
 	perd.setDoYouHaveAUkNationalInsuranceNumber(false);
 	perd.setNationalInsuranceNumber("N/A");
-	perd.setDependantPassportNo(2221113);
+	perd.setDependantPassportNo(191115);
 	perd.setDependantFamilyName("Mellor");
 	perd.setDependantSalutation(Salutation.MR);
 	perd.setDependantGender(Gender.MALE);
@@ -109,9 +113,26 @@ class VisaApplicationTests {
 	perd.setDependantCountryOfNationality("Italy");
 	perd.setDependantDateOfBirth("02/06/1975");
 	
-	}
 
-	@Test
+	
+	perd = perddao.save(perd);
+	visaAppServices.mongoDecisionMaker(perd);
+	System.out.println(visaAppServices.mongoDecisionMaker(perd));
+	perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+	perd = perddao.save(perd);
+	
+	//visaAppServices.mongoDecisionPersonal(perd);
+	//visaAppServices.mongoDecisionDependant(perd);
+	//System.out.println(visaAppServices.mongoDecisionDependant(perd));
+	//visaAppServices.mongoDecision(perd);
+	//System.out.println(visaAppServices.getMongoDecisionV());
+	//System.out.println(visaAppServices.mongoDecisionPersonal(perd));
+	//System.out.println(visaAppServices.mongoDecision(perd));
+	//System.out.println(visaAppServices.mongoDecisionMaker(perd));
+	}
+	
+
+	/*@Test
 	void testDeletePersonalDetailsById() {
 	perddao.deleteById(31);
 		}
@@ -155,8 +176,6 @@ class VisaApplicationTests {
 		dna=dnadao.save(dna);
 		System.out.println(dna);
 	}
-
-
 
 
 
@@ -328,12 +347,17 @@ class VisaApplicationTests {
 		}
 
 		appForm = appFormDAO.save(appForm);
+		visaAppServices.DecisionMaker(appForm);
+		System.out.println(visaAppServices.DecisionMaker(appForm));
+		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
 		System.out.println(appForm);
+		appFormDAO.save(appForm);
 		//visaAppServices.DecisionMaker(appForm);
 		//System.out.println(visaAppServices.getDecision());
 
 		}
 	
+	/*
 	@Test
 	void testDeleteApplicationById() {
 	appFormDAO.deleteById(31);
@@ -343,12 +367,10 @@ class VisaApplicationTests {
 	@Test
 	void testMongoCheck() {
 		PersonalDetails per = new PersonalDetails();
-		ApplicationForm app = new ApplicationForm();
 		per.setPassportNo(111140);
-		app.setHaveYouBeenAMemberOfTerroristOrginisation(false);
 		
-		visaAppServices.overallDecision(app, per);
-		System.out.println(visaAppServices.getDecision());
+		/*visaAppServices.mongoDecisionPersonal(per);
+		System.out.println(visaAppServices.getCrimeReason());
 	}
 
 
@@ -455,7 +477,7 @@ class VisaApplicationTests {
 
 
 	
-	
+	*/
 
 	
 
