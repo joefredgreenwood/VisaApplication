@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.visaApplication.api.ApplicationFormAPI;
 import com.mastek.visaApplication.api.CountriesAPI;
-import com.mastek.visaApplication.api.IssueingAuthorityAPI;
+
 import com.mastek.visaApplication.api.LanguagesAPI;
 import com.mastek.visaApplication.api.PaymentAPI;
 import com.mastek.visaApplication.api.PersonalDetailsAPI;
@@ -32,19 +32,15 @@ import com.mastek.visaApplication.dao.ApplicationFormDAO;
 
 import com.mastek.visaApplication.dao.CountriesDAO;
 
-import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
+
 import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 
 
 import com.mastek.visaApplication.dao.DNADatabaseDAO;
-import com.mastek.visaApplication.dao.IssueingAuthorityDAO;
-import com.mastek.visaApplication.dao.LanguagesDAO;
-import com.mastek.visaApplication.dao.PaymentDAO;
-import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 
-import com.mastek.visaApplication.dao.DNADatabaseDAO;
+
 
 import com.mastek.visaApplication.entities.ApplicationForm;
 
@@ -55,14 +51,10 @@ import com.mastek.visaApplication.entities.Payment;
 import com.mastek.visaApplication.entities.PersonalDetails;
 
 
-import com.mastek.visaApplication.entities.Countries;
-import com.mastek.visaApplication.entities.IssueingAuthority;
-import com.mastek.visaApplication.entities.Languages;
-import com.mastek.visaApplication.entities.Payment;
-import com.mastek.visaApplication.entities.PersonalDetails;
+
 
 import com.mastek.visaApplication.entities.DNADatabase;
-import com.mastek.visaApplication.entities.PersonalDetails;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -96,9 +88,6 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 	@Autowired
 	LanguagesDAO lanDAO;
-
-	@Autowired
-	IssueingAuthorityDAO issAuthDAO;
 
 
 	@Autowired
@@ -513,11 +502,33 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 //////////////////////////////////////////////////////////////////////LanguagesAPI
 
 
+
+//////////////////////////////////////////////////////////For IssueingAuthorityAPI
+//@Override
+//public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
+//	System.out.println("Listing All Issueing Authorities");
+//	return issAuthDAO.findAll();
+//}
+//
+//@Override
+//public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
+//	
+//	return issAuthDAO.findById(issueingAuthorityId).get();
+//	
+//}
+//
+//@Override
+//public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
+//	newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
+//	return newIssueingAuthority;
+//    }
+
 	@Override
 	public Countries registerNewCountry(Countries newCountry) {
 		newCountry = couDAO.save(newCountry);
 		return newCountry;
 	}
+
 
 	//////////////////////////////////////////////////////////For IssueingAuthorityAPI
 //	@Override
@@ -539,6 +550,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 //		newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
 //		return newIssueingAuthority;
 //	}
+
 	//////////////////////////////////////////////////////////////////////LanguagesAPI
 	@Override
 	public Iterable<Languages> listAllLanguages() {

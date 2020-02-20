@@ -16,9 +16,9 @@ import javax.ws.rs.FormParam;
 @Table(name="LANGUAGES")
 public class Languages {
 	
-	int languageId;
+	private int languageId;
 	@FormParam("languageName")
-	String languageName;
+	private String languageName;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -58,6 +58,12 @@ public class Languages {
 			return false;
 		return true;
 	}
+	
+	
+	
+	// Join to Personal Details
+	
+	
 	
 	Set<PersonalDetails>languageHistory = new HashSet<>();
 	@OneToMany(mappedBy="languageLink", cascade= CascadeType.ALL)

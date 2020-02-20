@@ -17,10 +17,10 @@ import javax.ws.rs.FormParam;
 @Table(name="PAYMENT_INFO")
 public class Payment {
 	
-	int paymentRef;
+	private int paymentRef;
 	
 	@FormParam("totalFee")
-	double totalFee;
+	private double totalFee;
 	
 	
 	
@@ -67,6 +67,8 @@ public class Payment {
 
 
 
+	
+	// Join to Personal Details
 	
 	
 	@ManyToOne
