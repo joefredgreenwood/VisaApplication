@@ -28,7 +28,10 @@ import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
+
+import com.mastek.visaApplication.services.VisaApplicationServices;
 
 @XmlRootElement
 @Entity
@@ -36,6 +39,24 @@ import org.springframework.data.annotation.Transient;
 @EntityListeners({ApplicationFormListeners.class}) //
 public class ApplicationForm {
 	
+	
+	@Autowired
+	VisaApplicationServices visaApp;
+	
+	String appQuestionsStatus;
+
+	public String getAppQuestionsStatus() {
+		return appQuestionsStatus;
+	}
+
+	public void setAppQuestionsStatus(String appQuestionsStatus) {
+		this.appQuestionsStatus = appQuestionsStatus;
+	}
+	
+	
+
+
+
 	private int applicationID;
 	//VISA DETAILS// 
 	@FormParam("applicationDate")
