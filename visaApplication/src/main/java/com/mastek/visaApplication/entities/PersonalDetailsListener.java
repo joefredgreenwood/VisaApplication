@@ -4,25 +4,18 @@ import javax.persistence.PostPersist;
 import javax.persistence.PrePersist;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.mastek.visaApplication.services.VisaApplicationServices;
 
-
 @Component
-public class ApplicationFormListeners implements ApplicationContextAware{
+public class PersonalDetailsListener implements ApplicationContextAware {
+
 
 	VisaApplicationServices visaApp;
 	ApplicationContext context;
-
-	@PrePersist
-	public void preInsert(ApplicationForm app) {
-		System.out.println("Start add");
-	}
 
 	public VisaApplicationServices getVisaApp() {
 		visaApp = context.getBean(VisaApplicationServices.class);
@@ -36,27 +29,19 @@ public class ApplicationFormListeners implements ApplicationContextAware{
 
 
 /*	@PostPersist
-	public void afterInsert (ApplicationForm app) {
+	public void afterInsertPer (PersonalDetails per) {
 		getVisaApp();
-		System.out.println(visaApp.DecisionMaker(app));
+		System.out.println(visaApp.mongoDecisionMaker(per));
 		
-		
-		
-
+		//visaApp.mongoDecisionMaker(per);
+		//System.out.println(visaApp.getMongoDecisionV());
+	
 	}*/
-
 
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.context= applicationContext;
 	}
-
-
-
-
-
-
-
 
 }

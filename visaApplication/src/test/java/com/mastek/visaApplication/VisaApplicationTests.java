@@ -23,6 +23,7 @@ import com.mastek.visaApplication.dao.LanguagesDAO;
 import com.mastek.visaApplication.dao.PaymentDAO;
 import com.mastek.visaApplication.dao.PersonalDetailsDAO;
 import com.mastek.visaApplication.entities.PersonalDetails;
+import com.mastek.visaApplication.entities.PersonalDetailsListener;
 import com.mastek.visaApplication.entities.Relationship;
 import com.mastek.visaApplication.entities.Salutation;
 import com.mastek.visaApplication.entities.SubmissionType;
@@ -64,13 +65,16 @@ class VisaApplicationTests {
 
 	@Autowired
 	VisaApplicationServices visaAppServices;
+	
+	@Autowired
+	PersonalDetailsListener perL;
 
 	
 	
 	@Test
 	void testAddPersonalDetails() {
 	PersonalDetails perd = new PersonalDetails();
-	perd.setPassportNo(333333);
+	perd.setPassportNo(111931);
 	perd.setApplicantSalutation(Salutation.MR);
 	perd.setFirstName("Jane");
 	perd.setMiddleName("N/A");
@@ -92,6 +96,7 @@ class VisaApplicationTests {
 	perd.setSecondaryEmail("N/A");
 	perd.setDrivingLicense(true);
 	perd.setDoYouHaveAValidNationalIdentityCard(true);
+
 	perd.setPassportIssueDate("01/03/2012");
 	perd.setPassportExpiryDate("01/03/2022");
 	perd.setCountryOfNationality("United Kingdom");
@@ -101,6 +106,16 @@ class VisaApplicationTests {
 	perd.setNationalInsuranceNumber("PA8976521SS");
 	perd.setDependantPassportNo(44556677);
 	perd.setDependantFamilyName("Ace");
+
+	perd.setPassportIssueDate("01/03/2015");
+	perd.setPassportExpiryDate("01/03/2025");
+	perd.setCountryOfNationality("Italy");
+	perd.setIssuingAuthority("Italian Govt");
+	perd.setDoYouHaveAUkDriversLicense(false);
+	perd.setDoYouHaveAUkNationalInsuranceNumber(false);
+	perd.setNationalInsuranceNumber("N/A");
+	perd.setDependantPassportNo(191115);
+	perd.setDependantFamilyName("Mellor");
 	perd.setDependantSalutation(Salutation.MR);
 	perd.setDependantGender(Gender.MALE);
 	perd.setDependantGivenName("Anthony");
@@ -109,12 +124,36 @@ class VisaApplicationTests {
 	perd.setDependantCountryOfNationality("United Kingdom");
 	perd.setDependantDateOfBirth("02/06/1988");
 	
-	}
+
 
 	//@Test
 	//void testDeletePersonalDetailsById() {
 	//perddao.deleteById();
 	//	}
+
+	
+	perd = perddao.save(perd);
+	visaAppServices.mongoDecisionMaker(perd);
+	System.out.println(visaAppServices.mongoDecisionMaker(perd));
+	perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+	perd = perddao.save(perd);
+	
+	//visaAppServices.mongoDecisionPersonal(perd);
+	//visaAppServices.mongoDecisionDependant(perd);
+	//System.out.println(visaAppServices.mongoDecisionDependant(perd));
+	//visaAppServices.mongoDecision(perd);
+	//System.out.println(visaAppServices.getMongoDecisionV());
+	//System.out.println(visaAppServices.mongoDecisionPersonal(perd));
+	//System.out.println(visaAppServices.mongoDecision(perd));
+	//System.out.println(visaAppServices.mongoDecisionMaker(perd));
+	}
+	
+
+	/*@Test
+	void testDeletePersonalDetailsById() {
+	perddao.deleteById(31);
+		}
+	
 	
 
 	
@@ -156,7 +195,8 @@ class VisaApplicationTests {
 
 
 
-
+*/
+	
 	@Test
 	void testAddApplicationForm() {
 		ApplicationForm appForm = new ApplicationForm(); 
@@ -323,13 +363,18 @@ class VisaApplicationTests {
 		}
 
 		appForm = appFormDAO.save(appForm);
+		visaAppServices.DecisionMaker(appForm);
+		System.out.println(visaAppServices.DecisionMaker(appForm));
+		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
 		System.out.println(appForm);
+		appFormDAO.save(appForm);
 		//visaAppServices.DecisionMaker(appForm);
 		//System.out.println(visaAppServices.getDecision());
 
 
 		}
 	
+	/*
 	@Test
 	void testDeleteApplicationById() {
 	appFormDAO.deleteById(2);
@@ -339,12 +384,10 @@ class VisaApplicationTests {
 	@Test
 	void testMongoCheck() {
 		PersonalDetails per = new PersonalDetails();
-		ApplicationForm app = new ApplicationForm();
 		per.setPassportNo(111140);
-		app.setHaveYouBeenAMemberOfTerroristOrginisation(false);
 		
-		visaAppServices.overallDecision(app, per);
-		System.out.println(visaAppServices.getDecision());
+		/*visaAppServices.mongoDecisionPersonal(per);
+		System.out.println(visaAppServices.getCrimeReason());
 	}
 
 	
@@ -433,7 +476,7 @@ class VisaApplicationTests {
 
 
 	
-	
+	*/
 
 	
 

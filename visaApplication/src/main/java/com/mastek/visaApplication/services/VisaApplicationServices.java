@@ -75,7 +75,7 @@ import com.mongodb.client.MongoDatabase;
 public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationFormAPI, CountriesAPI, IssueingAuthorityAPI, LanguagesAPI, PaymentAPI{
 
 
-	
+
 	@Autowired
 	DNADatabaseDAO dnadao;
 
@@ -83,7 +83,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	@Autowired
 	PaymentDAO payDAO;
 
-	
+
 	@Autowired
 	PersonalDetailsDAO perddao;
 
@@ -93,17 +93,17 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 	@Autowired
 	CountriesDAO couDAO;
-	
+
 	@Autowired
 	LanguagesDAO lanDAO;
-	
+
 	@Autowired
 	IssueingAuthorityDAO issAuthDAO;
 
-	
+
 	@Autowired
 	ApplicationFormDAO appDAO;
-	
+
 	@Autowired
 	DNADatabaseDAO dnaDAO;
 
@@ -112,7 +112,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	int immigration;
 	String decision;
 	int year;
-	
+
 	public int getYear() {
 		return year;
 	}
@@ -128,15 +128,24 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	public void setDecision(String decision) {
 		this.decision = decision;
 	}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	String crimeDate1;
 	String crimeReason;
 	String crimeDate2;
 	String crimeReason1;
-	
-	
-	
+	String mongoDecisionV;
+
+
+
+	public String getMongoDecisionV() {
+		return mongoDecisionV;
+	}
+
+	public void setMongoDecisionV(String mongoDecisionV) {
+		this.mongoDecisionV = mongoDecisionV;
+	}
+
 	public String getCrimeDate2() {
 		return crimeDate2;
 	}
@@ -153,10 +162,10 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 		this.crimeReason1 = crimeReason1;
 	}
 
-	
-	
-	
-	
+
+
+
+
 	public String getCrimeReason() {
 		return crimeReason;
 	}
@@ -176,6 +185,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	}
 
 	//Method that we will use to get current date
+	@Transactional
 	public static boolean inLast10Years(String Date) {
 		double years = 0;
 		try {            
@@ -193,56 +203,104 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 		}
 		return years <= 10;
 	}
+	@Transactional
 	public static Instant getDateFromString(String string) ////////////////
 	{
 		Instant timeStamp = null;
 		timeStamp=Instant.parse(string);
 		return timeStamp;
 	}
-	
+
 	@Transactional
 	public String mongoDecisionPersonal(PersonalDetails per) {
-		DNADatabase db =dnaDAO.findById(per.getPassportNo()).get();
-		if(db!=null) {
-			crimeDate1 = db.getCrimeDate();
-			
-			answer = inLast10Years(crimeDate1);
-			if (answer) {
-				crimeReason = db.getCrimeDescription();
-				return crimeReason;
+		DNADatabase db2;
+		//String crimeReason;
+		try {
+			db2 =dnaDAO.findById(per.getPassportNo()).get();
+			if(db2!=null) {
+				crimeDate1 = db2.getCrimeDate();
+
+				answer = inLast10Years(crimeDate1);
+				if (answer) {
+					crimeReason = db2.getCrimeDescription();
+					
+				}
+				else crimeReason = null;
+				
+
 			}
-			else crimeReason = null;
-			return crimeReason;
+
+			else {crimeReason = null;
+						}
 			
+		} catch (Exception e) {
+			crimeReason = null;
 		}
-
-		else crimeReason = null;
 		return crimeReason;
-
 	}
-	
+
 	@Transactional
 	public String mongoDecisionDependant(PersonalDetails per) {
-		DNADatabase db1 =dnaDAO.findById(per.getDependantPassportNo()).get();
-		if(db1!=null) {
-			crimeDate2 = db1.getCrimeDate();
-			
-			answer = inLast10Years(crimeDate2);
-			if (answer) {
-				crimeReason1 = "Crime "+db1.getCrimeDescription();
-				return crimeReason1;
-			}
-			else crimeReason1 = null;
-			return crimeReason1;
-			
-		}
+		DNADatabase db1;
+		//String crimeReason1;
+		try {
+			db1 = dnaDAO.findById(per.getDependantPassportNo()).get();
 
-		else crimeReason1 = null;
+			if(db1!=null) {
+				crimeDate2 = db1.getCrimeDate();
+
+				answer = inLast10Years(crimeDate2);
+				if (answer) {
+					crimeReason1 = "Crime "+db1.getCrimeDescription();
+
+				}
+				else {crimeReason1 = null;
+				}
+
+			}
+
+			else {crimeReason1 = null;
+
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			crimeReason1 = null;
+		}
 		return crimeReason1;
+	}
+
+
+
+		@Transactional
+	public String mongoDecision (PersonalDetails per) {
+
+		if (crimeReason!=null) {
+			setMongoDecisionV("Application denied as name appears in DNA Database for crime "+crimeReason);
+			return getMongoDecisionV();
+		}
+		else if (crimeReason1!=null) {
+			setMongoDecisionV("Application denied as Dependant's name appears in DNA Database for crime "+crimeReason1);
+			return getMongoDecisionV();
+		}
+		else {setMongoDecisionV("Application has passed DNA Screening");
+			return getMongoDecisionV();
+			}
 
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Transactional
+	public String mongoDecisionMaker (PersonalDetails per/*,int appId*/) {
+
+		//ApplicationForm appF = appDAO.findById(appId).get();
+		mongoDecisionPersonal(per);
+		mongoDecisionDependant(per);
+		mongoDecision(per);
+		per.setDnaDatabaseScreeningStatus(mongoDecisionV);
+		return getMongoDecisionV();
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Transactional
 	public int  terrorTest( ApplicationForm appForm) {
 
@@ -277,10 +335,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 
 
-		if (terror>0) {
-			System.out.println("Your application has been denied due to terrorism links");	
-		}
-
+		
 
 
 		return terror;
@@ -344,17 +399,11 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 
 	@Transactional
-	public String overallDecision(ApplicationForm appForm, PersonalDetails per) {
+	public String overallDecision(ApplicationForm appForm) {
 
 
 		if (terror>0) {
 			setDecision("Application denied in relation to terrorism");
-		}
-		else if(crimeReason!=null) {
-			setDecision("Application denied due to previous crime - "+crimeReason);
-		}
-		else if(crimeReason1!=null) {
-			setDecision("Application denied due to dependants previous crime - "+crimeReason1);
 		}
 		else if (travel>4) {
 			setDecision("Application denied in relation to previous travel history");
@@ -375,212 +424,222 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	}
 
 	@Transactional
-	public  void  DecisionMaker(ApplicationForm appF, PersonalDetails per) {
+	public  String  DecisionMaker(ApplicationForm appF) {
 		terrorTest(appF);
 		testTravelHistory(appF);
 		immgrationTest(appF);
-		mongoDecisionPersonal(per);
-		mongoDecisionDependant(per);
-		overallDecision(appF, per);
+		overallDecision(appF);
+		appF.setAppQuestionsStatus(getDecision());
+		return getDecision();
+		
 
 
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////// For PersonsalDetails API
-@Override
-public Iterable<PersonalDetails> listAllPersonalDetails() {
-	System.out.println("Listing All Personal Details");
-	return perddao.findAll();
-}
+	////////////////////////////////////////////////////// For PersonsalDetails API
+	@Override
+	public Iterable<PersonalDetails> listAllPersonalDetails() {
+		System.out.println("Listing All Personal Details");
+		return perddao.findAll();
+	}
 
-@Override
-public PersonalDetails findByPassportNo(int passportNo) {
-
-
-	return perddao.findById(passportNo).get();
-}
+	@Override
+	public PersonalDetails findByPassportNo(int passportNo) {
 
 
-@Override
-public PersonalDetails registerNewPersonalDetails(PersonalDetails newPersonalDetails) {
-	newPersonalDetails = perddao.save(newPersonalDetails);
-	return newPersonalDetails;
-}
-
-///////////////////////////////////////////////// For ApplicationFormAPI
-@Override
-public Iterable<ApplicationForm> listAllApplicationForms() {
-	System.out.println("Listing All Application Forms");
-	return appDAO.findAll();
-}
-
-@Override
-public ApplicationForm findByApplicationID(int applicationID) {
-
-	return appDAO.findById(applicationID).get();
-}
-
-@Override
-public ApplicationForm registerNewApplicationForm(ApplicationForm newApplicationForm) {
-	newApplicationForm = appDAO.save(newApplicationForm);
-	return newApplicationForm;
-}
-
-/////////////////////////////////////////////////////////For CountriesAPI
-@Override
-public Iterable<Countries> listAllCountries() {
-	System.out.println("Listing All Countries");
-	return couDAO.findAll();
-}
-
-@Override
-public Countries findByCountryId(int countryId) {
-	
-	return couDAO.findById(countryId).get();
-}
-
-@Override
-public Countries registerNewCountry(Countries newCountry) {
-	newCountry = couDAO.save(newCountry);
-	return newCountry;
-}
-
-//////////////////////////////////////////////////////////For IssueingAuthorityAPI
-@Override
-public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
-	System.out.println("Listing All Issueing Authorities");
-	return issAuthDAO.findAll();
-}
-
-@Override
-public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
-	
-	return issAuthDAO.findById(issueingAuthorityId).get();
-	
-}
-
-@Override
-public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
-	newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
-	return newIssueingAuthority;
-}
-//////////////////////////////////////////////////////////////////////LanguagesAPI
-@Override
-public Iterable<Languages> listAllLanguages() {
-	System.out.println("Listing All Languages");
-	return lanDAO.findAll();
-}
-
-@Override
-public Languages findByLanguageId(int languageId) {
-	
-	return lanDAO.findById(languageId).get();
-}
-
-@Override
-public Languages registerNewLanguages(Languages newLanguage) {
-	newLanguage = lanDAO.save(newLanguage);
-	return newLanguage;
-}
-
-/////////////////////////////////////////////////////////////PaymentAPI
-@Override
-public Iterable<Payment> listAllPayments() {
-	System.out.println("Listing All Payments");
-	return payDAO.findAll();
-}
-
-@Override
-public Payment findByPaymentRef(int paymentRef) {
-
-	return payDAO.findById(paymentRef).get();
-}
-
-@Override
-public Payment registerNewPayment(Payment newPayment) {
-	newPayment = payDAO.save(newPayment);
-	return newPayment;
-}
+		return perddao.findById(passportNo).get();
+	}
 
 
-@Transactional
-public Payment assignPaymentToPersonalDetails(int passportNo, int paymentNo) {
-Payment pay = payDAO.findById(paymentNo).get();
-PersonalDetails perd = perddao.findById(passportNo).get();
+	@Override
+	public PersonalDetails registerNewPersonalDetails(PersonalDetails newPersonalDetails) {
+		newPersonalDetails = perddao.save(newPersonalDetails);
+		return newPersonalDetails;
+	}
 
-pay.setPaymentLink(perd);
-perd.getPaymentHistory().add(pay);
-	perddao.save(perd);
-	payDAO.save(pay);
-	
-	return pay;
-}
+	///////////////////////////////////////////////// For ApplicationFormAPI
+	@Override
+	public Iterable<ApplicationForm> listAllApplicationForms() {
+		System.out.println("Listing All Application Forms");
+		return appDAO.findAll();
+	}
 
-@Transactional
-public ApplicationForm assignApplicationToPersonalDetails(int passportNo, int applicationNo) {
-ApplicationForm app = appFormDAO.findById(applicationNo).get();
-PersonalDetails perd = perddao.findById(passportNo).get();
+	@Override
+	public ApplicationForm findByApplicationID(int applicationID) {
 
-app.setApplicationLink(perd);
-perd.getApplicationHistory().add(app);
-	perddao.save(perd);
-	appFormDAO.save(app);
-	
-	return app;
-}
+		return appDAO.findById(applicationID).get();
+	}
 
-@Transactional
-public PersonalDetails assignNationalityToPersonalDetails(int passportNo, int countryNo) {
-Countries cou = couDAO.findById(countryNo).get();
-PersonalDetails perd = perddao.findById(passportNo).get();
+	@Override
+	public ApplicationForm registerNewApplicationForm(ApplicationForm newApplicationForm) {
+		newApplicationForm = appDAO.save(newApplicationForm);
+		return newApplicationForm;
+	}
 
-perd.setNationalityLink(cou);
-cou.getNationalityHistory().add(perd);
-	perddao.save(perd);
-	couDAO.save(cou);
-	
-	return perd;
-}
+	/////////////////////////////////////////////////////////For CountriesAPI
+	@Override
+	public Iterable<Countries> listAllCountries() {
+		System.out.println("Listing All Countries");
+		return couDAO.findAll();
+	}
 
-@Transactional
-public PersonalDetails assignBirthPlaceToPersonalDetails(int passportNo, int countryNo) {
-Countries cou = couDAO.findById(countryNo).get();
-PersonalDetails perd = perddao.findById(passportNo).get();
+	@Override
+	public Countries findByCountryId(int countryId) {
 
-perd.setBirthPlaceLink(cou);
-cou.getBirthPlaceHistory().add(perd);
-	perddao.save(perd);
-	couDAO.save(cou);
-	
-	return perd;
-}
+		return couDAO.findById(countryId).get();
+	}
 
-@Transactional
-public PersonalDetails assignLanguageToPersonalDetails(int passportNo, int languageNo) {
-Languages lan = lanDAO.findById(languageNo).get();
-PersonalDetails perd = perddao.findById(passportNo).get();
+	@Override
+	public Countries registerNewCountry(Countries newCountry) {
+		newCountry = couDAO.save(newCountry);
+		return newCountry;
+	}
 
-perd.setLanguageLink(lan);
-lan.getLanguageHistory().add(perd);
-	perddao.save(perd);
-	lanDAO.save(lan);
-	
-	return perd;
-}
+	//////////////////////////////////////////////////////////For IssueingAuthorityAPI
+	@Override
+	public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
+		System.out.println("Listing All Issueing Authorities");
+		return issAuthDAO.findAll();
+	}
 
-@Transactional
-public ApplicationForm assignApplicationFormToCountry(int applicationNo, int countryNo) {
-Countries cou = couDAO.findById(countryNo).get();
-ApplicationForm appfor = appFormDAO.findById(applicationNo).get();
+	@Override
+	public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
 
-appfor.getCountryVisitedAssigned().add(cou);
-	appFormDAO.save(appfor);
-	couDAO.save(cou);
-	
-	return appfor;
-}
+		return issAuthDAO.findById(issueingAuthorityId).get();
+
+	}
+
+	@Override
+	public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
+		newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
+		return newIssueingAuthority;
+	}
+	//////////////////////////////////////////////////////////////////////LanguagesAPI
+	@Override
+	public Iterable<Languages> listAllLanguages() {
+		System.out.println("Listing All Languages");
+		return lanDAO.findAll();
+	}
+
+	@Override
+	public Languages findByLanguageId(int languageId) {
+
+		return lanDAO.findById(languageId).get();
+	}
+
+	@Override
+	public Languages registerNewLanguages(Languages newLanguage) {
+		newLanguage = lanDAO.save(newLanguage);
+		return newLanguage;
+	}
+
+	/////////////////////////////////////////////////////////////PaymentAPI
+	@Override
+	public Iterable<Payment> listAllPayments() {
+		System.out.println("Listing All Payments");
+		return payDAO.findAll();
+	}
+
+	@Override
+	public Payment findByPaymentRef(int paymentRef) {
+
+		return payDAO.findById(paymentRef).get();
+	}
+
+	@Override
+	public Payment registerNewPayment(Payment newPayment) {
+		newPayment = payDAO.save(newPayment);
+		return newPayment;
+	}
+
+
+	@Transactional
+	public Payment assignPaymentToPersonalDetails(int passportNo, int paymentNo) {
+		Payment pay = payDAO.findById(paymentNo).get();
+		PersonalDetails perd = perddao.findById(passportNo).get();
+
+		pay.setPaymentLink(perd);
+		perd.getPaymentHistory().add(pay);
+		perddao.save(perd);
+		payDAO.save(pay);
+
+		return pay;
+	}
+
+	@Transactional
+	public ApplicationForm assignApplicationToPersonalDetails(int passportNo, int applicationNo) {
+		ApplicationForm app = appFormDAO.findById(applicationNo).get();
+		PersonalDetails perd = perddao.findById(passportNo).get();
+
+		app.setApplicationLink(perd);
+		perd.getApplicationHistory().add(app);
+		perddao.save(perd);
+		appFormDAO.save(app);
+
+		return app;
+	}
+
+	@Transactional
+	public PersonalDetails assignNationalityToPersonalDetails(int passportNo, int countryNo) {
+		Countries cou = couDAO.findById(countryNo).get();
+		PersonalDetails perd = perddao.findById(passportNo).get();
+
+		perd.setNationalityLink(cou);
+		cou.getNationalityHistory().add(perd);
+		perddao.save(perd);
+		couDAO.save(cou);
+
+		return perd;
+	}
+
+	@Transactional
+	public PersonalDetails assignBirthPlaceToPersonalDetails(int passportNo, int countryNo) {
+		Countries cou = couDAO.findById(countryNo).get();
+		PersonalDetails perd = perddao.findById(passportNo).get();
+
+		perd.setBirthPlaceLink(cou);
+		cou.getBirthPlaceHistory().add(perd);
+		perddao.save(perd);
+		couDAO.save(cou);
+
+		return perd;
+	}
+
+	@Transactional
+	public PersonalDetails assignLanguageToPersonalDetails(int passportNo, int languageNo) {
+		Languages lan = lanDAO.findById(languageNo).get();
+		PersonalDetails perd = perddao.findById(passportNo).get();
+
+		perd.setLanguageLink(lan);
+		lan.getLanguageHistory().add(perd);
+		perddao.save(perd);
+		lanDAO.save(lan);
+
+		return perd;
+	}
+
+	@Transactional
+	public ApplicationForm assignApplicationFormToCountry(int applicationNo, int countryNo) {
+		Countries cou = couDAO.findById(countryNo).get();
+		ApplicationForm appfor = appFormDAO.findById(applicationNo).get();
+
+		appfor.getCountryVisitedAssigned().add(cou);
+		appFormDAO.save(appfor);
+		couDAO.save(cou);
+
+		return appfor;
+	}
+
+
+
+
+
+
+
+
+
 }
 
 
