@@ -161,6 +161,64 @@ class VisaApplicationTests {
 	perd.setDependantCountryOfNationality("Italy");
 	perd.setDependantDateOfBirth("02/06/1975");
 }
+
+	
+	
+
+	@Test
+	void testAddPersonalDetails2() {
+	PersonalDetails perd = new PersonalDetails();
+	perd.setPassportNo(111931);
+	perd.setApplicantSalutation(Salutation.MR);
+	perd.setFirstName("Jane");
+	perd.setMiddleName("N/A");
+	perd.setFamilyName("Ace");
+	perd.setOtherNames("N/A");
+	perd.setApplicantGender(Gender.FEMALE);
+	perd.setDateOfBirth("03/02/1989");
+	perd.setPlaceOfBirth("Algiers");
+	perd.setDoYouHaveAnyOtherNationality(false);
+	perd.setApplicantRelationship(Relationship.MARRIED);
+	perd.setOwnershipStatusOfHome("Owning");
+	perd.setAddress("777 Brockton Avenue, London MA 2351");
+	perd.setHowLongHaveYouLivedAtThisAddress("15 Years");
+	perd.setIsThisYourCorrespondenceAddress(true);
+	perd.setTelephoneNumber(020567351);
+	perd.setCanBeContactedByTelephone(true);
+	perd.setWhereDoYouUseThisNumber("Personal");
+	perd.setWhoDoesThisEmailBelongTo("myself");
+	perd.setSecondaryEmail("N/A");
+	perd.setDrivingLicense(true);
+	perd.setDoYouHaveAValidNationalIdentityCard(true);
+
+	perd.setPassportIssueDate("01/03/2012");
+	perd.setPassportExpiryDate("01/03/2022");
+	perd.setCountryOfNationality("United Kingdom");
+	perd.setIssuingAuthority("HM United Kingdom");
+	perd.setDoYouHaveAUkDriversLicense(true);
+	perd.setDoYouHaveAUkNationalInsuranceNumber(true);
+	perd.setNationalInsuranceNumber("PA8976521SS");
+	perd.setDependantPassportNo(44556677);
+	perd.setDependantFamilyName("Ace");
+
+	perd.setPassportIssueDate("01/03/2015");
+	perd.setPassportExpiryDate("01/03/2025");
+	perd.setCountryOfNationality("Italy");
+	perd.setIssuingAuthority("Italian Govt");
+	perd.setDoYouHaveAUkDriversLicense(false);
+	perd.setDoYouHaveAUkNationalInsuranceNumber(false);
+	perd.setNationalInsuranceNumber("N/A");
+	perd.setDependantPassportNo(191115);
+	perd.setDependantFamilyName("Mellor");
+	perd.setDependantSalutation(Salutation.MR);
+	perd.setDependantGender(Gender.MALE);
+	perd.setDependantGivenName("Anthony");
+	perd.setDependantRelationshipToYou("Husband");
+	perd.setDependantNationalitySameAsApplicant("United Kingdom");
+	perd.setDependantCountryOfNationality("United Kingdom");
+	perd.setDependantDateOfBirth("02/06/1988");
+
+
 	
 	// Test Personal Details
 	
@@ -275,6 +333,12 @@ class VisaApplicationTests {
 //		System.out.println("Updated Personal Details: "+perd);
 //	}
 
+
+	//@Test
+	//void testDeletePersonalDetailsById() {
+	//perddao.deleteById();
+	//	}
+
 	
 //	perd = perddao.save(perd);
 //	visaAppServices.mongoDecisionMaker(perd);
@@ -300,6 +364,8 @@ class VisaApplicationTests {
 
 	
 	
+<<<<<<< HEAD
+=======
 	
 	
 	
@@ -307,9 +373,22 @@ class VisaApplicationTests {
 	
 	
 	// Test for Terrorism
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
 	
 
+<<<<<<< HEAD
+	@Test
+	void testTerrorism() {
+		VisaApplicationServices visaServices= new VisaApplicationServices();
+		ApplicationForm app = new ApplicationForm();
+		
+		app.setHaveYouEnteredUKIllegally(true);
+		app.setHaveYouStayedBeyondYourVisa(true);
+		visaServices.terrorTest(app);
+		visaServices.testTravelHistory(app);
+		visaServices.immgrationTest(app);
+=======
 
 
 	
@@ -331,6 +410,7 @@ class VisaApplicationTests {
 //		System.out.println(visaServices.getDecision());
 //
 //}				
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
 
 
@@ -705,7 +785,7 @@ class VisaApplicationTests {
 	/*
 	@Test
 	void testDeleteApplicationById() {
-	appFormDAO.deleteById(31);
+	appFormDAO.deleteById(2);
 	}
 
 
@@ -978,6 +1058,8 @@ class VisaApplicationTests {
 		System.out.println(visaAppServices.getCrimeReason());
 	}
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -986,6 +1068,7 @@ class VisaApplicationTests {
 // Tests Payments
 		
 	
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 	
 //		//@Test
 //		void testAddPayment() {
@@ -1005,6 +1088,7 @@ class VisaApplicationTests {
 
 		@Test
 		void testDeletePaymentById() {
+<<<<<<< HEAD
 		payDAO.deleteById(31);
 		}
 
@@ -1056,6 +1140,49 @@ class VisaApplicationTests {
 	@Test
 	void testDeleteLanguageById() {
 	lanDAO.deleteById(20);
+=======
+		payDAO.deleteById(22);
+		}
+
+
+	
+
+
+
+	@Test
+	void testAddCountry() {
+		Countries cou = new Countries();
+		cou.setCountryName("Brazil");
+
+		cou = couDAO.save(cou);
+		System.out.println(cou);
+
+	}
+
+	
+	
+	@Test
+	void testDeleteCountryById() {
+	couDAO.deleteById(16);
+	}
+	
+
+
+	@Test
+	void testAddLanguages() {
+		Languages lan = new Languages();
+		lan.setLanguageName("urdu");
+
+
+		lan = lanDAO.save(lan);
+		System.out.println(lan);
+
+	}
+
+	@Test
+	void testDeleteLanguageById() {
+	lanDAO.deleteById(18);
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 	}
 	
 
@@ -1099,7 +1226,14 @@ class VisaApplicationTests {
 		
 
 
+<<<<<<< HEAD
+		@Test
+		void testDeleteIssueingAuthorityById() {
+		issAuthDAO.deleteById(5);
+	}
+=======
 	
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
 // Test Countries
 
@@ -1242,6 +1376,6 @@ class VisaApplicationTests {
 
 
 
-}
+}}
 
 

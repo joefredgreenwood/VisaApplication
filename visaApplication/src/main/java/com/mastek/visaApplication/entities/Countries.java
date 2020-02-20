@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @Entity
 @Table(name="COUNTRIES")
@@ -76,6 +77,7 @@ public class Countries {
 
 
 	@OneToMany(mappedBy= "nationalityLink", cascade= CascadeType.ALL)
+	@XmlTransient
 	public Set<PersonalDetails> getNationalityHistory() {
 		return nationalityHistory;
 	}
@@ -95,6 +97,7 @@ public class Countries {
 
 
 	@OneToMany(mappedBy="birthPlaceLink", cascade= CascadeType.ALL)
+	@XmlTransient
 	public Set<PersonalDetails> getBirthPlaceHistory() {
 		return birthPlaceHistory;
 	}
@@ -111,6 +114,7 @@ public class Countries {
 	
 	
 @ManyToMany(mappedBy="countryVisitedAssigned")
+@XmlTransient
 	public Set<ApplicationForm> getApplicationFormAssigned() {
 		return applicationFormAssigned;
 	}

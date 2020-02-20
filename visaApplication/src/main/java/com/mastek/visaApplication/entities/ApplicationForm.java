@@ -28,7 +28,12 @@ import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import javax.xml.bind.annotation.XmlTransient;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.annotation.Transient;
 
 import com.mastek.visaApplication.services.VisaApplicationServices;
@@ -983,12 +988,11 @@ public class ApplicationForm {
 	
 
 	PersonalDetails applicationLink;
-
-	
 	
 	@ManyToOne
 	@JoinColumn(name="fk_passportNo")
 	@org.springframework.data.annotation.Transient
+	@XmlTransient
 	public PersonalDetails getApplicationLink() {
 		return applicationLink;
 	}
@@ -1001,6 +1005,7 @@ public class ApplicationForm {
 @ManyToMany(cascade= CascadeType.ALL)
 @JoinTable(name="Countries_Visited", joinColumns= {@JoinColumn(name="fk_Application_Form_ID")}, 
 inverseJoinColumns= {@JoinColumn(name="fk_Country_ID")})
+@XmlTransient
 	public Set<Countries> getCountryVisitedAssigned() {
 		return countryVisitedAssigned;
 	}
