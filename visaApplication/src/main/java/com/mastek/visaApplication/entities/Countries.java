@@ -22,10 +22,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name="COUNTRIES")
 public class Countries {
 	
-	int countryId;
+	private int countryId;
 	
 	@FormParam("countryName")
-	String countryName;
+	private String countryName;
 	
 	
 	
@@ -70,6 +70,9 @@ public class Countries {
 	
 	
 	
+	
+	// join to Personal Details
+	
 	Set<PersonalDetails> nationalityHistory = new HashSet<>();
 
 
@@ -81,6 +84,13 @@ public class Countries {
 	public void setNationalityHistory(Set<PersonalDetails> nationalityHistory) {
 		this.nationalityHistory = nationalityHistory;
 	}
+	
+	
+	
+	
+	
+	
+	// join to Personal Details
 	
 	
 	Set<PersonalDetails>birthPlaceHistory = new HashSet<>();
@@ -98,6 +108,11 @@ public class Countries {
 	Set<ApplicationForm> applicationFormAssigned = new HashSet<>();
 
 
+	
+	
+	// Join to Application
+	
+	
 @ManyToMany(mappedBy="countryVisitedAssigned")
 @XmlTransient
 	public Set<ApplicationForm> getApplicationFormAssigned() {

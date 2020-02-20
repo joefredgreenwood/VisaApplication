@@ -19,10 +19,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name="PAYMENT_INFO")
 public class Payment {
 	
-	int paymentRef;
+	private int paymentRef;
 	
 	@FormParam("totalFee")
-	double totalFee;
+	private double totalFee;
 	
 	
 	
@@ -66,6 +66,11 @@ public class Payment {
 	}
 	
 	PersonalDetails paymentLink;
+
+
+
+	
+	// Join to Personal Details
 
 	@ManyToOne
 	@JoinColumn(name="fk_passportNo")
