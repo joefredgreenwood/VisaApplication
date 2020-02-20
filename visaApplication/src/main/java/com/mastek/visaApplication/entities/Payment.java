@@ -11,8 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
-
+@XmlRootElement
 @Entity
 @Table(name="PAYMENT_INFO")
 public class Payment {
@@ -65,13 +67,10 @@ public class Payment {
 	
 	PersonalDetails paymentLink;
 
-
-
-	
-	
 	@ManyToOne
 	@JoinColumn(name="fk_passportNo")
 	@org.springframework.data.annotation.Transient
+	@XmlTransient
 	public PersonalDetails getPaymentLink() {
 		return paymentLink;
 	}

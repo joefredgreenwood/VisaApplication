@@ -11,7 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlRootElement
 @Entity
 @Table(name="LANGUAGES")
 public class Languages {
@@ -61,6 +64,7 @@ public class Languages {
 	
 	Set<PersonalDetails>languageHistory = new HashSet<>();
 	@OneToMany(mappedBy="languageLink", cascade= CascadeType.ALL)
+	@XmlTransient
 	public Set<PersonalDetails> getLanguageHistory() {
 		return languageHistory;
 	}

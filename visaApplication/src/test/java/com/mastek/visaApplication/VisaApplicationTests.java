@@ -72,59 +72,51 @@ class VisaApplicationTests {
 	PersonalDetails perd = new PersonalDetails();
 	perd.setPassportNo(333333);
 	perd.setApplicantSalutation(Salutation.MR);
-	perd.setFirstName("Luke");
+	perd.setFirstName("Jane");
 	perd.setMiddleName("N/A");
-	perd.setFamilyName("Mellor");
+	perd.setFamilyName("Ace");
 	perd.setOtherNames("N/A");
-	perd.setApplicantGender(Gender.MALE);
-	perd.setDateOfBirth("03/07/1995");
-	perd.setPlaceOfBirth("Rome");
+	perd.setApplicantGender(Gender.FEMALE);
+	perd.setDateOfBirth("03/02/1989");
+	perd.setPlaceOfBirth("Algiers");
 	perd.setDoYouHaveAnyOtherNationality(false);
-	perd.setApplicantRelationship(Relationship.SINGLE);
-	perd.setOwnershipStatusOfHome("Renting");
-	perd.setAddress("Via delle Fornaci, 11, 00100 Roma RM, Italy");
-	perd.setHowLongHaveYouLivedAtThisAddress("7 Years");
+	perd.setApplicantRelationship(Relationship.MARRIED);
+	perd.setOwnershipStatusOfHome("Owning");
+	perd.setAddress("777 Brockton Avenue, London MA 2351");
+	perd.setHowLongHaveYouLivedAtThisAddress("15 Years");
 	perd.setIsThisYourCorrespondenceAddress(true);
-	perd.setTelephoneNumber(0323324123);
+	perd.setTelephoneNumber(020567351);
 	perd.setCanBeContactedByTelephone(true);
 	perd.setWhereDoYouUseThisNumber("Personal");
 	perd.setWhoDoesThisEmailBelongTo("myself");
 	perd.setSecondaryEmail("N/A");
 	perd.setDrivingLicense(true);
 	perd.setDoYouHaveAValidNationalIdentityCard(true);
-	perd.setPassportIssueDate("01/03/2015");
-	perd.setPassportExpiryDate("01/03/2025");
-	perd.setCountryOfNationality("Italy");
-	perd.setIssuingAuthority("Italian Govt");
-	perd.setDoYouHaveAUkDriversLicense(false);
-	perd.setDoYouHaveAUkNationalInsuranceNumber(false);
-	perd.setNationalInsuranceNumber("N/A");
-	perd.setDependantPassportNo(2221113);
-	perd.setDependantFamilyName("Mellor");
+	perd.setPassportIssueDate("01/03/2012");
+	perd.setPassportExpiryDate("01/03/2022");
+	perd.setCountryOfNationality("United Kingdom");
+	perd.setIssuingAuthority("HM United Kingdom");
+	perd.setDoYouHaveAUkDriversLicense(true);
+	perd.setDoYouHaveAUkNationalInsuranceNumber(true);
+	perd.setNationalInsuranceNumber("PA8976521SS");
+	perd.setDependantPassportNo(44556677);
+	perd.setDependantFamilyName("Ace");
 	perd.setDependantSalutation(Salutation.MR);
 	perd.setDependantGender(Gender.MALE);
-	perd.setDependantGivenName("George");
-	perd.setDependantRelationshipToYou("Father");
-	perd.setDependantNationalitySameAsApplicant("Italian");
-	perd.setDependantCountryOfNationality("Italy");
-	perd.setDependantDateOfBirth("02/06/1975");
+	perd.setDependantGivenName("Anthony");
+	perd.setDependantRelationshipToYou("Husband");
+	perd.setDependantNationalitySameAsApplicant("United Kingdom");
+	perd.setDependantCountryOfNationality("United Kingdom");
+	perd.setDependantDateOfBirth("02/06/1988");
 	
 	}
 
-	@Test
-	void testDeletePersonalDetailsById() {
-	perddao.deleteById(31);
-		}
-	
-	
-	
+	//@Test
+	//void testDeletePersonalDetailsById() {
+	//perddao.deleteById();
+	//	}
 	
 
-	
-
-
-
-	
 	
 
 	@Test
@@ -340,7 +332,7 @@ class VisaApplicationTests {
 	
 	@Test
 	void testDeleteApplicationById() {
-	appFormDAO.deleteById(31);
+	appFormDAO.deleteById(2);
 	}
 
 
@@ -355,13 +347,6 @@ class VisaApplicationTests {
 		System.out.println(visaAppServices.getDecision());
 	}
 
-
-
-
-	
-
-		
-	
 	
 		@Test
 		void testAddPayment() {
@@ -375,7 +360,7 @@ class VisaApplicationTests {
 
 		@Test
 		void testDeletePaymentById() {
-		payDAO.deleteById(31);
+		payDAO.deleteById(22);
 		}
 
 
@@ -397,19 +382,15 @@ class VisaApplicationTests {
 	
 	@Test
 	void testDeleteCountryById() {
-	couDAO.deleteById(19);
+	couDAO.deleteById(16);
 	}
 	
-
-
-
-
 
 
 	@Test
 	void testAddLanguages() {
 		Languages lan = new Languages();
-		lan.setLanguageName("Brazilian");
+		lan.setLanguageName("urdu");
 
 
 		lan = lanDAO.save(lan);
@@ -417,12 +398,9 @@ class VisaApplicationTests {
 
 	}
 
-
-	
-
 	@Test
 	void testDeleteLanguageById() {
-	lanDAO.deleteById(20);
+	lanDAO.deleteById(18);
 	}
 	
 
@@ -444,7 +422,7 @@ class VisaApplicationTests {
 
 		@Test
 		void testDeleteIssueingAuthorityById() {
-		issAuthDAO.deleteById(21);
+		issAuthDAO.deleteById(5);
 	}
 
 

@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @Entity
@@ -42,26 +43,25 @@ public class PersonalDetails {
 	@FormParam("familyName")
 	String familyName;
 	
+
 	@FormParam("otherNames")
 	String otherNames;
 	
 	@FormParam("applicantGender")
 	Gender applicantGender;
 
-		
-
 	
 	@FormParam("dateOfBirth")
-	String dateOfBirth;			// try this with the date
+	String dateOfBirth;			
 	
 	@FormParam("countryOfBirth")
-	String countryOfBirth;		// try this with the date
+	String countryOfBirth;		
 	//
 	@FormParam("placeOfBirth")
-	String placeOfBirth;	// try this with the date 
+	String placeOfBirth;	
 	
 	@FormParam("nationality")
-	String nationality; //Change this once greg has done the enum
+	String nationality; 
 	
 	@FormParam("doYouHaveAnyOtherNationality")
 
@@ -92,12 +92,9 @@ public class PersonalDetails {
  
 
 	@FormParam("whereDoYouUseThisNumber")
-	String whereDoYouUseThisNumber; //possible enum (home/work)
-	
+	String whereDoYouUseThisNumber; 
 	
 
-
-	
 	@FormParam("whoDoesThisEmailBelongTo")
 	String whoDoesThisEmailBelongTo;
 	
@@ -209,6 +206,30 @@ public class PersonalDetails {
 
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
+	}
+	
+	public String getContactLanguage() {
+		return contactLanguage;
+	}
+
+	public void setContactLanguage(String contactLanguage) {
+		this.contactLanguage = contactLanguage;
+	}
+
+	public String getCountryOfBirth() {
+		return countryOfBirth;
+	}
+
+	public void setCountryOfBirth(String countryOfBirth) {
+		this.countryOfBirth = countryOfBirth;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
 	@Column(name="other_names",nullable=true)
 	public String getOtherNames() {
@@ -534,6 +555,7 @@ public class PersonalDetails {
 	
 	Set<Payment> PaymentHistory = new HashSet<>();
 	@OneToMany(mappedBy= "paymentLink", cascade= CascadeType.ALL)
+	@XmlTransient
 	public Set<Payment> getPaymentHistory() {
 		return PaymentHistory;
 	}
@@ -544,6 +566,7 @@ public class PersonalDetails {
 	
 	Set<ApplicationForm> ApplicationHistory = new HashSet<>();
 	@OneToMany(mappedBy= "applicationLink", cascade= CascadeType.ALL)
+	@XmlTransient
 	public Set<ApplicationForm> getApplicationHistory() {
 		return ApplicationHistory;
 	}
@@ -558,6 +581,7 @@ public class PersonalDetails {
 	@ManyToOne
 	@JoinColumn(name="fk_Country_of_Nationality")
 	@org.springframework.data.annotation.Transient
+	@XmlTransient
 	public Countries getNationalityLink() {
 		return nationalityLink;
 	}
@@ -574,6 +598,7 @@ public class PersonalDetails {
 	@ManyToOne
 	@JoinColumn(name="fk_Country_of_Birth")
 	@org.springframework.data.annotation.Transient
+	@XmlTransient
 	public Countries getBirthPlaceLink() {
 		return birthPlaceLink;
 	}
@@ -586,6 +611,7 @@ public class PersonalDetails {
 	@ManyToOne
 	@JoinColumn(name="fk_Contact_Language")
 	@org.springframework.data.annotation.Transient
+	@XmlTransient
 	public Languages getLanguageLink() {
 		return languageLink;
 	}
@@ -595,22 +621,5 @@ public class PersonalDetails {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
 	
 }
