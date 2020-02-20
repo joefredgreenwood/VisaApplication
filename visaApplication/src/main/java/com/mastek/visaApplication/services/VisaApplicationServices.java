@@ -96,14 +96,6 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 	@Autowired
 	LanguagesDAO lanDAO;
-<<<<<<< HEAD
-	
-
-=======
-
-	@Autowired
-	IssueingAuthorityDAO issAuthDAO;
->>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
 
 	@Autowired
@@ -496,7 +488,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 		return couDAO.findById(countryId).get();
 	}
 
-<<<<<<< HEAD
+
 //////////////////////////////////////////////////////////For IssueingAuthorityAPI
 //@Override
 //public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
@@ -517,38 +509,17 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 //	return newIssueingAuthority;
 //    }
 //////////////////////////////////////////////////////////////////////LanguagesAPI
-@Override
-public Iterable<Languages> listAllLanguages() {
-	System.out.println("Listing All Languages");
-	return lanDAO.findAll();
-}
-=======
+
+
+
 	@Override
 	public Countries registerNewCountry(Countries newCountry) {
 		newCountry = couDAO.save(newCountry);
 		return newCountry;
 	}
 
-	//////////////////////////////////////////////////////////For IssueingAuthorityAPI
-	@Override
-	public Iterable<IssueingAuthority> listAllIssueingAuthorities() {
-		System.out.println("Listing All Issueing Authorities");
-		return issAuthDAO.findAll();
-	}
-
-	@Override
-	public IssueingAuthority findByIssueingAuthorityId(int issueingAuthorityId) {
->>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
-
-		return issAuthDAO.findById(issueingAuthorityId).get();
-
-	}
-
-	@Override
-	public IssueingAuthority registerNewIssueingAuthority(IssueingAuthority newIssueingAuthority) {
-		newIssueingAuthority = issAuthDAO.save(newIssueingAuthority);
-		return newIssueingAuthority;
-	}
+	
+	
 	//////////////////////////////////////////////////////////////////////LanguagesAPI
 	@Override
 	public Iterable<Languages> listAllLanguages() {
