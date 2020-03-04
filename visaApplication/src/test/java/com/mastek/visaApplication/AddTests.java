@@ -1,4 +1,4 @@
-package com.mastek.visaApplication;
+/*package com.mastek.visaApplication;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -62,10 +62,12 @@ public class AddTests {
 	@Autowired
 	VisaApplicationServices visaAppServices;
 
-	//@Test
-	void testAddPersonalDetails() {
+	
+	@Test
+		void testAddPersonalDetails() {
+
 		PersonalDetails perd = new PersonalDetails();
-		perd.setPassportNo(101010);
+		perd.setPassportNo(232425);
 		perd.setApplicantSalutation(Salutation.MR);
 		perd.setFirstName("Barry");
 		perd.setMiddleName("N/A");
@@ -103,7 +105,30 @@ public class AddTests {
 		perd.setDependantNationalitySameAsApplicant("Italian");
 		perd.setDependantCountryOfNationality("Italy");
 		perd.setDependantDateOfBirth("02/06/1975");
+<<<<<<< HEAD
+=======
+		
+		   perd = perddao.save(perd);
+		    visaAppServices.mongoDecisionMaker(perd);
+		    System.out.println(visaAppServices.mongoDecisionMaker(perd));
+		    perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+		    perd = perddao.save(perd);
+		
+		}
+		
+		
+		
+		
+		
+	
+		
+		
+		@Test
+		void testAddApplicationForm() {
+			ApplicationForm appForm = new ApplicationForm(); 
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
+<<<<<<< HEAD
 		perd = perddao.save(perd);
 		visaAppServices.mongoDecisionMaker(perd);
 		System.out.println(visaAppServices.mongoDecisionMaker(perd));
@@ -294,6 +319,10 @@ public class AddTests {
 
 			appForm.setApplicationDate("17/02/2020");
 			appForm.setDurationOfVisa(10);
+=======
+			appForm.setApplicationDate("20/02/2020");
+			appForm.setDurationOfVisa(14);
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 			appForm.setSubmissionType(SubmissionType.ONLINE);
 			appForm.setPlannedArriveUK("20/05/2020");
 			appForm.setPlannedDepartUK("20/09/2020");
@@ -467,6 +496,37 @@ public class AddTests {
 		
 		
 		
+<<<<<<< HEAD
+=======
+		@Test
+				void testAddPayment() {
+				Payment pay = new Payment();
+				pay.setTotalFee(84.50);
+
+				pay = payDAO.save(pay);
+				System.out.println(pay);
+				assertNotNull(pay, "Payment not Added");
+				}
+				
+				
+				
+				@Test
+				void testAddCountry() {
+					Countries cou = new Countries();
+					cou.setCountryName("Japan");
+
+					cou = couDAO.save(cou);
+					System.out.println(cou);
+
+				}
+				
+				
+				
+				@Test
+				void testAddLanguages() {
+					Languages lan = new Languages();
+					lan.setLanguageName("Japanese");
+>>>>>>> branch 'master' of https://github.com/joefredgreenwood/VisaApplication.git
 
 
 
@@ -511,3 +571,4 @@ public class AddTests {
 
 
 }
+*/
