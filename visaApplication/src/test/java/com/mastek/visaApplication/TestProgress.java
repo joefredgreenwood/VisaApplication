@@ -53,7 +53,7 @@ public class TestProgress {
 	VisaApplicationServices visaAppServices;
 	
 	
-	//@Test
+	@Test
 	void testReturnProgressForm() {
 		
 		ApplicationForm appForm = new ApplicationForm(); 
