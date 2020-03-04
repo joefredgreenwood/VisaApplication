@@ -1,4 +1,4 @@
-package com.mastek.visaApplication;
+/*package com.mastek.visaApplication;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -62,10 +62,10 @@ public class AddTests {
 	@Autowired
 	VisaApplicationServices visaAppServices;
 	
-	//@Test
+	@Test
 		void testAddPersonalDetails() {
 		PersonalDetails perd = new PersonalDetails();
-		perd.setPassportNo(101010);
+		perd.setPassportNo(232425);
 		perd.setApplicantSalutation(Salutation.MR);
 		perd.setFirstName("Barry");
 		perd.setMiddleName("N/A");
@@ -119,12 +119,12 @@ public class AddTests {
 	
 		
 		
-		//@Test
+		@Test
 		void testAddApplicationForm() {
 			ApplicationForm appForm = new ApplicationForm(); 
 
-			appForm.setApplicationDate("17/02/2020");
-			appForm.setDurationOfVisa(10);
+			appForm.setApplicationDate("20/02/2020");
+			appForm.setDurationOfVisa(14);
 			appForm.setSubmissionType(SubmissionType.ONLINE);
 			appForm.setPlannedArriveUK("20/05/2020");
 			appForm.setPlannedDepartUK("20/09/2020");
@@ -297,10 +297,10 @@ public class AddTests {
 		
 		
 		
-		//@Test
+		@Test
 				void testAddPayment() {
 				Payment pay = new Payment();
-				pay.setTotalFee(70.58);
+				pay.setTotalFee(84.50);
 
 				pay = payDAO.save(pay);
 				System.out.println(pay);
@@ -309,10 +309,10 @@ public class AddTests {
 				
 				
 				
-				//@Test
+				@Test
 				void testAddCountry() {
 					Countries cou = new Countries();
-					cou.setCountryName("Brazil");
+					cou.setCountryName("Japan");
 
 					cou = couDAO.save(cou);
 					System.out.println(cou);
@@ -321,10 +321,10 @@ public class AddTests {
 				
 				
 				
-				//@Test
+				@Test
 				void testAddLanguages() {
 					Languages lan = new Languages();
-					lan.setLanguageName("Russian");
+					lan.setLanguageName("Japanese");
 
 
 					lan = lanDAO.save(lan);
@@ -337,3 +337,4 @@ public class AddTests {
 				
 
 }
+*/
