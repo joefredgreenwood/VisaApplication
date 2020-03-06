@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @EntityListeners({PersonalDetailsListener.class})
 public class PersonalDetails {
 	
+	@FormParam("dnaDatabaseScreeningStatus")
 	String dnaDatabaseScreeningStatus;
 
 

@@ -12,6 +12,7 @@ public class APIConfig
 	public APIConfig() {
 		// register each service class to enable service as PI
 		register(VisaApplicationServices.class);
+		register(CORSFilter.class);
 	}
 
 }

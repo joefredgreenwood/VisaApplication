@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.transaction.Transactional;
@@ -17,8 +18,6 @@ import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
-
-
 
 
 import com.mastek.visaApplication.api.ApplicationFormAPI;
@@ -665,6 +664,25 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 		couDAO.save(cou);
 
 		return appfor;
+	}
+	@Override
+	@Transactional
+	public Set<ApplicationForm> getPersonalApplications(int passportNo) {
+		PersonalDetails currentPer = perddao.findById(passportNo).get();
+	    int count = currentPer.getApplicationHistory().size();
+	    System.out.println(count +" Accounts found");
+	    
+	    Set<ApplicationForm> applicationForms = currentPer.getApplicationHistory();
+	    return applicationForms;
+	}
+
+	
+	@Override
+	@Transactional
+	public ApplicationForm registerApplicationFormForPersonalDetails(int passportNo, ApplicationForm newApplicationForm) {
+		newApplicationForm = appDAO.save(newApplicationForm);
+		assignApplicationToPersonalDetails(passportNo, newApplicationForm.getApplicationID());
+		return newApplicationForm;
 	}
 
 

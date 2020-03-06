@@ -48,6 +48,7 @@ public class ApplicationForm {
 	@Autowired
 	VisaApplicationServices visaApp;
 	
+	@FormParam("appQuestionsStatus")
 	String appQuestionsStatus;
 
 	public String getAppQuestionsStatus() {
