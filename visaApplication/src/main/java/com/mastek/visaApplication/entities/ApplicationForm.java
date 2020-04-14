@@ -21,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
@@ -41,14 +42,16 @@ import com.mastek.visaApplication.services.VisaApplicationServices;
 @XmlRootElement
 @Entity
 @Table(name="JPA_APPLICATION_FORM")
-@EntityListeners({ApplicationFormListeners.class}) //
+@EntityListeners({ApplicationFormListeners.class}) 
+@NamedQuery(name="ApplicationForm.findByStatus",
+		query="select a from ApplicationForm a where a.status=:status")
 public class ApplicationForm {
 	
 	
 	@Autowired
 	VisaApplicationServices visaApp;
 	
-	@FormParam("appQuestionsStatus")
+//	@FormParam("appQuestionsStatus")
 	String appQuestionsStatus;
 
 	public String getAppQuestionsStatus() {
@@ -61,11 +64,21 @@ public class ApplicationForm {
 	
 	
 
+	String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 
 
 	private int applicationID;
 	//VISA DETAILS// 
-	@FormParam("applicationDate")
+	
 	private String applicationDate; 
 	
 	@FormParam("durationOfVisa")

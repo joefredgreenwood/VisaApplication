@@ -56,10 +56,10 @@ public class TestDNADatabase {
 
 	//////////////////////////////////////Dependent Fail////////////////////////////////////////////////////////////////////
 	//Crime committed by applicant over 10 years ago, by dependent within last 10 years
-	//@Test
+	@Test
 	void testAddPersonalDetailsDependant() {
 		PersonalDetails perd = new PersonalDetails();
-		perd.setPassportNo(111136);////////////////////////////////////////////////////////////////////////////////////
+		perd.setPassportNo(373837);////////////////////////////////////////////////////////////////////////////////////
 		perd.setApplicantSalutation(Salutation.MR);
 		perd.setFirstName("Barry");
 		perd.setMiddleName("N/A");
@@ -88,7 +88,7 @@ public class TestDNADatabase {
 		perd.setDoYouHaveAUkDriversLicense(false);
 		perd.setDoYouHaveAUkNationalInsuranceNumber(false);
 		perd.setNationalInsuranceNumber("N/A");
-		perd.setDependantPassportNo(111111);///////////////////////////////////////////////////////////////////////////////////
+		perd.setDependantPassportNo(262923);///////////////////////////////////////////////////////////////////////////////////
 		perd.setDependantFamilyName("Mellor");
 		perd.setDependantSalutation(Salutation.MR);
 		perd.setDependantGender(Gender.MALE);
@@ -99,10 +99,10 @@ public class TestDNADatabase {
 		perd.setDependantDateOfBirth("02/06/1975");
 
 		perd = perddao.save(perd);
-		visaAppServices.mongoDecisionMaker(perd);
-		System.out.println(visaAppServices.mongoDecisionMaker(perd));
-		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
-		perd = perddao.save(perd);
+//		visaAppServices.mongoDecisionMaker(perd);
+//		System.out.println(visaAppServices.mongoDecisionMaker(perd));
+//		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+//		perd = perddao.save(perd);
 
 	}
 
@@ -152,10 +152,10 @@ public class TestDNADatabase {
 		perd.setDependantDateOfBirth("02/06/1975");
 
 		perd = perddao.save(perd);
-		visaAppServices.mongoDecisionMaker(perd);
-		System.out.println(visaAppServices.mongoDecisionMaker(perd));
-		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
-		perd = perddao.save(perd);
+//		visaAppServices.mongoDecisionMaker(perd);
+//		System.out.println(visaAppServices.mongoDecisionMaker(perd));
+//		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+//		perd = perddao.save(perd);
 
 	}
 
@@ -203,10 +203,10 @@ public class TestDNADatabase {
 		perd.setDependantDateOfBirth("02/06/1975");
 
 		perd = perddao.save(perd);
-		visaAppServices.mongoDecisionMaker(perd);
-		System.out.println(visaAppServices.mongoDecisionMaker(perd));
-		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
-		perd = perddao.save(perd);
+//		visaAppServices.mongoDecisionMaker(perd);
+//		System.out.println(visaAppServices.mongoDecisionMaker(perd));
+//		perd.setDnaDatabaseScreeningStatus(visaAppServices.getMongoDecisionV());
+//		perd = perddao.save(perd);
 
 	}
 

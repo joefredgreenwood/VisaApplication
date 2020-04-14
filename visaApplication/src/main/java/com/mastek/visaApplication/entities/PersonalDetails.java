@@ -25,6 +25,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @EntityListeners({PersonalDetailsListener.class})
 public class PersonalDetails {
 	
+	
+	@FormParam("status")
+	String status;
+	
 	@FormParam("dnaDatabaseScreeningStatus")
 	String dnaDatabaseScreeningStatus;
 
@@ -590,6 +594,8 @@ public class PersonalDetails {
 	public void setApplicationHistory(Set<ApplicationForm> applicationHistory) {
 		ApplicationHistory = applicationHistory;
 	}
+	
+	int appNumber = ApplicationHistory.size();
 	
 	
 	Countries nationalityLink;

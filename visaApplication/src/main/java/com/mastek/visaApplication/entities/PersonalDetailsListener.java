@@ -28,7 +28,7 @@ public class PersonalDetailsListener implements ApplicationContextAware {
 	}
 
 
-/*	@PostPersist
+/*@PostPersist
 	public void afterInsertPer (PersonalDetails per) {
 		getVisaApp();
 		System.out.println(visaApp.mongoDecisionMaker(per));

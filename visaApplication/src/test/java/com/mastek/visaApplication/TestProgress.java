@@ -234,18 +234,19 @@ public class TestProgress {
 		appForm.setHaveYouGivenFalseInfoOnVisa(false);
 		appForm.setHaveYouBeenToUKInLast10Years(false);
 
+		appForm.setAppQuestionsStatus("in progress");
+		appForm.setStatus("in progress");
 
 
 
 
-
-
-		appForm = appFormDAO.save(appForm);
-		visaAppServices.DecisionMaker(appForm);
-		System.out.println(visaAppServices.DecisionMaker(appForm));
-		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
-		System.out.println(appForm);
+//		appForm = appFormDAO.save(appForm);
+//		visaAppServices.DecisionMaker(appForm);
+//		System.out.println(visaAppServices.DecisionMaker(appForm));
+//		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
+//		System.out.println(appForm);
 		appFormDAO.save(appForm);
+//		System.out.println(appForm);
 
 
 
@@ -436,11 +437,11 @@ public class TestProgress {
 
 
 
-		appForm = appFormDAO.save(appForm);
-		visaAppServices.DecisionMaker(appForm);
-		System.out.println(visaAppServices.DecisionMaker(appForm));
-		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
-		System.out.println(appForm);
+//		appForm = appFormDAO.save(appForm);
+//		visaAppServices.DecisionMaker(appForm);
+//		System.out.println(visaAppServices.DecisionMaker(appForm));
+//		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
+//		System.out.println(appForm);
 		appFormDAO.save(appForm);
 
 
@@ -630,11 +631,11 @@ public class TestProgress {
 
 
 
-		appForm = appFormDAO.save(appForm);
-		visaAppServices.DecisionMaker(appForm);
-		System.out.println(visaAppServices.DecisionMaker(appForm));
-		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
-		System.out.println(appForm);
+//		appForm = appFormDAO.save(appForm);
+//		visaAppServices.DecisionMaker(appForm);
+//		System.out.println(visaAppServices.DecisionMaker(appForm));
+//		appForm.setAppQuestionsStatus(visaAppServices.getDecision());
+//		System.out.println(appForm);
 		appFormDAO.save(appForm);
 
 

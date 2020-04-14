@@ -60,7 +60,7 @@ public class JoinTests {
 			Payment pay = visaServices.assignPaymentToPersonalDetails(234567, 84);
 			}
 			
-			@Test
+			//@Test
 			void testAssignApplicationToPersonalDetails() {
 			ApplicationForm app = visaServices.assignApplicationToPersonalDetails(111931, 36);
 			}

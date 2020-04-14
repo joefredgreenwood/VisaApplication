@@ -4,6 +4,9 @@ import java.text.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
@@ -95,335 +98,7 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	@Autowired
 	DNADatabaseDAO dnaDAO;
 
-	int terror;
-	int travel;
-	int immigration;
-	String decision;
-	int year;
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public String getDecision() {
-		return decision;
-	}
-
-	public void setDecision(String decision) {
-		this.decision = decision;
-	}
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	String crimeDate1;
-	String crimeReason;
-	String crimeDate2;
-	String crimeReason1;
-	String mongoDecisionV;
-
-
-
-	public String getMongoDecisionV() {
-		return mongoDecisionV;
-	}
-
-	public void setMongoDecisionV(String mongoDecisionV) {
-		this.mongoDecisionV = mongoDecisionV;
-	}
-
-	public String getCrimeDate2() {
-		return crimeDate2;
-	}
-
-	public void setCrimeDate2(String crimeDate2) {
-		this.crimeDate2 = crimeDate2;
-	}
-
-	public String getCrimeReason1() {
-		return crimeReason1;
-	}
-
-	public void setCrimeReason1(String crimeReason1) {
-		this.crimeReason1 = crimeReason1;
-	}
-
-
-
-
-
-	public String getCrimeReason() {
-		return crimeReason;
-	}
-
-	public void setCrimeReason(String crimeReason) {
-		this.crimeReason = crimeReason;
-	}
-
-	boolean answer;
-
-	public String getCrimeDate1() {
-		return crimeDate1;
-	}
-
-	public void setCrimeDate1(String crimeDate1) {
-		this.crimeDate1 = crimeDate1;
-	}
-
-	//Method that we will use to get current date
-	@Transactional
-	public static boolean inLast10Years(String Date) {
-		double years = 0;
-		try {            
-			Date date = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss").parse(Date); //convert DB date from string to Date object
-			Date currentDate = new Date(); //gets current date 
-
-			long diffMil = currentDate.getTime() - date.getTime(); //get miliseconds between dates
-			long days = TimeUnit.MILLISECONDS.toDays(diffMil); //get days between dates
-			years = days / 365.25; //gets years between dates
-			// so meantion conflict in timezones between data in database and what we have in here
-			//may not be an issue * 
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return years <= 10;
-	}
-	@Transactional
-	public static Instant getDateFromString(String string) ////////////////
-	{
-		Instant timeStamp = null;
-		timeStamp=Instant.parse(string);
-		return timeStamp;
-	}
-
-	@Transactional
-	public String mongoDecisionPersonal(PersonalDetails per) {
-		DNADatabase db2;
-		//String crimeReason;
-		try {
-			db2 =dnaDAO.findById(per.getPassportNo()).get();
-			if(db2!=null) {
-				crimeDate1 = db2.getCrimeDate();
-
-				answer = inLast10Years(crimeDate1);
-				if (answer) {
-					crimeReason = db2.getCrimeDescription();
-					
-				}
-				else crimeReason = null;
-				
-
-			}
-
-			else {crimeReason = null;
-						}
-			
-		} catch (Exception e) {
-			crimeReason = null;
-		}
-		return crimeReason;
-	}
-
-	@Transactional
-	public String mongoDecisionDependant(PersonalDetails per) {
-		DNADatabase db1;
-		//String crimeReason1;
-		try {
-			db1 = dnaDAO.findById(per.getDependantPassportNo()).get();
-
-			if(db1!=null) {
-				crimeDate2 = db1.getCrimeDate();
-
-				answer = inLast10Years(crimeDate2);
-				if (answer) {
-					crimeReason1 = db1.getCrimeDescription();
-
-				}
-				else {crimeReason1 = null;
-				}
-
-			}
-
-			else {crimeReason1 = null;
-
-			}
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			crimeReason1 = null;
-		}
-		return crimeReason1;
-	}
-
-
-
-		@Transactional
-	public String mongoDecision (PersonalDetails per) {
-
-		if (crimeReason!=null) {
-			setMongoDecisionV("Application denied as name appears in DNA Database for crime "+crimeReason);
-			return getMongoDecisionV();
-		}
-		else if (crimeReason1!=null) {
-			setMongoDecisionV("Application denied as Dependant's name appears in DNA Database for crime "+crimeReason1);
-			return getMongoDecisionV();
-		}
-		else {setMongoDecisionV("Application has passed DNA Screening");
-			return getMongoDecisionV();
-			}
-
-	}
-
-	@Transactional
-	public String mongoDecisionMaker (PersonalDetails per/*,int appId*/) {
-
-		//ApplicationForm appF = appDAO.findById(appId).get();
-		mongoDecisionPersonal(per);
-		mongoDecisionDependant(per);
-		mongoDecision(per);
-		per.setDnaDatabaseScreeningStatus(mongoDecisionV);
-		return getMongoDecisionV();
-	}
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@Transactional
-	public int  terrorTest( ApplicationForm appForm) {
-
-
-
-		terror = 0;
-
-		if (appForm.getHaveYouBeenAMemberOfTerroristOrginisation()) {
-			++terror;
-		}
-
-		if (appForm.getHaveYouJustifiedOrEncouragedTerrorism()) {
-			++terror;
-		}
-
-		if (appForm.getHaveYouSupportedTerrorism()) {
-			++terror;
-		}
-		if (appForm.getHaveYouBeenSuspectedOrInvolvedInWarCrimes()) {
-			++terror;
-		}
-		if (appForm.getAnyOtherActivitiesShowNotGoodPerson()) {
-			++terror;
-		}
-		if (appForm.getWorkedForOrginisationDangerousToUKOrAllies()) {
-			++terror;
-		}
-		if (appForm.getHaveYouExpressedAnyExtremistViews()) {
-			++terror;
-		}
-
-
-
-
-		
-
-
-		return terror;
-
-	}
-
-	@Transactional
-	public int testTravelHistory(ApplicationForm appForm) {
-
-		travel = 0;
-		if (appForm.getRefusedVisa()) {
-			++travel;
-		}
-		if (appForm.getRefusedEntryAtBorder()) {
-			++travel;
-		}
-		if (appForm.getRefusedPermissionToStay()) {
-			++travel;
-		}
-		if (appForm.getRefusedAsylum()) {
-			++travel;
-		}
-		if (appForm.getDeportedFromCountry()) {
-			++travel;
-		}
-		if (appForm.getRemovedFromCountry()) {
-			++travel;
-		}
-		if (appForm.getExcludedOrBannedFromEntry()) {
-			++travel;
-		}
-		if (appForm.getHaveYouBreachedVisaConditions()) {
-			++travel;
-		}
-
-		return travel;
-
-	}
-
-	@Transactional
-	public int immgrationTest(ApplicationForm appForm) {
-		immigration = 0;
-		if (appForm.getHaveYouEnteredUKIllegally()) {
-			++immigration;
-		}
-		if (appForm.getHaveYouStayedBeyondYourVisa()) {
-			++immigration;
-		}
-		if (appForm.getHaveYouBreachedVisaConditions()) {
-			++immigration;
-		}
-		if (appForm.getHaveYouReceivedPublicFundsWithoutPermission()) {
-			++immigration;
-		}
-		if (appForm.getHaveYouGivenFalseInfoOnVisa()) {
-			++immigration;
-		}
-
-		return immigration;
-	}
-
-
-	@Transactional
-	public String overallDecision(ApplicationForm appForm) {
-
-
-		if (terror>0) {
-			setDecision("Application denied in relation to terrorism");
-		}
-		else if (travel>4) {
-			setDecision("Application denied in relation to previous travel history");
-		}
-		else if (immigration>2) {
-			setDecision("Application denied dueto immigration");
-		}
-		else if (travel>0 && travel<4) {
-			setDecision("Application is under review due to applicants travel history");
-		}
-		else if (immigration>0 && immigration<2) {
-			setDecision("Application is under review due to applicant immigration history");
-		}
-		else {setDecision("Visa granted");}
-
-		return getDecision();
-
-	}
-
-	@Transactional
-	public  String  DecisionMaker(ApplicationForm appF) {
-		terrorTest(appF);
-		testTravelHistory(appF);
-		immgrationTest(appF);
-		overallDecision(appF);
-		appF.setAppQuestionsStatus(getDecision());
-		return getDecision();
-		
-
-
-	}
-
+	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////// For PersonsalDetails API
@@ -462,6 +137,11 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 
 	@Override
 	public ApplicationForm registerNewApplicationForm(ApplicationForm newApplicationForm) {
+		LocalDate currentDate = LocalDate.now();
+		String cDate = currentDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+		newApplicationForm.setApplicationDate(cDate);
+		newApplicationForm.setAppQuestionsStatus("Application in progress");
+		newApplicationForm.setStatus("in progress");		
 		newApplicationForm = appDAO.save(newApplicationForm);
 		return newApplicationForm;
 	}
@@ -680,18 +360,15 @@ public class VisaApplicationServices implements PersonalDetailsAPI, ApplicationF
 	@Override
 	@Transactional
 	public ApplicationForm registerApplicationFormForPersonalDetails(int passportNo, ApplicationForm newApplicationForm) {
+		LocalDate currentDate = LocalDate.now();
+		String cDate = currentDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
+		newApplicationForm.setApplicationDate(cDate);
+		newApplicationForm.setAppQuestionsStatus("Application in progress");
+		newApplicationForm.setStatus("in progress");
 		newApplicationForm = appDAO.save(newApplicationForm);
 		assignApplicationToPersonalDetails(passportNo, newApplicationForm.getApplicationID());
 		return newApplicationForm;
 	}
-
-
-
-
-
-
-
-
 
 }
 
